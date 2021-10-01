@@ -54,6 +54,8 @@ public class Interface {
         UsersDataBase userDataBase = new UsersDataBase();
         ProductsDataBase productsDataBase = new ProductsDataBase();
 
+// Tutaj jest problem. Jak wejdzie się w jakąś opcję, to ona się zapętla
+
         System.out.println("--------------------");
         System.out.println("Pick a number to navigate.");
         System.out.println("(1) - Check available products");
@@ -94,10 +96,10 @@ public class Interface {
                 Scanner scanner = new Scanner(System.in);
                 choice = scanner.nextInt();
             } catch (Exception e){
-                System.out.println("Podaj poprawną liczbę.");
+                System.out.println("Give me correct number.");
             }
             if (choice > amount || choice <= 0){
-                System.out.println("Podaj liczbę z zakresu od 1 do " + amount);
+                System.out.println("Give a number from 1 to " + amount);
             } else {
                 condition = false;
             }

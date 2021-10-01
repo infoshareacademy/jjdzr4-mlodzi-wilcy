@@ -17,6 +17,11 @@ public class UsersDataBase {
         System.out.println("User " + name + " is logged in.");
     }
 
+    private boolean isInUsersDatabase(String name, String password) {
+        //Logika sprawdzająca, czy użytkownik jest w bazie danych
+        return true;
+    }
+
     public void addUser(){
         String name;
         String password;
@@ -29,4 +34,6 @@ public class UsersDataBase {
 
         System.out.println("New user: " + name + " added.");
     }
+
+
 }
