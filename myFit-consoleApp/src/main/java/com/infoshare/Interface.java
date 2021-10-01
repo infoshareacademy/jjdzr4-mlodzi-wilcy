@@ -27,8 +27,10 @@ public class Interface {
                 case 1: //Login
                     userDataBase.logInUser();
                     userLoggedInterface();
+                    break;
                 case 2: //New User
                     userDataBase.addUser();
+                    break;
                 case 3: //Check products
                     productsDataBase.readProducts();
                     break;
@@ -65,12 +67,14 @@ public class Interface {
         do{
             switch (secondChoice){
                 case 1: //Check products
-                    userDataBase.logInUser();
-                    userLoggedInterface();
+                    productsDataBase.readProducts();
+                    break;
                 case 2: //Add product
-                    userDataBase.addUser();
+                    productsDataBase.addProduct();
+                    break;
                 case 3: //Edit product
                     productsDataBase.editProduct();
+                    break;
                 case 4: //Exit
                     System.out.println("Exiting to main menu");
                     defaultInterface();
