@@ -10,4 +10,13 @@ public class DummyUser {
         this.age = 22;
         this.favoriteDish = new DummyDish();
     }
+
+    @Override
+    public String toString() {
+        return "DummyUser{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", favoriteDish=" + favoriteDish +
+                '}';
+    }
 }
