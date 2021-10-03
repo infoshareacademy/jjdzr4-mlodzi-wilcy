@@ -56,8 +56,6 @@ public class Interface {
         UsersDataBase userDataBase = new UsersDataBase();
         ProductsDataBase productsDataBase = new ProductsDataBase();
 
-// Tutaj jest problem. Jak wejdzie się w jakąś opcję, to ona się zapętla
-
         System.out.println("--------------------");
         System.out.println("Pick a number to navigate.");
         System.out.println("(1) - Check available products");
