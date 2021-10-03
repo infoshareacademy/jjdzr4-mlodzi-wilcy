@@ -18,7 +18,10 @@ public class UsersDataBase {
     }
 
     private boolean isInUsersDatabase(String name, String password) {
-        //Logika sprawdzająca, czy użytkownik jest w bazie danych
+        /*
+         TODO
+         Logika sprawdzająca, czy użytkownik jest w bazie danych
+        */
         return true;
     }
 
