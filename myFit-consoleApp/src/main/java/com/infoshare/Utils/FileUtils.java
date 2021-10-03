@@ -1,13 +1,12 @@
 package com.infoshare.Utils;
 
 import com.google.gson.Gson;
-import com.infoshare.DummyUser;
 
 import java.io.*;
 
 public class FileUtils {
 
-    public static void writeJsonToFile(Object object, String path) {
+    public static void writeJsonToFile(String path, Object object) {
         Gson gson = new Gson();
         try (Writer writer = new FileWriter(path)) {
             gson.toJson(object, writer);
@@ -16,10 +15,10 @@ public class FileUtils {
         }
     }
 
-    public static Object readObjectFromJsonFile(String path) {
+    public static Object readObjectFromJsonFile(String path, Class className) {
         Gson gson = new Gson();
         try (Reader reader = new FileReader(path)) {
-            Object object = gson.fromJson(reader, DummyUser.class);
+            Object object = gson.fromJson(reader, className);
             return object;
         } catch (IOException e) {
             System.out.println("Exception during reading json file: " + e.getMessage());
