@@ -33,5 +33,7 @@ public class App {
         } catch (IOException e) {
             System.out.println("Exception during saving json file: " + e.getMessage());
         }
+        Interface anInterface = new Interface();
+        anInterface.defaultInterface();
     }
 }
