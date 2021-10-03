@@ -1,9 +1,10 @@
 package com.infoshare;
+
 import java.util.Scanner;
 
 public class Interface {
 
-    public void defaultInterface(){
+    public void defaultInterface() {
         int numberOfChoices = 6;
         int newChoice;
         UsersDataBase userDataBase = new UsersDataBase();
@@ -23,7 +24,7 @@ public class Interface {
 
             newChoice = choiceChecker(numberOfChoices);
 
-            switch (newChoice){
+            switch (newChoice) {
                 case 1: //Login
                     userDataBase.logInUser();
                     userLoggedInterface();
@@ -43,7 +44,8 @@ public class Interface {
                 case 6: //Exit
                     System.out.println("Exiting....");
                     break;
-                default: break;
+                default:
+                    break;
             }
         } while (newChoice != numberOfChoices);
     }
@@ -65,9 +67,10 @@ public class Interface {
         System.out.println("--------------------");
         System.out.println("Enter a number:");
 
-        secondChoice = choiceChecker(numberOfChoices);
-        do{
-            switch (secondChoice){
+
+        do {
+            secondChoice = choiceChecker(numberOfChoices);
+            switch (secondChoice) {
                 case 1: //Check products
                     productsDataBase.readProducts();
                     break;
@@ -81,24 +84,25 @@ public class Interface {
                     System.out.println("Exiting to main menu");
                     defaultInterface();
                     break;
-                default: break;
+                default:
+                    break;
             }
         } while (secondChoice != numberOfChoices);
     }
 
 
-    private int choiceChecker(int amount){
+    private int choiceChecker(int amount) {
         int choice = 0;
         boolean condition = true;
 
-        while (condition){
+        while (condition) {
             try {
                 Scanner scanner = new Scanner(System.in);
                 choice = scanner.nextInt();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Give me correct number.");
             }
-            if (choice > amount || choice <= 0){
+            if (choice > amount || choice <= 0) {
                 System.out.println("Give a number from 1 to " + amount);
             } else {
                 condition = false;

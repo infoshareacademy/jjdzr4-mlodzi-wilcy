@@ -3,7 +3,7 @@ package com.infoshare;
 import java.util.Scanner;
 
 public class UsersDataBase {
-    public void logInUser(){
+    public void logInUser() {
         String name;
         String password;
         System.out.println("Hello. You can Log In into a system.");
@@ -22,7 +22,7 @@ public class UsersDataBase {
         return true;
     }
 
-    public void addUser(){
+    public void addUser() {
         String name;
         String password;
         Scanner scanner = new Scanner(System.in);
