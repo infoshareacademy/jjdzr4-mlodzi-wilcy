@@ -55,7 +55,7 @@
               <manifest>
                 <addClasspath>true</addClasspath>
                 <classpathPrefix>lib/</classpathPrefix>
-                <mainClass>com.infoshare.Main</mainClass>
+                <mainClass>com.infoshare.App</mainClass>
               </manifest>
             </archive>
           </configuration>
