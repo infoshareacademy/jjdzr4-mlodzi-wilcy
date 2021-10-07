@@ -17,6 +17,7 @@ public class ProductsDataBase {
         System.out.println("Write how many calories does this product have:");
         scanner = new Scanner(System.in);
         calories = scanner.nextInt();
+
         System.out.println("New product " + name + " with " + calories + "calories added.");
     }
 
