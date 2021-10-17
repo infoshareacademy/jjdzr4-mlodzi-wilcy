@@ -27,7 +27,7 @@ public class UserLoginData {
                 System.out.println("Would you like to try again or create a new account?");
                 System.out.println("1. try again");
                 System.out.println("2. create new account");
-                int choice = Interface.choiceChecker(2);
+                int choice = Menu.choiceChecker(2);
                 switch (choice) {
                     case 1:
                         name = scanner.nextLine();
@@ -83,11 +83,12 @@ public class UserLoginData {
     }
 
     public boolean checkFileExist() {
-        File file = new File("src/main/resources/" + name);
+        File file = new File(Menu.RESOURCES_USER_DATA + name);
         return file.exists();
     }
 
     public String getName() {
         return name;
     }
+
 }

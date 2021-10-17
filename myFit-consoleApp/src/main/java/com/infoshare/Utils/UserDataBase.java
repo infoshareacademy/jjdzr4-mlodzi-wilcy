@@ -26,7 +26,7 @@ public class UserDataBase {
             loginData = gson.fromJson(reader, new TypeToken<ArrayList<UserLoginData>>() {
             }.getType());
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("You are our first user, have a great time!");
         }
     }
 
