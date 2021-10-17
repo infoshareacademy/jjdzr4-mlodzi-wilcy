@@ -1,14 +1,18 @@
 package com.infoshare;
 
+import com.infoshare.Utils.FileUtils;
+
 import java.util.Scanner;
 
 public class Interface {
 
+
     public void defaultInterface() {
         int numberOfChoices = 6;
         int newChoice;
-        UsersDataBase userDataBase = new UsersDataBase();
         ProductsDataBase productsDataBase = new ProductsDataBase();
+        UserLoginData userLoginData = new UserLoginData();
+        UserData userData = new UserData();
 
         do {
             System.out.println("--------------------");
@@ -26,11 +30,21 @@ public class Interface {
 
             switch (newChoice) {
                 case 1: //Login
-                    userDataBase.logInUser();
-                    userLoggedInterface();
+                 userLoginData.userLogin();
+                 if(userLoginData.checkFileExist()){
+                     FileUtils.readObjectFromJsonFile("src/main/resources/"+userLoginData.getName(), UserData.class);
+                     userLoggedInterface();
+                 }
+                 else {
+                     userData.fillUserData();
+                     FileUtils.writeJsonToFile("src/main/resources/"+userLoginData.getName(), userData);
+                 }
                     break;
                 case 2: //New User
-                    userDataBase.addUser();
+                    userLoginData.createAccount();
+                    userData.fillUserData();
+                    FileUtils.writeJsonToFile("src/main/resources/"+userLoginData.getName(), userData);
+                    userLoggedInterface();
                     break;
                 case 3: //Check products
                     productsDataBase.readProducts();
@@ -50,10 +64,10 @@ public class Interface {
         } while (newChoice != numberOfChoices);
     }
 
+
     private void userLoggedInterface() {
         int numberOfChoices = 4;
         int secondChoice;
-        UsersDataBase userDataBase = new UsersDataBase();
         ProductsDataBase productsDataBase = new ProductsDataBase();
 
         System.out.println("--------------------");
@@ -89,7 +103,7 @@ public class Interface {
     }
 
 
-    private int choiceChecker(int amount) {
+    public static int choiceChecker(int amount) {
         int choice = 0;
         boolean condition = true;
 

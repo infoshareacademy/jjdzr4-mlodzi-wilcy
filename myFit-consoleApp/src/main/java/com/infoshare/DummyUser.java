@@ -19,4 +19,5 @@ public class DummyUser {
                 ", favoriteDish=" + favoriteDish +
                 '}';
     }
+
 }
