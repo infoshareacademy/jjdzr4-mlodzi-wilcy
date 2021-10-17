@@ -2,14 +2,14 @@ package com.infoshare;
 
 import java.util.Objects;
 
-public class InfoProduct {
+public class ProductInfo {
     private String name;
     private int kcalPer100g;
     private double fatPer100g;
     private double carbohydratesPer100g;
     private double proteinPer100g;
 
-    public InfoProduct(String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
+    public ProductInfo(String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
         this.name = name;
         this.kcalPer100g = kcalPer100g;
         this.fatPer100g = fatPer100g;
@@ -61,7 +61,7 @@ public class InfoProduct {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        InfoProduct that = (InfoProduct) o;
+        ProductInfo that = (ProductInfo) o;
         return kcalPer100g == that.kcalPer100g && Double.compare(that.fatPer100g, fatPer100g) == 0 && Double.compare(that.carbohydratesPer100g, carbohydratesPer100g) == 0 && Double.compare(that.proteinPer100g, proteinPer100g) == 0 && name.equals(that.name);
     }
 

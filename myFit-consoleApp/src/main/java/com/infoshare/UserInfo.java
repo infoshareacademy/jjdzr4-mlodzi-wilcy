@@ -2,7 +2,7 @@ package com.infoshare;
 
 import java.util.Objects;
 
-public class InfoUser {
+public class UserInfo {
     private String name;
     private String sex;
     private int age;
@@ -53,7 +53,7 @@ public class InfoUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        InfoUser infoUser = (InfoUser) o;
+        UserInfo infoUser = (UserInfo) o;
         return age == infoUser.age && hight == infoUser.hight && Double.compare(infoUser.weight, weight) == 0 && name.equals(infoUser.name) && sex.equals(infoUser.sex);
     }
 
@@ -73,7 +73,7 @@ public class InfoUser {
                 '}';
     }
 
-    public InfoUser(String name, String sex, int age, int hight, double weight) {
+    public UserInfo(String name, String sex, int age, int hight, double weight) {
         this.name = name;
         this.sex = sex;
         this.age = age;
