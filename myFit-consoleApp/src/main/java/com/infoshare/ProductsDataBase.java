@@ -23,7 +23,6 @@ public class ProductsDataBase {
         } catch (InputMismatchException e){
             e.printStackTrace();
         }
-
         System.out.println("New product " + name + " with " + calories + "calories added.");
     }
 
