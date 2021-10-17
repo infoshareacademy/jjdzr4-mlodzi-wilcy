@@ -9,15 +9,15 @@ public class UserLoginData {
     private String name;
     private String password;
 
-    UserLoginData(){
+    UserLoginData() {
     }
 
-    UserLoginData(String name, String password){
+    UserLoginData(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    public void userLogin(){
+    public void userLogin() {
         boolean bool = false;
         System.out.println("type user name:");
         Scanner scanner = new Scanner(System.in);
@@ -38,9 +38,9 @@ public class UserLoginData {
                         createAccount();
                         break;
                 }
-            } while(!bool || !loginUserNameCheck(name));
+            } while (!bool || !loginUserNameCheck(name));
         }
-        if (!bool){
+        if (!bool) {
             do {
                 System.out.println("type password:");
                 password = scanner.nextLine();
@@ -48,25 +48,25 @@ public class UserLoginData {
         }
     }
 
-    private boolean loginUserNameCheck(String name){
-        for (int i = 0; i < UserDataBase.loginData.size(); i++){
-            if (UserDataBase.loginData.get(i).name.equals(name)){
+    private boolean loginUserNameCheck(String name) {
+        for (int i = 0; i < UserDataBase.loginData.size(); i++) {
+            if (UserDataBase.loginData.get(i).name.equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean loginUserPasswordCheck(String password){
-        for (int i = 0; i < UserDataBase.loginData.size(); i++){
-            if (UserDataBase.loginData.get(i).password.equals(password)){
+    private boolean loginUserPasswordCheck(String password) {
+        for (int i = 0; i < UserDataBase.loginData.size(); i++) {
+            if (UserDataBase.loginData.get(i).password.equals(password)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void createAccount(){
+    public void createAccount() {
         String password2;
         System.out.println("Type user name:");
         Scanner scanner = new Scanner(System.in);
@@ -75,7 +75,7 @@ public class UserLoginData {
         password = scanner.nextLine();
         System.out.println("Type password again:");
         password2 = scanner.nextLine();
-        while (!password2.equals(password)){
+        while (!password2.equals(password)) {
             System.out.println("Wrong! Type password again");
             password2 = scanner.nextLine();
         }
@@ -83,7 +83,7 @@ public class UserLoginData {
         UserDataBase.saveToFile();
     }
 
-    public boolean checkFileExist(){
+    public boolean checkFileExist() {
         File file = new File("src/main/resources/" + name);
         return file.exists();
     }

@@ -1,12 +1,8 @@
 package com.infoshare;
 
-import com.infoshare.Utils.FileUtils;
-import com.infoshare.Utils.UserDataBase;
-
-import java.io.File;
 import java.util.Scanner;
 
-public class UserData{
+public class UserData {
     private String name;
     private String gender;
     private int age;
@@ -15,7 +11,7 @@ public class UserData{
     private String levelOfJobActivity;
     private String levelOfPrivateActivity;
 
-    public void fillUserData(){
+    public void fillUserData() {
         System.out.println("Before enter fill your personal information");
         setName();
         setGender();
@@ -38,7 +34,7 @@ public class UserData{
         System.out.println("1. male");
         System.out.println("2. female");
         int choice = Interface.choiceChecker(2);
-        switch(choice){
+        switch (choice) {
             case 1:
                 gender = "male";
                 break;
@@ -57,8 +53,7 @@ public class UserData{
     public void setHeight() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Your height");
-        int height = scanner.nextInt();
-        this.height = height;
+        this.height = scanner.nextInt();
     }
 
     public void setWeight() {
@@ -67,14 +62,13 @@ public class UserData{
         this.weight = scanner.nextInt();
     }
 
-    public void setLevelOfJobActivity(){
-        Scanner scanner = new Scanner(System.in);
+    public void setLevelOfJobActivity() {
         System.out.println("Your level of job activity");
         System.out.println("1. low");
         System.out.println("2. medium");
         System.out.println("3. High");
         int choice = Interface.choiceChecker(3);
-        switch (choice){
+        switch (choice) {
             case 1:
                 levelOfJobActivity = "low";
                 break;
@@ -87,14 +81,13 @@ public class UserData{
         }
     }
 
-    public void setLevelOfPrivateActivity(){
-        Scanner scanner = new Scanner(System.in);
+    public void setLevelOfPrivateActivity() {
         System.out.println("Your level of your private activity");
         System.out.println("1. low");
         System.out.println("2. medium");
         System.out.println("3. High");
-        int choice =  Interface.choiceChecker(3);
-        switch (choice){
+        int choice = Interface.choiceChecker(3);
+        switch (choice) {
             case 1:
                 levelOfPrivateActivity = "low";
                 break;

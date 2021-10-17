@@ -30,20 +30,19 @@ public class Interface {
 
             switch (newChoice) {
                 case 1: //Login
-                 userLoginData.userLogin();
-                 if(userLoginData.checkFileExist()){
-                     FileUtils.readObjectFromJsonFile("src/main/resources/"+userLoginData.getName(), UserData.class);
-                     userLoggedInterface();
-                 }
-                 else {
-                     userData.fillUserData();
-                     FileUtils.writeJsonToFile("src/main/resources/"+userLoginData.getName(), userData);
-                 }
+                    userLoginData.userLogin();
+                    if (userLoginData.checkFileExist()) {
+                        FileUtils.readObjectFromJsonFile("src/main/resources/" + userLoginData.getName(), UserData.class);
+                        userLoggedInterface();
+                    } else {
+                        userData.fillUserData();
+                        FileUtils.writeJsonToFile("src/main/resources/" + userLoginData.getName(), userData);
+                    }
                     break;
                 case 2: //New User
                     userLoginData.createAccount();
                     userData.fillUserData();
-                    FileUtils.writeJsonToFile("src/main/resources/"+userLoginData.getName(), userData);
+                    FileUtils.writeJsonToFile("src/main/resources/" + userLoginData.getName(), userData);
                     userLoggedInterface();
                     break;
                 case 3: //Check products
