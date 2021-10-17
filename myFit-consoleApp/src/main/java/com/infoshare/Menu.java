@@ -4,8 +4,10 @@ import com.infoshare.Utils.FileUtils;
 
 import java.util.Scanner;
 
-public class Interface {
+public class Menu {
 
+
+    public static final String RESOURCES_USER_DATA = "src/main/resources/userData/";
 
     public void defaultInterface() {
         int numberOfChoices = 6;
@@ -32,17 +34,17 @@ public class Interface {
                 case 1: //Login
                     userLoginData.userLogin();
                     if (userLoginData.checkFileExist()) {
-                        FileUtils.readObjectFromJsonFile("src/main/resources/" + userLoginData.getName(), UserData.class);
+                        FileUtils.readObjectFromJsonFile(RESOURCES_USER_DATA + userLoginData.getName(), UserData.class);
                         userLoggedInterface();
                     } else {
                         userData.fillUserData();
-                        FileUtils.writeJsonToFile("src/main/resources/" + userLoginData.getName(), userData);
+                        FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName(), userData);
                     }
                     break;
                 case 2: //New User
                     userLoginData.createAccount();
                     userData.fillUserData();
-                    FileUtils.writeJsonToFile("src/main/resources/" + userLoginData.getName(), userData);
+                    FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName(), userData);
                     userLoggedInterface();
                     break;
                 case 3: //Check products
@@ -65,7 +67,7 @@ public class Interface {
 
 
     private void userLoggedInterface() {
-        int numberOfChoices = 4;
+        int numberOfChoices = 8;
         int secondChoice;
         ProductsDataBase productsDataBase = new ProductsDataBase();
 
@@ -74,7 +76,11 @@ public class Interface {
         System.out.println("(1) - Check available products");
         System.out.println("(2) - Add new product");
         System.out.println("(3) - Edit a product");
-        System.out.println("(4) - Exit");
+        System.out.println("(4) - Edit personal info");
+        System.out.println("(5) - Add dish");
+        System.out.println("(6) - Calculate PPM and CPM");
+        System.out.println("(7) - Get diet for whole day");
+        System.out.println("(8) - Exit");
         System.out.println("--------------------");
         System.out.println("Enter a number:");
 
@@ -91,7 +97,15 @@ public class Interface {
                 case 3: //Edit product
                     productsDataBase.editProduct();
                     break;
-                case 4: //Exit
+                case 4: //Edit personal info
+                    break;
+                case 5: //Add dish
+                    break;
+                case 6: //Calculate PPM and CPM
+                    break;
+                case 7: //dieta
+                    break;
+                case 8: //Exit
                     System.out.println("Exiting to main menu");
                     defaultInterface();
                     break;

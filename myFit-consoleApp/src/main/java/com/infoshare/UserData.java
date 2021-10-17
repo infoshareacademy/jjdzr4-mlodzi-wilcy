@@ -33,7 +33,7 @@ public class UserData {
         System.out.println("Your gender:");
         System.out.println("1. male");
         System.out.println("2. female");
-        int choice = Interface.choiceChecker(2);
+        int choice = Menu.choiceChecker(2);
         switch (choice) {
             case 1:
                 gender = "male";
@@ -67,7 +67,7 @@ public class UserData {
         System.out.println("1. low");
         System.out.println("2. medium");
         System.out.println("3. high");
-        int choice = Interface.choiceChecker(3);
+        int choice = Menu.choiceChecker(3);
         switch (choice) {
             case 1:
                 levelOfJobActivity = "low";
@@ -86,7 +86,7 @@ public class UserData {
         System.out.println("1. low");
         System.out.println("2. medium");
         System.out.println("3. high");
-        int choice = Interface.choiceChecker(3);
+        int choice = Menu.choiceChecker(3);
         switch (choice) {
             case 1:
                 levelOfPrivateActivity = "low";
