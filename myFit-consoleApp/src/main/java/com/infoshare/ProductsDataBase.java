@@ -11,7 +11,7 @@ public class ProductsDataBase {
 
     public void addProduct() {
         String name;
-        int calories;
+        int calories = 0;
         System.out.println("What product would you like to add? Write a name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
