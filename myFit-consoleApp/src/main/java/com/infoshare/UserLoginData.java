@@ -9,8 +9,7 @@ public class UserLoginData {
     private String name;
     private String password;
 
-    UserLoginData() {
-    }
+     UserLoginData(){}
 
     UserLoginData(String name, String password) {
         this.name = name;
@@ -25,7 +24,7 @@ public class UserLoginData {
         if (!loginUserNameCheck(name)) {
             do {
                 System.out.println("Wrong username");
-                System.out.println("Would you like to try again or create new account?");
+                System.out.println("Would you like to try again or create a new account?");
                 System.out.println("1. try again");
                 System.out.println("2. create new account");
                 int choice = Interface.choiceChecker(2);
@@ -67,17 +66,17 @@ public class UserLoginData {
     }
 
     public void createAccount() {
-        String password2;
+        String retypedPassword;
         System.out.println("Type user name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
         System.out.println("Type password:");
         password = scanner.nextLine();
         System.out.println("Type password again:");
-        password2 = scanner.nextLine();
-        while (!password2.equals(password)) {
+        retypedPassword = scanner.nextLine();
+        while (!retypedPassword.equals(password)) {
             System.out.println("Wrong! Type password again");
-            password2 = scanner.nextLine();
+            retypedPassword = scanner.nextLine();
         }
         UserDataBase.loginData.add(new UserLoginData(name, password));
         UserDataBase.saveToFile();

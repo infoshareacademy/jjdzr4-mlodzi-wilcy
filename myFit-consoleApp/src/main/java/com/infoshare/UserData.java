@@ -25,7 +25,7 @@ public class UserData {
 
     public void setName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Insert your name:");
+        System.out.println("Type your name:");
         this.name = scanner.nextLine();
     }
 
@@ -66,7 +66,7 @@ public class UserData {
         System.out.println("Your level of job activity");
         System.out.println("1. low");
         System.out.println("2. medium");
-        System.out.println("3. High");
+        System.out.println("3. high");
         int choice = Interface.choiceChecker(3);
         switch (choice) {
             case 1:
@@ -85,7 +85,7 @@ public class UserData {
         System.out.println("Your level of your private activity");
         System.out.println("1. low");
         System.out.println("2. medium");
-        System.out.println("3. High");
+        System.out.println("3. high");
         int choice = Interface.choiceChecker(3);
         switch (choice) {
             case 1:
