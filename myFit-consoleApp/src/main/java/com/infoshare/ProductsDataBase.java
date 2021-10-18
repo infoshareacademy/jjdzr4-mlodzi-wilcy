@@ -1,6 +1,5 @@
 package com.infoshare;
 
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,58 +13,61 @@ public class ProductsDataBase {
     }
 
     public void addProduct() {
-        int numberOfChoices = 6;
+        int numberOfChoices = 10;
         int newChoice;
 
         System.out.println("What type of this product it is?");
         System.out.println("Write number:");
+        System.out.println();
 
-        do {
-            System.out.println("(1) - Napoje");
-            System.out.println("(2) - tłuszcze i oleje");
-            System.out.println("(3) - Mięso");
-            System.out.println("(4) - Owoce");
-            System.out.println("(5) - Nasiona i orzechy");
-            System.out.println("(6) - produkty zbozowe");
-            System.out.println("(7) - Inne");
-            System.out.println("(8) - Nabiał i produkty jajeczne");
-            System.out.println("(9) - Przyprawy i zioła");
-            System.out.println("(10) - Warzywa");
+        System.out.println("(1) - Napoje");
+        System.out.println("(2) - Tłuszcze i oleje");
+        System.out.println("(3) - Mięso");
+        System.out.println("(4) - Owoce");
+        System.out.println("(5) - Nasiona i orzechy");
+        System.out.println("(6) - Produkty zbozowe");
+        System.out.println("(7) - Inne");
+        System.out.println("(8) - Nabiał i produkty jajeczne");
+        System.out.println("(9) - Przyprawy i zioła");
+        System.out.println("(10) - Warzywa");
 
-            newChoice = choiceChecker(numberOfChoices);
+        newChoice = choiceChecker(numberOfChoices);
 
-            switch (newChoice) {
-                case 1: //Napoje
-                case 2: //Tłuszcze i oleje
-                case 3: //Mięso
-                case 4: //Owoce
-                case 5: //Nasiona i orzechy
-                case 6: //Produkty zbozowe
-                case 7: //Inne
-                case 8: //Nabiał i produkty jajeczne
-                case 9: //Przyprawy i zioła
-                case 10: //Warzywa
-
-            }
-//
-//
-//
-//        Scanner scanner = new Scanner(System.in);
-//        name = scanner.nextLine();
-//
-//        System.out.println("Write how many calories does this product have:");
-//        scanner = new Scanner(System.in);
-//        try {
-//            calories = scanner.nextInt();
-//        } catch (InputMismatchException e){
-//            e.printStackTrace();
-//        }
-//        System.out.println("New product " + name + " with " + calories + "calories added.");
-//    }
-        } while (newChoice != numberOfChoices);
+        switch (newChoice) {
+            case 1: //Napoje
+                addMethod();
+                break;
+            case 2: //Tłuszcze i oleje
+                addMethod();
+                break;
+            case 3: //Mięso
+                addMethod();
+                break;
+            case 4: //Owoce
+                addMethod();
+                break;
+            case 5: //Nasiona i orzechy
+                addMethod();
+                break;
+            case 6: //Produkty zbozowe
+                addMethod();
+                break;
+            case 7: //Inne
+                addMethod();
+                break;
+            case 8: //Nabiał i produkty jajeczne
+                addMethod();
+                break;
+            case 9: //Przyprawy i zioła
+                addMethod();
+                break;
+            case 10: //Warzywa
+                addMethod();
+                break;
+            default:
+                break;
+        }
     }
-
-
 
     public void editProduct() {
         String name;
@@ -74,5 +76,27 @@ public class ProductsDataBase {
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
         System.out.println("Product " + name + " was modified.");
+    }
+
+    public boolean addMethod() {
+        if (true) {
+            Scanner scanner = new Scanner(System.in);
+            if (true) {
+                try {
+                    System.out.println("Write name of this product:");
+                    productInfo.setName(scanner.nextLine());
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter the correct value.");
+                }
+                    try {
+                        System.out.println("Write how many calories per 100 grams this product has:");
+                        productInfo.setKcalPer100g(scanner.nextInt());
+                    } catch (InputMismatchException e) {
+                        System.out.println("Enter the correct value.");
+
+                    }
+
+            }
+        } return false;
     }
 }
