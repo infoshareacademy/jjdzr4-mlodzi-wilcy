@@ -1,5 +1,7 @@
 package com.infoshare;
 
+import com.infoshare.Utils.UserDataBase;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,6 +9,7 @@ import static com.infoshare.Menu.choiceChecker;
 
 public class ProductsDataBase {
     ProductInfo productInfo = new ProductInfo();
+    UserDataBase userDataBase = new UserDataBase();
 
     public void readProducts() {
         System.out.println("All available products:");
@@ -81,7 +84,7 @@ public class ProductsDataBase {
     public boolean addMethod() {
         while (true) {
             try {
-                System.out.println("Write name of this product:");
+                System.out.println("Write name of the product:");
                 Scanner scanner = new Scanner(System.in);
                 productInfo.setName(scanner.nextLine());
             } catch (InputMismatchException e) {
@@ -135,7 +138,7 @@ public class ProductsDataBase {
 
             }
         }
-        System.out.println(productInfo.getName() + " has beedn added to librabry.");
+        System.out.println(productInfo.getName() + " has beed added to librabry.");
             return true;
         }
     }
