@@ -9,13 +9,15 @@ import java.util.Scanner;
 import static com.infoshare.Menu.choiceChecker;
 
 public class ProductsDataBase {
+    private String typeOfFood;
     private String name;
     private int kcalPer100g;
     private double fatPer100g;
     private double carbohydratesPer100g;
     private double proteinPer100g;
 
-    public ProductsDataBase(String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
+    public ProductsDataBase(String typeOfFood, String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
+        this.typeOfFood = typeOfFood;
         this.name = name;
         this.kcalPer100g = kcalPer100g;
         this.fatPer100g = fatPer100g;
@@ -31,13 +33,9 @@ public class ProductsDataBase {
     }
 
     public void addProduct() {
-        int numberOfChoices = 10;
-        int newChoice;
-
         System.out.println("What type of this product it is?");
         System.out.println("Write number:");
         System.out.println();
-
         System.out.println("(1) - Napoje");
         System.out.println("(2) - Tłuszcze i oleje");
         System.out.println("(3) - Mięso");
@@ -49,43 +47,9 @@ public class ProductsDataBase {
         System.out.println("(9) - Przyprawy i zioła");
         System.out.println("(10) - Warzywa");
 
-        newChoice = choiceChecker(numberOfChoices);
-
-        switch (newChoice) {
-            case 1: //Napoje
-                addMethod();
-                break;
-            case 2: //Tłuszcze i oleje
-                addMethod();
-                break;
-            case 3: //Mięso
-                addMethod();
-                break;
-            case 4: //Owoce
-                addMethod();
-                break;
-            case 5: //Nasiona i orzechy
-                addMethod();
-                break;
-            case 6: //Produkty zbozowe
-                addMethod();
-                break;
-            case 7: //Inne
-                addMethod();
-                break;
-            case 8: //Nabiał i produkty jajeczne
-                addMethod();
-                break;
-            case 9: //Przyprawy i zioła
-                addMethod();
-                break;
-            case 10: //Warzywa
-                addMethod();
-                break;
-            default:
-                break;
-        }
-        FoodDataBase.foodData.add(new ProductsDataBase(name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
+        chooseType();
+        addMethod();
+        FoodDataBase.foodData.add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
         FoodDataBase.saveToFile2();
     }
 
@@ -125,7 +89,7 @@ public class ProductsDataBase {
             try {
                 System.out.println("Write how many fats per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
-               fatPer100g = scanner.nextDouble();
+                fatPer100g = scanner.nextDouble();
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
@@ -136,7 +100,7 @@ public class ProductsDataBase {
             try {
                 System.out.println("Write how many carbohydrates per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
-               carbohydratesPer100g = scanner.nextDouble();
+                carbohydratesPer100g = scanner.nextDouble();
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
@@ -157,6 +121,50 @@ public class ProductsDataBase {
         }
         System.out.println(name + " has beed added to librabry.");
         return false;
+    }
+
+    public void chooseType() {
+        while(true)
+        try {
+            Scanner scanner = new Scanner(System.in);
+            typeOfFood = scanner.nextLine();
+            if (typeOfFood.equals("1")) {
+                typeOfFood = "Napoje";
+                break;
+            } else if (typeOfFood.equals("2")) {
+                typeOfFood = "Tłuszcze i oleje";
+                break;
+            } else if (typeOfFood.equals("3")) {
+                typeOfFood = "Mięso";
+                break;
+            } else if (typeOfFood.equals("4")) {
+                typeOfFood = "Owoce";
+                break;
+            } else if (typeOfFood.equals("5")) {
+                typeOfFood = "Nasiona i orzechy";
+                break;
+            } else if (typeOfFood.equals("6")) {
+                typeOfFood = "Produkty zbozowe";
+                break;
+            } else if (typeOfFood.equals("7")) {
+                typeOfFood = "Inne";
+                break;
+            } else if (typeOfFood.equals("8")) {
+                typeOfFood = "Nabiał i produkty jajeczne";
+                break;
+            } else if (typeOfFood.equals("9")) {
+                typeOfFood = "Przyprawy i zioła";
+                break;
+            } else if (typeOfFood.equals("10")) {
+                typeOfFood = "Warzywa";
+                break;
+            } else {
+                System.out.println("Podałeś niewłaściwy numer.");
+                System.out.println("Podaj numer od 1 do 10.");
+            }
+        } catch (InputMismatchException e) {
+            e.printStackTrace();
+        }
     }
 
     }
