@@ -79,24 +79,64 @@ public class ProductsDataBase {
     }
 
     public boolean addMethod() {
-        if (true) {
-            Scanner scanner = new Scanner(System.in);
-            if (true) {
-                try {
-                    System.out.println("Write name of this product:");
-                    productInfo.setName(scanner.nextLine());
-                } catch (InputMismatchException e) {
-                    System.out.println("Enter the correct value.");
-                }
-                    try {
-                        System.out.println("Write how many calories per 100 grams this product has:");
-                        productInfo.setKcalPer100g(scanner.nextInt());
-                    } catch (InputMismatchException e) {
-                        System.out.println("Enter the correct value.");
+        while (true) {
+            try {
+                System.out.println("Write name of this product:");
+                Scanner scanner = new Scanner(System.in);
+                productInfo.setName(scanner.nextLine());
+            } catch (InputMismatchException e) {
+                System.out.println("Enter the correct value.");
+            }
 
-                    }
+            while (true) {
+                try {
+                    System.out.println("Write how many calories per 100 grams this product has:");
+                    Scanner scanner = new Scanner(System.in);
+                    productInfo.setKcalPer100g(scanner.nextInt());
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter correct value.");
+                    continue;
+                }
+            }
+            break;
+        }
+        while (true) {
+            try {
+                System.out.println("Write how many fats per 100 grams this product has:");
+                Scanner scanner = new Scanner(System.in);
+                productInfo.setFatPer100g(scanner.nextInt());
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Enter correct value.");
+                continue;
+            }
+        }
+        while (true) {
+            try {
+                System.out.println("Write how many carbohydrates per 100 grams this product has:");
+                Scanner scanner = new Scanner(System.in);
+                productInfo.setCarbohydratesPer100g(scanner.nextInt());
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Enter correct value.");
+                continue;
+                }
+            }
+        while(true) {
+            try {
+                System.out.println("Write how many proteins per 100 grams this product has:");
+                Scanner scanner = new Scanner(System.in);
+                productInfo.setProteinPer100g(scanner.nextInt());
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Enter correct value.");
+                continue;
 
             }
-        } return false;
+        }
+        System.out.println(productInfo.getName() + " has beedn added to librabry.");
+            return true;
+        }
     }
-}
+

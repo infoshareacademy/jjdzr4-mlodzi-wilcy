@@ -5,11 +5,11 @@ import java.util.Objects;
 public class ProductInfo {
     private String name;
     private int kcalPer100g;
-    private double fatPer100g;
+    private int fatPer100g;
     private double carbohydratesPer100g;
     private double proteinPer100g;
 
-    public ProductInfo(String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
+    public ProductInfo(String name, int kcalPer100g, int fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
         this.name = name;
         this.kcalPer100g = kcalPer100g;
         this.fatPer100g = fatPer100g;
@@ -37,11 +37,11 @@ public class ProductInfo {
         this.kcalPer100g = kcalPer100g;
     }
 
-    public double getFatPer100g() {
+    public double getFatPer100g(int i) {
         return fatPer100g;
     }
 
-    public void setFatPer100g(double fatPer100g) {
+    public void setFatPer100g(int fatPer100g) {
         this.fatPer100g = fatPer100g;
     }
 
