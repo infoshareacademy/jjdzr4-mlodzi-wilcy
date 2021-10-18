@@ -37,7 +37,7 @@ public class ProductInfo {
         this.kcalPer100g = kcalPer100g;
     }
 
-    public double getFatPer100g(int i) {
+    public double getFatPer100g() {
         return fatPer100g;
     }
 

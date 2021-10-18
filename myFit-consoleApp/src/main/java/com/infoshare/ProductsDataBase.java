@@ -1,5 +1,6 @@
 package com.infoshare;
 
+import com.infoshare.Utils.FoodDataBase;
 import com.infoshare.Utils.UserDataBase;
 
 import java.util.InputMismatchException;
@@ -8,8 +9,22 @@ import java.util.Scanner;
 import static com.infoshare.Menu.choiceChecker;
 
 public class ProductsDataBase {
-    ProductInfo productInfo = new ProductInfo();
-    UserDataBase userDataBase = new UserDataBase();
+    private String name;
+    private int kcalPer100g;
+    private double fatPer100g;
+    private double carbohydratesPer100g;
+    private double proteinPer100g;
+
+    public ProductsDataBase(String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
+        this.name = name;
+        this.kcalPer100g = kcalPer100g;
+        this.fatPer100g = fatPer100g;
+        this.carbohydratesPer100g = carbohydratesPer100g;
+        this.proteinPer100g = proteinPer100g;
+    }
+
+    public ProductsDataBase() {
+    }
 
     public void readProducts() {
         System.out.println("All available products:");
@@ -70,6 +85,8 @@ public class ProductsDataBase {
             default:
                 break;
         }
+        FoodDataBase.foodData.add(new ProductsDataBase(name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
+        FoodDataBase.saveToFile2();
     }
 
     public void editProduct() {
@@ -86,7 +103,7 @@ public class ProductsDataBase {
             try {
                 System.out.println("Write name of the product:");
                 Scanner scanner = new Scanner(System.in);
-                productInfo.setName(scanner.nextLine());
+                name = scanner.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Enter the correct value.");
             }
@@ -95,7 +112,7 @@ public class ProductsDataBase {
                 try {
                     System.out.println("Write how many calories per 100 grams this product has:");
                     Scanner scanner = new Scanner(System.in);
-                    productInfo.setKcalPer100g(scanner.nextInt());
+                    kcalPer100g = scanner.nextInt();
                     break;
                 } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
@@ -108,7 +125,7 @@ public class ProductsDataBase {
             try {
                 System.out.println("Write how many fats per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
-                productInfo.setFatPer100g(scanner.nextInt());
+               fatPer100g = scanner.nextDouble();
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
@@ -119,18 +136,18 @@ public class ProductsDataBase {
             try {
                 System.out.println("Write how many carbohydrates per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
-                productInfo.setCarbohydratesPer100g(scanner.nextInt());
+               carbohydratesPer100g = scanner.nextDouble();
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
                 continue;
-                }
             }
-        while(true) {
+        }
+        while (true) {
             try {
                 System.out.println("Write how many proteins per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
-                productInfo.setProteinPer100g(scanner.nextInt());
+                proteinPer100g = scanner.nextDouble();
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
@@ -138,8 +155,8 @@ public class ProductsDataBase {
 
             }
         }
-        System.out.println(productInfo.getName() + " has beed added to librabry.");
-            return true;
-        }
+        System.out.println(name + " has beed added to librabry.");
+        return false;
     }
 
+    }

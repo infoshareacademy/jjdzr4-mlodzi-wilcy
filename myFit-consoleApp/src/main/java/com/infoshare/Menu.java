@@ -1,6 +1,7 @@
 package com.infoshare;
 
 import com.infoshare.Utils.FileUtils;
+import com.infoshare.Utils.FoodDataBase;
 
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class Menu {
 
 
     public static final String RESOURCES_USER_DATA = "src/main/resources/userData/";
+    public static final String RESOURCES_PRODUCT_DATA_BASE = "src/main/resources/foodData";
 
     public void defaultInterface() {
         int numberOfChoices = 6;
@@ -52,6 +54,8 @@ public class Menu {
                     break;
                 case 4: //Add new product
                     productsDataBase.addProduct();
+
+
                     break;
                 case 5: //Edit product
                     productsDataBase.editProduct();
