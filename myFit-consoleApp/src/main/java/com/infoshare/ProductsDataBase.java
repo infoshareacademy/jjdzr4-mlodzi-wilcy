@@ -1,5 +1,6 @@
 package com.infoshare;
 
+import com.infoshare.Utils.FileUtils;
 import com.infoshare.Utils.FoodDataBase;
 import com.infoshare.Utils.UserDataBase;
 
@@ -7,6 +8,7 @@ import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.infoshare.Menu.RESOURCES_PRODUCT_DATA_BASE;
 import static com.infoshare.Menu.choiceChecker;
 
 public class ProductsDataBase {
@@ -57,6 +59,7 @@ public class ProductsDataBase {
         System.out.println("All available products:");
     }
 
+
     public void addProduct() {
         System.out.println("What type of this product it is?");
         System.out.println("Write number:");
@@ -75,6 +78,9 @@ public class ProductsDataBase {
         chooseType();
         addMethod();
         FoodDataBase.foodData.add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
+        checkFileExist();
+        FoodDataBase.saveToFile2();
+
 
     }
 
@@ -149,51 +155,50 @@ public class ProductsDataBase {
     }
 
     public void chooseType() {
-        while(true)
-        try {
-            Scanner scanner = new Scanner(System.in);
-            typeOfFood = scanner.nextLine();
-            if (typeOfFood.equals("1")) {
-                typeOfFood = "Napoje";
-                break;
-            } else if (typeOfFood.equals("2")) {
-                typeOfFood = "Tłuszcze i oleje";
-                break;
-            } else if (typeOfFood.equals("3")) {
-                typeOfFood = "Mięso";
-                break;
-            } else if (typeOfFood.equals("4")) {
-                typeOfFood = "Owoce";
-                break;
-            } else if (typeOfFood.equals("5")) {
-                typeOfFood = "Nasiona i orzechy";
-                break;
-            } else if (typeOfFood.equals("6")) {
-                typeOfFood = "Produkty zbozowe";
-                break;
-            } else if (typeOfFood.equals("7")) {
-                typeOfFood = "Inne";
-                break;
-            } else if (typeOfFood.equals("8")) {
-                typeOfFood = "Nabiał i produkty jajeczne";
-                break;
-            } else if (typeOfFood.equals("9")) {
-                typeOfFood = "Przyprawy i zioła";
-                break;
-            } else if (typeOfFood.equals("10")) {
-                typeOfFood = "Warzywa";
-                break;
-            } else {
-                System.out.println("Podałeś niewłaściwy numer.");
-                System.out.println("Podaj numer od 1 do 10.");
+        while (true)
+            try {
+                Scanner scanner = new Scanner(System.in);
+                typeOfFood = scanner.nextLine();
+                if (typeOfFood.equals("1")) {
+                    typeOfFood = "Napoje";
+                    break;
+                } else if (typeOfFood.equals("2")) {
+                    typeOfFood = "Tłuszcze i oleje";
+                    break;
+                } else if (typeOfFood.equals("3")) {
+                    typeOfFood = "Mięso";
+                    break;
+                } else if (typeOfFood.equals("4")) {
+                    typeOfFood = "Owoce";
+                    break;
+                } else if (typeOfFood.equals("5")) {
+                    typeOfFood = "Nasiona i orzechy";
+                    break;
+                } else if (typeOfFood.equals("6")) {
+                    typeOfFood = "Produkty zbozowe";
+                    break;
+                } else if (typeOfFood.equals("7")) {
+                    typeOfFood = "Inne";
+                    break;
+                } else if (typeOfFood.equals("8")) {
+                    typeOfFood = "Nabiał i produkty jajeczne";
+                    break;
+                } else if (typeOfFood.equals("9")) {
+                    typeOfFood = "Przyprawy i zioła";
+                    break;
+                } else if (typeOfFood.equals("10")) {
+                    typeOfFood = "Warzywa";
+                    break;
+                } else {
+                    System.out.println("Podałeś niewłaściwy numer.");
+                    System.out.println("Podaj numer od 1 do 10.");
+                }
+            } catch (InputMismatchException e) {
+                e.printStackTrace();
             }
-        } catch (InputMismatchException e) {
-            e.printStackTrace();
-        }
     }
-    public boolean checkFileExist2() {
-        File file = new File(Menu.RESOURCES_PRODUCT_DATA_BASE + name);
+    public boolean checkFileExist() {
+        File file = new File(RESOURCES_PRODUCT_DATA_BASE + name);
         return file.exists();
     }
-
-    }
+}

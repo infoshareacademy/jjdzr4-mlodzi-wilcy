@@ -55,11 +55,6 @@ public class Menu {
                     break;
                 case 4: //Add new product
                     productsDataBase.addProduct();
-                    if(productsDataBase.checkFileExist2()) {
-                        FileUtils.readObjectFromJsonFile(RESOURCES_PRODUCT_DATA_BASE, FoodDataBase.class);
-                    } else {
-                        FoodDataBase.saveToFile2();
-                    }
                     break;
                 case 5: //Edit product
                     productsDataBase.editProduct();
