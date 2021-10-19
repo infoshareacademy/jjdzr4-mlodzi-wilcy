@@ -3,6 +3,7 @@ package com.infoshare;
 import com.infoshare.Utils.FoodDataBase;
 import com.infoshare.Utils.UserDataBase;
 
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,6 +24,30 @@ public class ProductsDataBase {
         this.fatPer100g = fatPer100g;
         this.carbohydratesPer100g = carbohydratesPer100g;
         this.proteinPer100g = proteinPer100g;
+    }
+
+    public String getTypeOfFood() {
+        return typeOfFood;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getKcalPer100g() {
+        return kcalPer100g;
+    }
+
+    public double getFatPer100g() {
+        return fatPer100g;
+    }
+
+    public double getCarbohydratesPer100g() {
+        return carbohydratesPer100g;
+    }
+
+    public double getProteinPer100g() {
+        return proteinPer100g;
     }
 
     public ProductsDataBase() {
@@ -50,7 +75,7 @@ public class ProductsDataBase {
         chooseType();
         addMethod();
         FoodDataBase.foodData.add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
-        FoodDataBase.saveToFile2();
+
     }
 
     public void editProduct() {
@@ -165,6 +190,10 @@ public class ProductsDataBase {
         } catch (InputMismatchException e) {
             e.printStackTrace();
         }
+    }
+    public boolean checkFileExist2() {
+        File file = new File(Menu.RESOURCES_PRODUCT_DATA_BASE + name);
+        return file.exists();
     }
 
     }

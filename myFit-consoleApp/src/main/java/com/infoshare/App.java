@@ -1,5 +1,6 @@
 package com.infoshare;
 
+import com.infoshare.Utils.FoodDataBase;
 import com.infoshare.Utils.UserDataBase;
 
 public class App {

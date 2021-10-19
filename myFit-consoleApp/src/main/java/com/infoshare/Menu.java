@@ -3,6 +3,7 @@ package com.infoshare;
 import com.infoshare.Utils.FileUtils;
 import com.infoshare.Utils.FoodDataBase;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Menu {
@@ -54,8 +55,11 @@ public class Menu {
                     break;
                 case 4: //Add new product
                     productsDataBase.addProduct();
-
-
+                    if(productsDataBase.checkFileExist2()) {
+                        FileUtils.readObjectFromJsonFile(RESOURCES_PRODUCT_DATA_BASE + productsDataBase.getName(), FoodDataBase.class);
+                    } else {
+                        FoodDataBase.saveToFile2();
+                    }
                     break;
                 case 5: //Edit product
                     productsDataBase.editProduct();
