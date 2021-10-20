@@ -1,9 +1,7 @@
 package com.infoshare;
 
 import com.infoshare.Utils.FileUtils;
-import com.infoshare.Utils.FoodDataBase;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class Menu {

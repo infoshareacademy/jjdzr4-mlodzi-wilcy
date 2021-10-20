@@ -1,15 +1,12 @@
 package com.infoshare;
 
-import com.infoshare.Utils.FileUtils;
 import com.infoshare.Utils.FoodDataBase;
-import com.infoshare.Utils.UserDataBase;
 
 import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.infoshare.Menu.RESOURCES_PRODUCT_DATA_BASE;
-import static com.infoshare.Menu.choiceChecker;
 
 public class ProductsDataBase {
     private String typeOfFood;
@@ -197,6 +194,7 @@ public class ProductsDataBase {
                 e.printStackTrace();
             }
     }
+
     public boolean checkFileExist() {
         File file = new File(RESOURCES_PRODUCT_DATA_BASE + name);
         return file.exists();
