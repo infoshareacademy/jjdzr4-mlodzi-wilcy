@@ -26,7 +26,7 @@ public class FoodDataBase {
             foodData = gson.fromJson(reader, new TypeToken<ArrayList<ProductsDataBase>>() {
             }.getType());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("and add your first meal.");
         }
     }
 }
