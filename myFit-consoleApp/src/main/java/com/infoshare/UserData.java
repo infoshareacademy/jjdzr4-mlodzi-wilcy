@@ -7,7 +7,7 @@ public class UserData {
     private String gender;
     private int age;
     private int height;
-    private int weight;
+    private double weight;
     private String levelOfJobActivity;
     private String levelOfPrivateActivity;
 
@@ -45,21 +45,43 @@ public class UserData {
     }
 
     public void setAge() {
-        System.out.println("Your age:");
-        Scanner scanner = new Scanner(System.in);
-        this.age = scanner.nextInt();
+        while (true) {
+            try {
+                System.out.println("Your age:");
+                Scanner scanner = new Scanner(System.in);
+                this.age = scanner.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.println("Write your age correctly.");
+            }
+        }
     }
 
     public void setHeight() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Your height");
-        this.height = scanner.nextInt();
+        while (true) {
+            try {
+                System.out.println("Your height");
+                Scanner scanner = new Scanner(System.in);
+                this.height = scanner.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.println("Write your hight in centimeters.");
+            }
+        }
     }
 
     public void setWeight() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Your weight");
-        this.weight = scanner.nextInt();
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Your weight");
+                this.weight = scanner.nextDouble();
+                break;
+            } catch (Exception e) {
+                System.out.println("Write your weight correctly");
+            }
+
+        }
     }
 
     public void setLevelOfJobActivity() {
