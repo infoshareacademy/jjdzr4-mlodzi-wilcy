@@ -10,6 +10,7 @@ public class FileUtils {
         Gson gson = new Gson();
         try (Writer writer = new FileWriter(path)) {
             gson.toJson(object, writer);
+            writer.flush();
         } catch (IOException e) {
             System.out.println("Exception during saving json file: " + e.getMessage());
         }

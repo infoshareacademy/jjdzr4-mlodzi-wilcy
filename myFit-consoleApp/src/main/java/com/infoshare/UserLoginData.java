@@ -17,33 +17,18 @@ public class UserLoginData {
     }
 
     public void userLogin() {
-        boolean bool = false;
-        System.out.println("type user name:");
+        System.out.println("Type user name");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
-        if (!loginUserNameCheck(name)) {
-            do {
-                System.out.println("Wrong username");
-                System.out.println("Would you like to try again or create a new account?");
-                System.out.println("1. try again");
-                System.out.println("2. create new account");
-                int choice = Menu.choiceChecker(2);
-                switch (choice) {
-                    case 1:
-                        name = scanner.nextLine();
-                        break;
-                    case 2:
-                        bool = true;
-                        createAccount();
-                        break;
-                }
-            } while (!bool || !loginUserNameCheck(name));
+        while (!loginUserNameCheck(name)) {
+            name = typoChecker("user name:");
         }
-        if (!bool) {
-            do {
-                System.out.println("type password:");
-                password = scanner.nextLine();
-            } while (!loginUserPasswordCheck(password));
+       if(!loginUserPasswordCheck(password)){
+           System.out.println("Type password:");
+           password = scanner.nextLine();
+       }
+        while(!loginUserPasswordCheck(password)){
+            password = typoChecker("password");
         }
     }
 
@@ -89,6 +74,32 @@ public class UserLoginData {
 
     public String getName() {
         return name;
+    }
+
+    private String typoChecker(String phrase){
+        String variable = phrase;
+        System.out.println("Wrong " + phrase);
+        System.out.println("Would you like to try again or create a new account?");
+        System.out.println("1. try again");
+        System.out.println("2. create new account");
+        int choice = Menu.choiceChecker(2);
+        switch (choice) {
+            case 1:
+                System.out.println("Type " + phrase + ":");
+                Scanner scanner = new Scanner(System.in);
+                variable = scanner.nextLine();
+                break;
+            case 2:
+                createAccount();
+                if(phrase.equals("password")){
+                    variable = password;
+                }
+                else {
+                    variable = name;
+                }
+                break;
+        }
+        return variable;
     }
 
 }
