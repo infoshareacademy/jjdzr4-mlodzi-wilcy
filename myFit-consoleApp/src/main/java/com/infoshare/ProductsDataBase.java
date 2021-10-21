@@ -9,14 +9,14 @@ import java.util.Scanner;
 import static com.infoshare.Menu.RESOURCES_PRODUCT_DATA_BASE;
 
 public class ProductsDataBase {
-    private String typeOfFood;
+    private TypeOfFood typeOfFood;
     private String name;
     private int kcalPer100g;
     private double fatPer100g;
     private double carbohydratesPer100g;
     private double proteinPer100g;
 
-    public ProductsDataBase(String typeOfFood, String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
+    public ProductsDataBase(TypeOfFood typeOfFood, String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
         this.typeOfFood = typeOfFood;
         this.name = name;
         this.kcalPer100g = kcalPer100g;
@@ -25,7 +25,7 @@ public class ProductsDataBase {
         this.proteinPer100g = proteinPer100g;
     }
 
-    public String getTypeOfFood() {
+    public TypeOfFood getTypeOfFood() {
         return typeOfFood;
     }
 
@@ -58,25 +58,24 @@ public class ProductsDataBase {
 
 
     public void addProduct() {
-        System.out.println("What type of this product it is?");
-        System.out.println("Write number:");
+        System.out.println("What type of this product it is? Write a name:");
         System.out.println();
-        System.out.println("(1) - Drinks");
-        System.out.println("(2) - Fats and Oils");
-        System.out.println("(3) - Meat");
-        System.out.println("(4) - Fruits");
-        System.out.println("(5) - Seeds & Nuts");
-        System.out.println("(6) - Cereal products");
-        System.out.println("(7) - Other");
-        System.out.println("(8) - Dairy & Egg Products");
-        System.out.println("(9) - Spices & Herbs");
-        System.out.println("(10) - Vegetables");
+        System.out.println("(1) - " + TypeOfFood.DRINKS);
+        System.out.println("(2) - " + TypeOfFood.FATSANDOILS);
+        System.out.println("(3) - " + TypeOfFood.MEAT);
+        System.out.println("(4) - " + TypeOfFood.FRUITS);
+        System.out.println("(5) - " + TypeOfFood.SEEDSANDNUTS);
+        System.out.println("(6) - " + TypeOfFood.CEREALPRODUCTS);
+        System.out.println("(7) - " + TypeOfFood.OTHER);
+        System.out.println("(8) - " + TypeOfFood.DAIRYANDEGGPRODUCTS);
+        System.out.println("(9) - " + TypeOfFood.SPICESANDHERBS);
+        System.out.println("(10) - " + TypeOfFood.VEGETABLES);
 
         chooseType();
         addMethod();
         FoodDataBase.foodData.add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
         checkFileExist();
-        FoodDataBase.saveToFile2();
+        FoodDataBase.saveToFile();
     }
 
     public void editProduct() {
@@ -142,7 +141,6 @@ public class ProductsDataBase {
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
                 continue;
-
             }
         }
         System.out.println(name + " has beed added to librabry.");
@@ -150,46 +148,47 @@ public class ProductsDataBase {
     }
 
     public void chooseType() {
+        int chooseNumber;
         while (true)
             try {
                 Scanner scanner = new Scanner(System.in);
-                typeOfFood = scanner.nextLine();
-                if (typeOfFood.equals("1")) {
-                    typeOfFood = "Drinks";
+                chooseNumber = scanner.nextInt();
+                if (chooseNumber == 1) {
+                    typeOfFood = TypeOfFood.DRINKS;
                     break;
-                } else if (typeOfFood.equals("2")) {
-                    typeOfFood = "Fats and Oils";
+                } else if (chooseNumber == 2) {
+                    typeOfFood = TypeOfFood.FATSANDOILS;
                     break;
-                } else if (typeOfFood.equals("3")) {
-                    typeOfFood = "Meat";
+                } else if (chooseNumber == 3) {
+                    typeOfFood = TypeOfFood.MEAT;
                     break;
-                } else if (typeOfFood.equals("4")) {
-                    typeOfFood = "Fruits";
+                } else if (chooseNumber == 4) {
+                    typeOfFood = TypeOfFood.FRUITS;
                     break;
-                } else if (typeOfFood.equals("5")) {
-                    typeOfFood = "Seeds & Nuts";
+                } else if (chooseNumber == 5) {
+                    typeOfFood = TypeOfFood.SEEDSANDNUTS;
                     break;
-                } else if (typeOfFood.equals("6")) {
-                    typeOfFood = "Cereal Products";
+                } else if (chooseNumber == 6) {
+                    typeOfFood = TypeOfFood.CEREALPRODUCTS;
                     break;
-                } else if (typeOfFood.equals("7")) {
-                    typeOfFood = "Other";
+                } else if (chooseNumber == 7) {
+                    typeOfFood = TypeOfFood.OTHER;
                     break;
-                } else if (typeOfFood.equals("8")) {
-                    typeOfFood = "Dairy & Egg Products";
+                } else if (chooseNumber == 8) {
+                    typeOfFood = TypeOfFood.DAIRYANDEGGPRODUCTS;
                     break;
-                } else if (typeOfFood.equals("9")) {
-                    typeOfFood = "Spices & Herbs";
+                } else if (chooseNumber == 9) {
+                    typeOfFood = TypeOfFood.SPICESANDHERBS;
                     break;
-                } else if (typeOfFood.equals("10")) {
-                    typeOfFood = "Vegetables";
+                } else if (chooseNumber == 10) {
+                    typeOfFood = TypeOfFood.VEGETABLES;
                     break;
                 } else {
                     System.out.println("You write uncorrectly number");
                     System.out.println("Write number from 1 to 10.");
                 }
             } catch (InputMismatchException e) {
-                e.printStackTrace();
+                System.out.println("Write number from 1 to 10.");
             }
     }
 

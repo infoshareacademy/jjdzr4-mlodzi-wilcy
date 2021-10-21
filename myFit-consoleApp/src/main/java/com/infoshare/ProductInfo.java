@@ -17,10 +17,6 @@ public class ProductInfo {
         this.proteinPer100g = proteinPer100g;
     }
 
-    public ProductInfo() {
-
-    }
-
     public String getName() {
         return name;
     }

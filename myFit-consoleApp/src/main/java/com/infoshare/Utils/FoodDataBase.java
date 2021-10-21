@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class FoodDataBase {
     public static ArrayList<ProductsDataBase> foodData = new ArrayList<>();
 
-    public static void saveToFile2() {
+
+    public static void saveToFile() {
         Gson gson = new Gson();
         try (Writer writer = new FileWriter("src/main/resources/foodData.json")) {
             gson.toJson(foodData, writer);
