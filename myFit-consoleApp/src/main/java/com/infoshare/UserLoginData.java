@@ -3,6 +3,7 @@ package com.infoshare;
 import com.infoshare.Utils.UserDataBase;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UserLoginData {
@@ -55,6 +56,10 @@ public class UserLoginData {
         System.out.println("Type user name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
+        while(UserDataBase.loginData.contains(new UserLoginData(name, password))){
+            System.out.println("User name already exists, type another");
+            name = scanner.nextLine();
+        }
         System.out.println("Type password:");
         password = scanner.nextLine();
         System.out.println("Type password again:");
@@ -102,4 +107,16 @@ public class UserLoginData {
         return variable;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserLoginData that = (UserLoginData) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
