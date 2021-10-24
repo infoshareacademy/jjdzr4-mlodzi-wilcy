@@ -14,6 +14,7 @@ public class UserDataBase {
         Gson gson = new Gson();
         try (Writer writer = new FileWriter("src/main/resources/loginData.json")) {
             gson.toJson(loginData, writer);
+            writer.flush();
         } catch (IOException e) {
             System.out.println("Exception during saving json file");
         }

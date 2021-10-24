@@ -3,6 +3,7 @@ package com.infoshare;
 import com.infoshare.Utils.UserDataBase;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UserLoginData {
@@ -17,33 +18,18 @@ public class UserLoginData {
     }
 
     public void userLogin() {
-        boolean bool = false;
-        System.out.println("type user name:");
+        System.out.println("Type user name");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
-        if (!loginUserNameCheck(name)) {
-            do {
-                System.out.println("Wrong username");
-                System.out.println("Would you like to try again or create a new account?");
-                System.out.println("1. try again");
-                System.out.println("2. create new account");
-                int choice = Menu.choiceChecker(2);
-                switch (choice) {
-                    case 1:
-                        name = scanner.nextLine();
-                        break;
-                    case 2:
-                        bool = true;
-                        createAccount();
-                        break;
-                }
-            } while (!bool || !loginUserNameCheck(name));
+        while (!loginUserNameCheck(name)) {
+            name = typoChecker("user name:");
         }
-        if (!bool) {
-            do {
-                System.out.println("type password:");
-                password = scanner.nextLine();
-            } while (!loginUserPasswordCheck(password));
+       if(!loginUserPasswordCheck(password)){
+           System.out.println("Type password:");
+           password = scanner.nextLine();
+       }
+        while(!loginUserPasswordCheck(password)){
+            password = typoChecker("password");
         }
     }
 
@@ -70,6 +56,10 @@ public class UserLoginData {
         System.out.println("Type user name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
+        while(UserDataBase.loginData.contains(new UserLoginData(name, password))){
+            System.out.println("User name already exists, type another");
+            name = scanner.nextLine();
+        }
         System.out.println("Type password:");
         password = scanner.nextLine();
         System.out.println("Type password again:");
@@ -91,4 +81,42 @@ public class UserLoginData {
         return name;
     }
 
+    private String typoChecker(String phrase){
+        String variable = phrase;
+        System.out.println("Wrong " + phrase);
+        System.out.println("Would you like to try again or create a new account?");
+        System.out.println("1. try again");
+        System.out.println("2. create new account");
+        int choice = Menu.choiceChecker(2);
+        switch (choice) {
+            case 1:
+                System.out.println("Type " + phrase + ":");
+                Scanner scanner = new Scanner(System.in);
+                variable = scanner.nextLine();
+                break;
+            case 2:
+                createAccount();
+                if(phrase.equals("password")){
+                    variable = password;
+                }
+                else {
+                    variable = name;
+                }
+                break;
+        }
+        return variable;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserLoginData that = (UserLoginData) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
