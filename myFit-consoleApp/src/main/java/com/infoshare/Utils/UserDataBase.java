@@ -12,9 +12,10 @@ public class UserDataBase {
 
     public static void saveToFile() {
         Gson gson = new Gson();
-        try (Writer writer = new FileWriter("src/main/resources/loginData.json")) {
+        try {
+            Writer writer = new BufferedWriter(new FileWriter("src/main/resources/loginData.json"));
             gson.toJson(loginData, writer);
-            writer.flush();
+            writer.close();
         } catch (IOException e) {
             System.out.println("Exception during saving json file");
         }
@@ -26,7 +27,8 @@ public class UserDataBase {
             Reader reader = new FileReader("src/main/resources/loginData.json");
             loginData = gson.fromJson(reader, new TypeToken<ArrayList<UserLoginData>>() {
             }.getType());
-        } catch (FileNotFoundException e) {
+            reader.close();
+        } catch (Exception e) {
             System.out.println("You are our first user, have a great time!");
         }
     }

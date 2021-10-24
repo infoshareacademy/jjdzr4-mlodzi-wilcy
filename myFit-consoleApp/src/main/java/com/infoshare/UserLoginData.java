@@ -56,12 +56,20 @@ public class UserLoginData {
         System.out.println("Type user name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
-        while(UserDataBase.loginData.contains(new UserLoginData(name, password))){
+        while (name.contains(" ") || name.equals("")) {
+            System.out.println("name can't be empty, or contains spaces");
+            name = scanner.nextLine();
+        }
+        while (UserDataBase.loginData.contains(new UserLoginData(name, password))) {
             System.out.println("User name already exists, type another");
             name = scanner.nextLine();
         }
         System.out.println("Type password:");
         password = scanner.nextLine();
+        while (password.contains(" ") || password.equals("")) {
+            System.out.println("password can't be empty, or contains spaces");
+            password = scanner.nextLine();
+        }
         System.out.println("Type password again:");
         retypedPassword = scanner.nextLine();
         while (!retypedPassword.equals(password)) {
@@ -73,7 +81,7 @@ public class UserLoginData {
     }
 
     public boolean checkFileExist() {
-        File file = new File(Menu.RESOURCES_USER_DATA + name);
+        File file = new File(Menu.RESOURCES_USER_DATA + name + ".json");
         return file.exists();
     }
 
@@ -81,30 +89,50 @@ public class UserLoginData {
         return name;
     }
 
-    private String typoChecker(String phrase){
-        String variable = phrase;
-        System.out.println("Wrong " + phrase);
+    private String typoChecker(String showPhrase) {
+        String phraseChecker = showPhrase;
+        System.out.println("Wrong " + showPhrase);
         System.out.println("Would you like to try again or create a new account?");
         System.out.println("1. try again");
         System.out.println("2. create new account");
         int choice = Menu.choiceChecker(2);
         switch (choice) {
             case 1:
-                System.out.println("Type " + phrase + ":");
+                System.out.println("Type " + showPhrase + ":");
                 Scanner scanner = new Scanner(System.in);
-                variable = scanner.nextLine();
+                phraseChecker = scanner.nextLine();
                 break;
             case 2:
                 createAccount();
-                if(phrase.equals("password")){
-                    variable = password;
-                }
-                else {
-                    variable = name;
+                if (showPhrase.equals("password")) {
+                    phraseChecker = password;
+                } else {
+                    phraseChecker = name;
                 }
                 break;
         }
-        return variable;
+        return phraseChecker;
+    }
+
+    public void userNameChanger() {
+        String oldUserName = name;
+        System.out.println("Type new user name");
+        Scanner scanner = new Scanner(System.in);
+        name = scanner.nextLine();
+        while (UserDataBase.loginData.contains(new UserLoginData(name, password))) {
+            System.out.println("User name already exists, type another");
+            name = scanner.nextLine();
+        }
+        File file = new File(Menu.RESOURCES_USER_DATA + oldUserName + ".json");
+        UserDataBase.loginData.remove(new UserLoginData(oldUserName, password));
+        UserDataBase.loginData.add(new UserLoginData(name, password));
+        File file2 = new File("src/main/resources/loginData.json");
+        if (file2.delete()) {
+            UserDataBase.saveToFile();
+        }
+        if (file.delete()) {
+            System.out.println("All okay");
+        }
     }
 
     @Override

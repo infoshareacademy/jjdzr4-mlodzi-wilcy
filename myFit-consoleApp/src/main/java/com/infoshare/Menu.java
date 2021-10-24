@@ -9,14 +9,13 @@ public class Menu {
 
     public static final String RESOURCES_USER_DATA = "src/main/resources/userData/";
     public static final String RESOURCES_PRODUCT_DATA_BASE = "src/main/resources/foodData";
+    UserData userData = new UserData();
+    ProductsDataBase productsDataBase = new ProductsDataBase();
+    UserLoginData userLoginData = new UserLoginData();
 
     public void defaultInterface() {
         int numberOfChoices = 6;
         int newChoice;
-        ProductsDataBase productsDataBase = new ProductsDataBase();
-        UserLoginData userLoginData = new UserLoginData();
-        UserData userData = new UserData();
-
         do {
             System.out.println("--------------------");
             System.out.println("Pick a number to navigate.");
@@ -35,17 +34,17 @@ public class Menu {
                 case 1: //Login
                     userLoginData.userLogin();
                     if (userLoginData.checkFileExist()) {
-                        FileUtils.readObjectFromJsonFile(RESOURCES_USER_DATA + userLoginData.getName(), UserData.class);
+                        FileUtils.readObjectFromJsonFile(RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
                         userLoggedInterface();
                     } else {
                         userData.fillUserData();
-                        FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName(), userData);
+                        FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     }
                     break;
                 case 2: //New User
                     userLoginData.createAccount();
                     userData.fillUserData();
-                    FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName(), userData);
+                    FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     userLoggedInterface();
                     break;
                 case 3: //Check products
@@ -70,23 +69,20 @@ public class Menu {
     private void userLoggedInterface() {
         int numberOfChoices = 8;
         int secondChoice;
-        ProductsDataBase productsDataBase = new ProductsDataBase();
-
-        System.out.println("--------------------");
-        System.out.println("Pick a number to navigate.");
-        System.out.println("(1) - Check available products");
-        System.out.println("(2) - Add new product");
-        System.out.println("(3) - Edit a product");
-        System.out.println("(4) - Edit personal info");
-        System.out.println("(5) - Add dish");
-        System.out.println("(6) - Calculate PPM and CPM");
-        System.out.println("(7) - Get diet for whole day");
-        System.out.println("(8) - Exit");
-        System.out.println("--------------------");
-        System.out.println("Enter a number:");
-
 
         do {
+            System.out.println("--------------------");
+            System.out.println("Pick a number to navigate.");
+            System.out.println("(1) - Check available products");
+            System.out.println("(2) - Add new product");
+            System.out.println("(3) - Edit a product");
+            System.out.println("(4) - Edit personal info");
+            System.out.println("(5) - Add dish");
+            System.out.println("(6) - Calculate PPM and CPM");
+            System.out.println("(7) - Get diet for whole day");
+            System.out.println("(8) - Exit");
+            System.out.println("--------------------");
+            System.out.println("Enter a number:");
             secondChoice = choiceChecker(numberOfChoices);
             switch (secondChoice) {
                 case 1: //Check products
@@ -99,12 +95,14 @@ public class Menu {
                     productsDataBase.editProduct();
                     break;
                 case 4: //Edit personal info
+                    editPersonalInfo();
+                    FileUtils.writeJsonToFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     break;
                 case 5: //Add dish
                     break;
                 case 6: //Calculate PPM and CPM
                     break;
-                case 7: //dieta
+                case 7: //diet
                     break;
                 case 8: //Exit
                     System.out.println("Exiting to main menu");
@@ -116,6 +114,37 @@ public class Menu {
         } while (secondChoice != numberOfChoices);
     }
 
+    public void editPersonalInfo() {
+        int choice;
+        int numberOfChoices = 6;
+        do {
+            System.out.println("Which info would you like to change?");
+            System.out.println("1. user name");
+            System.out.println("2. name");
+            System.out.println("3. weight");
+            System.out.println("4. level of job activity");
+            System.out.println("5. level of private activity");
+            System.out.println("6. exit");
+            choice = Menu.choiceChecker(numberOfChoices);
+            switch (choice) {
+                case 1:
+                    userLoginData.userNameChanger();
+                    break;
+                case 2:
+                    userData.setName();
+                    break;
+                case 3:
+                    userData.setWeight();
+                    break;
+                case 4:
+                    userData.setLevelOfJobActivity();
+                    break;
+                case 5:
+                    userData.setLevelOfPrivateActivity();
+                    break;
+            }
+        } while (choice != numberOfChoices);
+    }
 
     public static int choiceChecker(int amount) {
         int choice = 0;
