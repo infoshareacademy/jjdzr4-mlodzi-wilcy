@@ -114,7 +114,7 @@ public class UserLoginData {
         return phraseChecker;
     }
 
-    public void userNameChanger() {
+    public void changeUserName() {
         String oldUserName = name;
         System.out.println("Type new user name");
         Scanner scanner = new Scanner(System.in);
@@ -123,14 +123,14 @@ public class UserLoginData {
             System.out.println("User name already exists, type another");
             name = scanner.nextLine();
         }
-        File file = new File(Menu.RESOURCES_USER_DATA + oldUserName + ".json");
+        File oldUserFile = new File(Menu.RESOURCES_USER_DATA + oldUserName + ".json");
         UserDataBase.loginData.remove(new UserLoginData(oldUserName, password));
         UserDataBase.loginData.add(new UserLoginData(name, password));
-        File file2 = new File("src/main/resources/loginData.json");
-        if (file2.delete()) {
+        File loginDataFile = new File("src/main/resources/loginData.json");
+        if (loginDataFile.delete()) {
             UserDataBase.saveToFile();
         }
-        if (file.delete()) {
+        if (oldUserFile.delete()) {
             System.out.println("All okay");
         }
     }

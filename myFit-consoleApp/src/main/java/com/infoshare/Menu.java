@@ -128,7 +128,7 @@ public class Menu {
             choice = Menu.choiceChecker(numberOfChoices);
             switch (choice) {
                 case 1:
-                    userLoginData.userNameChanger();
+                    userLoginData.changeUserName();
                     break;
                 case 2:
                     userData.setName();
