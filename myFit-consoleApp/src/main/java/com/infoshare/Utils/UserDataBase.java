@@ -29,6 +29,4 @@ public class UserDataBase {
             System.out.println("You are our first user, have a great time!");
         }
     }
-
-
 }

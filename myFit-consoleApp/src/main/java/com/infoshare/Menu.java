@@ -8,6 +8,7 @@ public class Menu {
 
 
     public static final String RESOURCES_USER_DATA = "src/main/resources/userData/";
+    public static final String RESOURCES_PRODUCT_DATA_BASE = "src/main/resources/foodData";
 
     public void defaultInterface() {
         int numberOfChoices = 6;
