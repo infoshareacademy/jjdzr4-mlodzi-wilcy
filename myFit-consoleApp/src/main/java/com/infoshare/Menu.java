@@ -12,6 +12,7 @@ public class Menu {
     UserData userData = new UserData();
     ProductsDataBase productsDataBase = new ProductsDataBase();
     UserLoginData userLoginData = new UserLoginData();
+    DishDataBase dishDataBase = new DishDataBase();
 
     public void defaultInterface() {
         int numberOfChoices = 6;
@@ -99,6 +100,7 @@ public class Menu {
                     FileUtils.writeJsonToFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     break;
                 case 5: //Add dish
+                    dishDataBase.addDish();
                     break;
                 case 6: //Calculate PPM and CPM
                     break;
