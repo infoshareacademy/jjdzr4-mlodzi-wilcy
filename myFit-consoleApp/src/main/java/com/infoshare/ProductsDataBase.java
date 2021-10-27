@@ -111,8 +111,8 @@ public class ProductsDataBase {
             while (true) {
                 try {
                     System.out.println("Write how many fats per 100 grams this product has:");
-                    Scanner scanner3 = new Scanner(System.in);
-                    fatPer100g = scanner3.nextDouble();
+                    Scanner scanner2 = new Scanner(System.in);
+                    fatPer100g = scanner2.nextDouble();
                     if (fatPer100g <= -1) {
                         System.out.println("Enter correct value.");
                     } else {

@@ -13,7 +13,7 @@ public class UserData {
     private String levelOfJobActivity;
     private String levelOfPrivateActivity;
 
-    public void fillUserData(){
+    public void fillUserData() {
         System.out.println("Before enter fill your personal information");
         setName();
         setGender();
@@ -32,11 +32,10 @@ public class UserData {
             this.name = scanner.nextLine();
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(name);
-            if(m.find() == true) {
+            if (m.find() == true) {
                 String i = m.group();
                 System.out.println("Type correct name.");
-            }
-            else{
+            } else {
                 break;
             }
 
