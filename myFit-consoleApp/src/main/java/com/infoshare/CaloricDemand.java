@@ -8,12 +8,12 @@ public class CaloricDemand {
     UserLoginData userLoginData = new UserLoginData();
     private double PPM;
     private double CPM;
-    private int weight;
-    private int height;
-    private int age;
-    private String gender;
-    private String levelOfPrivateActivity;
-    private String levelOfJobActivity;
+    private int weight = 84;
+    private int height = 189;
+    private int age = 24;
+    private String gender = "male";
+    private String levelOfJobActivity = "low";
+    private String levelOfPrivateActivity = "medium";
 
 
     public double calculatePPM (){

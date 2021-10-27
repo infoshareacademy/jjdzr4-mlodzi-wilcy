@@ -11,5 +11,8 @@ public class App {
         DishUtils.loadFromFile();
         Menu anMenu = new Menu();
         anMenu.defaultInterface();
+//        CaloricDemand caloricDemand = new CaloricDemand();
+//        System.out.println(caloricDemand.calculatePPM());
+//        System.out.println(caloricDemand.calculateCPM());
     }
 }
