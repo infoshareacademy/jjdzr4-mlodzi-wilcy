@@ -10,7 +10,7 @@ public class UserLoginData {
     private String name;
     private String password;
 
-     UserLoginData(){}
+    UserLoginData(){}
 
     UserLoginData(String name, String password) {
         this.name = name;
