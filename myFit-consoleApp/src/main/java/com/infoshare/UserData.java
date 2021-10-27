@@ -105,7 +105,7 @@ public class UserData {
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("Write your weight correctly");
+                System.out.println("Write your weight correctly with a comma.");
             }
 
         }
