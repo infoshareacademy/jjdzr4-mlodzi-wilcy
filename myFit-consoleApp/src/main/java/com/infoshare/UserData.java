@@ -33,7 +33,6 @@ public class UserData {
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(name);
             if (m.find() == true) {
-                String i = m.group();
                 System.out.println("Type correct name.");
             } else {
                 break;

@@ -29,7 +29,7 @@ public class FileUtils {
             Type collectionType = new TypeToken<List<T>>() {
             }.getType();
             List<T> collection = GSON.fromJson(reader, collectionType);
-            System.out.println("List successfully uploaded. Number of elements: " + collection.size());
+            System.out.println("List successfully uploaded. Number of elements: " + (collection.size() + 1));
             return collection;
         } catch (IOException e) {
             System.out.println("File not found or broken: " + e.getMessage());
