@@ -1,33 +1,34 @@
 package com.infoshare.Utils;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.infoshare.ProductsDataBase;
 
-import java.util.List;
+import java.io.*;
+import java.util.ArrayList;
 
 public class FoodDataBase {
+    public static ArrayList<ProductsDataBase> foodData = new ArrayList<>();
 
-    private static final String FOOD_DATA_PATH = "src/main/resources/foodData.json";
-    private static FoodDataBase INSTANCE;
 
-    private final List<ProductsDataBase> foodData;
-
-    public static FoodDataBase getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new FoodDataBase();
+    public static void saveToFile() {
+        Gson gson = new Gson();
+        try (Writer writer = new FileWriter("src/main/resources/foodData.json")) {
+            gson.toJson(foodData, writer);
+        } catch (IOException e) {
+            System.out.println("Exception during saving json file");
         }
-        return INSTANCE;
     }
 
-    private FoodDataBase() {
-        this.foodData = FileUtils.readListFromJsonFile(FOOD_DATA_PATH);
-    }
-
-    public void add(ProductsDataBase productsDataBase) {
-        foodData.add(productsDataBase);
-    }
-
-
-    public void saveProductsDataBaseToFile() {
-        FileUtils.writeListToJsonFile(FOOD_DATA_PATH, foodData);
+    public static void loadFromFile() {
+        Gson gson = new Gson();
+        try {
+            Reader reader = new FileReader("src/main/resources/foodData.json");
+            foodData = gson.fromJson(reader, new TypeToken<ArrayList<ProductsDataBase>>() {
+            }.getType());
+        } catch (FileNotFoundException e) {
+            System.out.println("and add your first meal.");
+        }
     }
 }
+
