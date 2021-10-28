@@ -80,8 +80,6 @@ public class ProductsDataBase {
     }
 
     public void editProduct() {
-        String name;
-
         System.out.println("What product would you like to modify? Write a name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
