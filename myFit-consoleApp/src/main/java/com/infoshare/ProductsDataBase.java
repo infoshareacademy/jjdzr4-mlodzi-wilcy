@@ -25,6 +25,10 @@ public class ProductsDataBase {
         this.proteinPer100g = proteinPer100g;
     }
 
+    public ProductsDataBase() {
+
+    }
+
     public TypeOfFood getTypeOfFood() {
         return typeOfFood;
     }
@@ -49,9 +53,6 @@ public class ProductsDataBase {
         return proteinPer100g;
     }
 
-    public ProductsDataBase() {
-    }
-
     public void readProducts() {
         System.out.println("All available products:");
     }
@@ -73,9 +74,9 @@ public class ProductsDataBase {
 
         chooseType();
         addMethod();
-        FoodDataBase.foodData.add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
-        checkFileExist();
-        FoodDataBase.saveToFile();
+        FoodDataBase.getInstance().saveProductsDataBaseToFile();
+        FoodDataBase.getInstance().add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
+        FoodDataBase.getInstance().saveProductsDataBaseToFile();
     }
 
     public void editProduct() {
@@ -123,36 +124,36 @@ public class ProductsDataBase {
                 }
             }
 
-        while (true) {
-            try {
-                System.out.println("Write how many carbohydrates per 100 grams this product has:");
-                Scanner scanner3 = new Scanner(System.in);
-                carbohydratesPer100g = scanner3.nextDouble();
-                if(carbohydratesPer100g<= -1) {
+            while (true) {
+                try {
+                    System.out.println("Write how many carbohydrates per 100 grams this product has:");
+                    Scanner scanner3 = new Scanner(System.in);
+                    carbohydratesPer100g = scanner3.nextDouble();
+                    if (carbohydratesPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
-                } else {
-                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
             }
-        }
-        while (true) {
-            try {
-                System.out.println("Write how many proteins per 100 grams this product has:");
-                Scanner scanner4 = new Scanner(System.in);
-                proteinPer100g = scanner4.nextDouble();
-                if(proteinPer100g <= -1) {
+            while (true) {
+                try {
+                    System.out.println("Write how many proteins per 100 grams this product has:");
+                    Scanner scanner4 = new Scanner(System.in);
+                    proteinPer100g = scanner4.nextDouble();
+                    if (proteinPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
-                } else {
-                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
             }
-        }
-        System.out.println(name + " has beed added to librabry.");
-        return false;
+            System.out.println(name + " has beed added to librabry.");
+            return false;
         }
     }
 
