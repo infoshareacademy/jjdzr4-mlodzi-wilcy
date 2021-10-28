@@ -25,6 +25,10 @@ public class ProductsDataBase {
         this.proteinPer100g = proteinPer100g;
     }
 
+    public ProductsDataBase() {
+
+    }
+
     public TypeOfFood getTypeOfFood() {
         return typeOfFood;
     }
@@ -49,10 +53,9 @@ public class ProductsDataBase {
         return proteinPer100g;
     }
 
-    public ProductsDataBase() {
-    }
 
-    public static void readProducts() {
+    public void readProducts() {
+
         System.out.println("All available products:");
         for (ProductsDataBase food : FoodDataBase.foodData) {
             System.out.println(food);
@@ -61,7 +64,7 @@ public class ProductsDataBase {
 
 
     public void addProduct() {
-        System.out.println("What type of this product it is? Write a name:");
+        System.out.println("What type of this product it is? Write a number:");
         System.out.println();
         System.out.println("(1) - " + TypeOfFood.DRINKS);
         System.out.println("(2) - " + TypeOfFood.FATSANDOILS);
@@ -76,14 +79,12 @@ public class ProductsDataBase {
 
         chooseType();
         addMethod();
-        FoodDataBase.foodData.add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
-        checkFileExist();
-        FoodDataBase.saveToFile();
+        FoodDataBase.getInstance().saveProductsDataBaseToFile();
+        FoodDataBase.getInstance().add(new ProductsDataBase(typeOfFood, name, kcalPer100g, fatPer100g, carbohydratesPer100g, proteinPer100g));
+        FoodDataBase.getInstance().saveProductsDataBaseToFile();
     }
 
     public void editProduct() {
-        String name;
-
         System.out.println("What product would you like to modify? Write a name:");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
@@ -92,62 +93,71 @@ public class ProductsDataBase {
 
     public boolean addMethod() {
         while (true) {
-            try {
-                System.out.println("Write name of the product:");
-                Scanner scanner = new Scanner(System.in);
-                name = scanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Enter the correct value.");
-            }
+            System.out.println("Write name of the product:");
+            Scanner scanner = new Scanner(System.in);
+            name = scanner.nextLine();
 
             while (true) {
                 try {
                     System.out.println("Write how many calories per 100 grams this product has:");
-                    Scanner scanner = new Scanner(System.in);
-                    kcalPer100g = scanner.nextInt();
-                    break;
+                    Scanner kcalScanner = new Scanner(System.in);
+                    kcalPer100g = kcalScanner.nextInt();
+                    if (kcalPer100g <= -1) {
+                        System.out.println("Enter correct value");
+                    } else {
+                        break;
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
-                    continue;
                 }
             }
-            break;
-        }
-        while (true) {
-            try {
-                System.out.println("Write how many fats per 100 grams this product has:");
-                Scanner scanner = new Scanner(System.in);
-                fatPer100g = scanner.nextDouble();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
-                continue;
+
+            while (true) {
+                try {
+                    System.out.println("Write how many fats per 100 grams this product has:");
+                    Scanner fatScanner = new Scanner(System.in);
+                    fatPer100g = fatScanner.nextDouble();
+                    if (fatPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter correct value.");
+                }
             }
-        }
-        while (true) {
-            try {
-                System.out.println("Write how many carbohydrates per 100 grams this product has:");
-                Scanner scanner = new Scanner(System.in);
-                carbohydratesPer100g = scanner.nextDouble();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
-                continue;
+
+            while (true) {
+                try {
+                    System.out.println("Write how many carbohydrates per 100 grams this product has:");
+                    Scanner carohydratesScanner = new Scanner(System.in);
+                    carbohydratesPer100g = carohydratesScanner.nextDouble();
+                    if (carbohydratesPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter correct value.");
+                }
             }
-        }
-        while (true) {
-            try {
-                System.out.println("Write how many proteins per 100 grams this product has:");
-                Scanner scanner = new Scanner(System.in);
-                proteinPer100g = scanner.nextDouble();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
-                continue;
+            while (true) {
+                try {
+                    System.out.println("Write how many proteins per 100 grams this product has:");
+                    Scanner proteinScanner = new Scanner(System.in);
+                    proteinPer100g = proteinScanner.nextDouble();
+                    if (proteinPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter correct value.");
+                }
             }
+            System.out.println(name + " has beed added to librabry.");
+            return false;
         }
-        System.out.println(name + " has beed added to librabry.");
-        return false;
     }
 
     public void chooseType() {
