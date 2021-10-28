@@ -53,8 +53,13 @@ public class ProductsDataBase {
         return proteinPer100g;
     }
 
+
     public void readProducts() {
+
         System.out.println("All available products:");
+        for (ProductsDataBase food : FoodDataBase.foodData) {
+            System.out.println(food);
+        }
     }
 
 
@@ -203,5 +208,15 @@ public class ProductsDataBase {
     public boolean checkFileExist() {
         File file = new File(RESOURCES_PRODUCT_DATA_BASE + name);
         return file.exists();
+    }
+
+    @Override
+    public String toString() {
+        return "Product name: " + name +
+                ", type of food: " + typeOfFood +
+                ", kcal per 100g: " + kcalPer100g +
+                ", fat per 100g: " + fatPer100g +
+                ", carbohydrates per 100g: " + carbohydratesPer100g +
+                ", protein per 100g: " + proteinPer100g;
     }
 }
