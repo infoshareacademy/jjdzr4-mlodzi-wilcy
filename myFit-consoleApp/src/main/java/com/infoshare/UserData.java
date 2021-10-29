@@ -1,8 +1,13 @@
 package com.infoshare;
 
+import com.infoshare.Utils.FileUtils;
+import com.infoshare.Utils.UserDataBase;
+
 import java.util.Scanner;
+import java.util.function.ToDoubleBiFunction;
 
 public class UserData {
+    UserLoginData userLoginData = new UserLoginData();
     private String name;
     private String gender;
     private int age;
@@ -153,12 +158,21 @@ public class UserData {
     }
 
     public double getPPM() {
+        //TODO
+        // dodać wczytywanie z pliku zamiast brać zmienną zapamiętaną
+
+//        for (var dataFromDataBase : UserDataBase.loginData) {
+//            System.out.println(dataFromDataBase);
+//        }
+//        Object readingDatabase = FileUtils.readObjectFromJsonFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
 
         System.out.println("Your basic metabolism is: " + CPM + " kcal.");
         return PPM;
     }
 
     public double getCPM() {
+//TODO
+//        dodać wczytywanie z pliku zamiast brać zmienną zapamiętaną
         System.out.println("Your Total Caloric Demand is: " + CPM + " kcal.");
         return CPM;
     }

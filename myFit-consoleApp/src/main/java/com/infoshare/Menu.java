@@ -13,7 +13,6 @@ public class Menu {
     ProductsDataBase productsDataBase = new ProductsDataBase();
     UserLoginData userLoginData = new UserLoginData();
     DishDataBase dishDataBase = new DishDataBase();
-    CaloricDemand caloricDemand = new CaloricDemand();
 
     public void defaultInterface() {
         int numberOfChoices = 6;
@@ -104,6 +103,7 @@ public class Menu {
                     dishDataBase.addDish();
                     break;
                 case 6: //Calculate PPM and CPM
+                    // Object readerFromFile = FileUtils.readObjectFromJsonFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
                     userData.getPPM();
                     userData.getCPM();
                     break;
