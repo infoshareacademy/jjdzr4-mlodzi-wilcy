@@ -166,7 +166,7 @@ public class UserData {
 //        }
 //        Object readingDatabase = FileUtils.readObjectFromJsonFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
 
-        System.out.println("Your basic metabolism is: " + CPM + " kcal.");
+        System.out.println("Your basic metabolism is: " + PPM + " kcal.");
         return PPM;
     }
 
