@@ -9,7 +9,6 @@ public class App {
         UserDataBase.loadFromFile(); //uploadowanie pliku z danymi logowania
         FoodDataBase.loadFromFile();
         DishUtils.loadFromFile();
-        FoodDataBase.loadFromFile();
         Menu anMenu = new Menu();
         anMenu.defaultInterface();
     }
