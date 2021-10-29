@@ -26,33 +26,40 @@ public class DishDataBase {
     }
 
     public void addDish() {
-
+        List<ProductsDataBase> temporaryProductsDataBaseList = new ArrayList<>();
+        String temporaryDishName;
+        int temporarySumOfKcalPer100g = 0;
+        double temporarySumOfFatPer100g = 0.0;
+        double temporarySumOfCarbohydratesPer100g = 0.0;
+        double temporarySumOfProteinPer100g = 0.0;
         while (true) {
             try {
                 System.out.println("Available products:");
                 ProductsDataBase.readProducts();
 
-                System.out.println("Write the name of your new dish:");
+                System.out.println("\nWrite the name of your new dish:");
                 Scanner scanner = new Scanner(System.in);
-                dishName = scanner.nextLine();
-
-                System.out.println("Type the first product name");
-                String productName1 = scanner.nextLine();
-
-                System.out.println("Type the second product name");
-                String productName2 = scanner.nextLine();
-
-                ProductsDataBase productsDataBase1 = FoodDataBase.foodData.stream().filter(
-                        f -> f.getName().equals(productName1)).findFirst().get();
-                ProductsDataBase productsDataBase2 = FoodDataBase.foodData.stream().filter(
-                        f -> f.getName().equals(productName2)).findFirst().get();
+                temporaryDishName = scanner.nextLine();
+                boolean shouldDishHaveNextProduct = false;
 
                 try {
-                    productsDataBaseList = Arrays.asList(productsDataBase1, productsDataBase2);
-                    sumOfKcalPer100g = productsDataBase1.getKcalPer100g() + productsDataBase2.getKcalPer100g();
-                    sumOfFatPer100g = productsDataBase1.getFatPer100g() + productsDataBase2.getFatPer100g();
-                    sumOfCarbohydratesPer100g = productsDataBase1.getCarbohydratesPer100g() + productsDataBase2.getCarbohydratesPer100g();
-                    sumOfProteinPer100g = productsDataBase1.getProteinPer100g() + productsDataBase2.getProteinPer100g();
+                    do {
+                        temporaryProductsDataBaseList.add(getNextProductName(scanner));
+                        System.out.println("Do You want to add another product to the dish? Type anything to confirm or just press Enter to finish adding the dish.");
+                        String nextProductAnswer = scanner.nextLine();
+
+                        if (nextProductAnswer.isEmpty()) {
+                            shouldDishHaveNextProduct = false;
+                        } else {
+                            shouldDishHaveNextProduct = true;
+                        }
+                    }
+                    while (shouldDishHaveNextProduct);
+
+                    temporarySumOfKcalPer100g = calculateSumOfKcalPer100g(temporaryProductsDataBaseList);
+                    temporarySumOfFatPer100g = calculateSumOfFatPer100g(temporaryProductsDataBaseList);
+                    temporarySumOfCarbohydratesPer100g = calculateSumOfCarbohydratesPer100g(temporaryProductsDataBaseList);
+                    temporarySumOfProteinPer100g = calculateSumOfProteinPer100g(temporaryProductsDataBaseList);
                 } catch (NoSuchElementException e) {
                     System.out.println("Product doesn't exist.");
                 }
@@ -62,7 +69,48 @@ public class DishDataBase {
             }
         }
 
-        DishUtils.dishDataBaseArrayList.add(new DishDataBase(dishName, sumOfKcalPer100g, sumOfFatPer100g, sumOfCarbohydratesPer100g, sumOfProteinPer100g, productsDataBaseList));
+        DishUtils.dishDataBaseArrayList.add(new DishDataBase(temporaryDishName, temporarySumOfKcalPer100g, temporarySumOfFatPer100g, temporarySumOfCarbohydratesPer100g, temporarySumOfProteinPer100g, temporaryProductsDataBaseList));
         DishUtils.saveToFile();
+    }
+
+    private ProductsDataBase getNextProductName(Scanner scanner) {
+        System.out.println("Type the product name");
+        String productName1 = scanner.nextLine();
+
+        ProductsDataBase productsDataBase1 = FoodDataBase.foodData.stream().filter(
+                f -> f.getName().equals(productName1)).findFirst().get();
+        return productsDataBase1;
+    }
+
+    private int calculateSumOfKcalPer100g(List<ProductsDataBase> productsDataBaseList) {
+        int temporarySumOfKcalPer100g = 0;
+        for (ProductsDataBase p : productsDataBaseList) {
+            temporarySumOfKcalPer100g += p.getKcalPer100g();
+        }
+        return temporarySumOfKcalPer100g;
+    }
+
+    private double calculateSumOfFatPer100g(List<ProductsDataBase> productsDataBaseList) {
+        double temporarySumOfFatPer100g = 0.0;
+        for (ProductsDataBase p : productsDataBaseList) {
+            temporarySumOfFatPer100g += p.getFatPer100g();
+        }
+        return temporarySumOfFatPer100g;
+    }
+
+    private double calculateSumOfCarbohydratesPer100g(List<ProductsDataBase> productsDataBaseList) {
+        double temporarySumOfCarbohydratesPer100g = 0.0;
+        for (ProductsDataBase p : productsDataBaseList) {
+            temporarySumOfCarbohydratesPer100g += p.getCarbohydratesPer100g();
+        }
+        return temporarySumOfCarbohydratesPer100g;
+    }
+
+    private double calculateSumOfProteinPer100g(List<ProductsDataBase> productsDataBaseList) {
+        double temporarySumOfProteinPer100g = 0.0;
+        for (ProductsDataBase p : productsDataBaseList) {
+            temporarySumOfProteinPer100g += p.getProteinPer100g();
+        }
+        return temporarySumOfProteinPer100g;
     }
 }
