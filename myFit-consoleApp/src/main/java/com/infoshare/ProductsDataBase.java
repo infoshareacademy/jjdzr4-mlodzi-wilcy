@@ -52,7 +52,7 @@ public class ProductsDataBase {
     public ProductsDataBase() {
     }
 
-    public void readProducts() {
+    public static void readProducts() {
         System.out.println("All available products:");
         for (ProductsDataBase food : FoodDataBase.foodData) {
             System.out.println(food);
