@@ -54,6 +54,9 @@ public class ProductsDataBase {
 
     public void readProducts() {
         System.out.println("All available products:");
+        for (ProductsDataBase food : FoodDataBase.foodData) {
+            System.out.println(food);
+        }
     }
 
 
@@ -96,8 +99,8 @@ public class ProductsDataBase {
             while (true) {
                 try {
                     System.out.println("Write how many calories per 100 grams this product has:");
-                    Scanner scanner1 = new Scanner(System.in);
-                    kcalPer100g = scanner1.nextInt();
+                    Scanner kcalScanner = new Scanner(System.in);
+                    kcalPer100g = kcalScanner.nextInt();
                     if (kcalPer100g <= -1) {
                         System.out.println("Enter correct value");
                     } else {
@@ -111,8 +114,8 @@ public class ProductsDataBase {
             while (true) {
                 try {
                     System.out.println("Write how many fats per 100 grams this product has:");
-                    Scanner scanner2 = new Scanner(System.in);
-                    fatPer100g = scanner2.nextDouble();
+                    Scanner fatScanner = new Scanner(System.in);
+                    fatPer100g = fatScanner.nextDouble();
                     if (fatPer100g <= -1) {
                         System.out.println("Enter correct value.");
                     } else {
@@ -126,8 +129,8 @@ public class ProductsDataBase {
             while (true) {
                 try {
                     System.out.println("Write how many carbohydrates per 100 grams this product has:");
-                    Scanner scanner3 = new Scanner(System.in);
-                    carbohydratesPer100g = scanner3.nextDouble();
+                    Scanner carohydratesScanner = new Scanner(System.in);
+                    carbohydratesPer100g = carohydratesScanner.nextDouble();
                     if (carbohydratesPer100g <= -1) {
                         System.out.println("Enter correct value.");
                     } else {
@@ -140,8 +143,8 @@ public class ProductsDataBase {
             while (true) {
                 try {
                     System.out.println("Write how many proteins per 100 grams this product has:");
-                    Scanner scanner4 = new Scanner(System.in);
-                    proteinPer100g = scanner4.nextDouble();
+                    Scanner proteinScanner = new Scanner(System.in);
+                    proteinPer100g = proteinScanner.nextDouble();
                     if (proteinPer100g <= -1) {
                         System.out.println("Enter correct value.");
                     } else {
@@ -204,5 +207,15 @@ public class ProductsDataBase {
     public boolean checkFileExist() {
         File file = new File(RESOURCES_PRODUCT_DATA_BASE + name);
         return file.exists();
+    }
+
+    @Override
+    public String toString() {
+        return "Product name: " + name +
+                ", type of food: " + typeOfFood +
+                ", kcal per 100g: " + kcalPer100g +
+                ", fat per 100g: " + fatPer100g +
+                ", carbohydrates per 100g: " + carbohydratesPer100g +
+                ", protein per 100g: " + proteinPer100g;
     }
 }
