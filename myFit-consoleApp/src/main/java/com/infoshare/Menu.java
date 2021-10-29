@@ -104,7 +104,8 @@ public class Menu {
                     dishDataBase.addDish();
                     break;
                 case 6: //Calculate PPM and CPM
-                    caloricDemand.toString();
+                    userData.getPPM();
+                    userData.getCPM();
                     break;
                 case 7: //diet
                     break;

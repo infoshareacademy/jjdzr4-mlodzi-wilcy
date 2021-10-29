@@ -4,8 +4,6 @@ import com.infoshare.Utils.UserDataBase;
 
 
 public class CaloricDemand {
-    UserDataBase userDataBase = new UserDataBase();
-    UserLoginData userLoginData = new UserLoginData();
     private double PPM;
     private double CPM;
     private int weight = 84;

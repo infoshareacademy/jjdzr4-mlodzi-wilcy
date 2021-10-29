@@ -10,6 +10,8 @@ public class UserData {
     private double weight;
     private String levelOfJobActivity;
     private String levelOfPrivateActivity;
+    private double PPM;
+    private double CPM;
 
     public void fillUserData() {
         System.out.println("Before enter fill your personal information");
@@ -20,6 +22,8 @@ public class UserData {
         setWeight();
         setLevelOfJobActivity();
         setLevelOfPrivateActivity();
+        calculatePPM();
+        calculateCPM();
     }
 
 
@@ -120,5 +124,42 @@ public class UserData {
                 levelOfPrivateActivity = "high";
                 break;
         }
+    }
+
+    public double calculatePPM (){
+        if (gender.equals("male")){
+            PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) + 5;
+        } else {
+            PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) - 161;
+        }
+        return PPM;
+    }
+
+    public double calculateCPM (){
+        if (levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("low")){
+            CPM = PPM * 1.5;
+        } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("medium")) ||
+                (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("low")) ){
+            CPM = PPM * 1.7;
+        } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("high")) ||
+                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("low"))){
+            CPM = PPM * 1.9;
+        } else if (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("medium")){
+            CPM = PPM * 2;
+        } else if (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("high")){
+            CPM = PPM * 2.2;
+        }
+        return CPM;
+    }
+
+    public double getPPM() {
+
+        System.out.println("Your basic metabolism is: " + CPM + " kcal.");
+        return PPM;
+    }
+
+    public double getCPM() {
+        System.out.println("Your Total Caloric Demand is: " + CPM + " kcal.");
+        return CPM;
     }
 }
