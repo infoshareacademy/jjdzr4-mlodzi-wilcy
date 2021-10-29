@@ -28,6 +28,7 @@ public class FoodDataBase {
             }.getType());
         } catch (FileNotFoundException e) {
             System.out.println();
+
         }
     }
 }

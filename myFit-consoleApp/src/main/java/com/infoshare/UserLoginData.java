@@ -10,8 +10,7 @@ public class UserLoginData {
     private String name;
     private String password;
 
-    UserLoginData() {
-    }
+     UserLoginData(){}
 
     UserLoginData(String name, String password) {
         this.name = name;
@@ -25,11 +24,11 @@ public class UserLoginData {
         while (!loginUserNameCheck(name)) {
             name = typoChecker("user name:");
         }
-        if (!loginUserPasswordCheck(password)) {
-            System.out.println("Type password:");
-            password = scanner.nextLine();
-        }
-        while (!loginUserPasswordCheck(password)) {
+       if(!loginUserPasswordCheck(password)){
+           System.out.println("Type password:");
+           password = scanner.nextLine();
+       }
+        while(!loginUserPasswordCheck(password)){
             password = typoChecker("password");
         }
     }

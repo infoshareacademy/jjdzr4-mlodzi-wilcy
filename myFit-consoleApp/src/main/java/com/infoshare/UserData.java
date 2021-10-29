@@ -1,8 +1,6 @@
 package com.infoshare;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UserData {
     private String name;
@@ -26,21 +24,10 @@ public class UserData {
 
 
     public void setName() {
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Type your name:");
-            this.name = scanner.nextLine();
-            Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(name);
-            if (m.find() == true) {
-                System.out.println("Type correct name.");
-            } else {
-                break;
-            }
-
-        }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type your name:");
+        this.name = scanner.nextLine();
     }
-
 
     public void setGender() {
         System.out.println("Your gender:");
@@ -63,11 +50,7 @@ public class UserData {
                 System.out.println("Your age:");
                 Scanner scanner = new Scanner(System.in);
                 this.age = scanner.nextInt();
-                if (this.age <= 0) {
-                    System.out.println("Enter correct value.");
-                } else {
-                    break;
-                }
+                break;
             } catch (Exception e) {
                 System.out.println("Write your age correctly.");
             }
@@ -80,11 +63,7 @@ public class UserData {
                 System.out.println("Your height");
                 Scanner scanner = new Scanner(System.in);
                 this.height = scanner.nextInt();
-                if (this.height <= 0) {
-                    System.out.println("Enter correct value.");
-                } else {
-                    break;
-                }
+                break;
             } catch (Exception e) {
                 System.out.println("Write your hight in centimeters.");
             }
@@ -97,13 +76,9 @@ public class UserData {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Your weight");
                 this.weight = scanner.nextDouble();
-                if (this.weight <= 0) {
-                    System.out.println("Enter correct value.");
-                } else {
-                    break;
-                }
+                break;
             } catch (Exception e) {
-                System.out.println("Write your weight correctly with a comma.");
+                System.out.println("Write your weight correctly");
             }
 
         }
