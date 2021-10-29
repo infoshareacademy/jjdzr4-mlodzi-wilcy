@@ -123,36 +123,36 @@ public class ProductsDataBase {
                 }
             }
 
-        while (true) {
-            try {
-                System.out.println("Write how many carbohydrates per 100 grams this product has:");
-                Scanner scanner3 = new Scanner(System.in);
-                carbohydratesPer100g = scanner3.nextDouble();
-                if(carbohydratesPer100g<= -1) {
+            while (true) {
+                try {
+                    System.out.println("Write how many carbohydrates per 100 grams this product has:");
+                    Scanner scanner3 = new Scanner(System.in);
+                    carbohydratesPer100g = scanner3.nextDouble();
+                    if (carbohydratesPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
-                } else {
-                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
             }
-        }
-        while (true) {
-            try {
-                System.out.println("Write how many proteins per 100 grams this product has:");
-                Scanner scanner4 = new Scanner(System.in);
-                proteinPer100g = scanner4.nextDouble();
-                if(proteinPer100g <= -1) {
+            while (true) {
+                try {
+                    System.out.println("Write how many proteins per 100 grams this product has:");
+                    Scanner scanner4 = new Scanner(System.in);
+                    proteinPer100g = scanner4.nextDouble();
+                    if (proteinPer100g <= -1) {
+                        System.out.println("Enter correct value.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
-                } else {
-                    break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Enter correct value.");
             }
-        }
-        System.out.println(name + " has beed added to librabry.");
-        return false;
+            System.out.println(name + " has beed added to librabry.");
+            return false;
         }
     }
 
