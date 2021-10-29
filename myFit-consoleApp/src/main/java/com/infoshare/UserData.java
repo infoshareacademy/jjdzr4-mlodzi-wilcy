@@ -1,6 +1,8 @@
 package com.infoshare;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserData {
     private String name;
@@ -24,9 +26,19 @@ public class UserData {
 
 
     public void setName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Type your name:");
-        this.name = scanner.nextLine();
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Type your name:");
+            this.name = scanner.nextLine();
+            Pattern p = Pattern.compile(("\\d+"));
+            Matcher m = p.matcher(name);
+            if (m.find() == true) {
+                System.out.println("Type correct name.");
+            } else {
+                break;
+
+            }
+        }
     }
 
     public void setGender() {
