@@ -4,6 +4,9 @@ import com.infoshare.Utils.FileUtils;
 import com.infoshare.Utils.UserDataBase;
 
 import java.util.Scanner;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.function.ToDoubleBiFunction;
 
 public class UserData {
@@ -33,9 +36,19 @@ public class UserData {
 
 
     public void setName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Type your name:");
-        this.name = scanner.nextLine();
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Type your name:");
+            this.name = scanner.nextLine();
+            Pattern p = Pattern.compile(("\\d+")); // it search number from 0 to 9, "+" means more than 1 times
+            Matcher m = p.matcher(name);
+            if (m.find() == true) {
+                System.out.println("Type correct name.");
+            } else {
+                break;
+
+            }
+        }
     }
 
     public void setGender() {
@@ -59,7 +72,11 @@ public class UserData {
                 System.out.println("Your age:");
                 Scanner scanner = new Scanner(System.in);
                 this.age = scanner.nextInt();
-                break;
+                if(this.age <=0) {
+                    System.out.println("Enter correct value.");
+                } else {
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println("Write your age correctly.");
             }
@@ -72,7 +89,11 @@ public class UserData {
                 System.out.println("Your height");
                 Scanner scanner = new Scanner(System.in);
                 this.height = scanner.nextInt();
-                break;
+                if(this.height <= 0) {
+                    System.out.println("Enter correct value.");
+                } else {
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println("Write your hight in centimeters.");
             }
@@ -85,7 +106,11 @@ public class UserData {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Your weight");
                 this.weight = scanner.nextDouble();
-                break;
+                if(this.weight < 0) {
+                    System.out.println("Enter correct value.");
+                } else {
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println("Write your weight correctly");
             }
