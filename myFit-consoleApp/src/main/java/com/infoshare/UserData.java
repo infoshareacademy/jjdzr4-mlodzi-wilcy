@@ -1,13 +1,8 @@
 package com.infoshare;
 
-import com.infoshare.Utils.FileUtils;
-import com.infoshare.Utils.UserDataBase;
-
 import java.util.Scanner;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.function.ToDoubleBiFunction;
 
 public class UserData {
     UserLoginData userLoginData = new UserLoginData();
@@ -18,8 +13,10 @@ public class UserData {
     private double weight;
     private String levelOfJobActivity;
     private String levelOfPrivateActivity;
+    private double weightGoal;
     private double PPM;
     private double CPM;
+    public Diet diet;
 
     public void fillUserData() {
         System.out.println("Before enter fill your personal information");
@@ -30,6 +27,7 @@ public class UserData {
         setWeight();
         setLevelOfJobActivity();
         setLevelOfPrivateActivity();
+        setWeightGoal();
         calculatePPM();
         calculateCPM();
     }
@@ -156,8 +154,26 @@ public class UserData {
         }
     }
 
-    private double calculatePPM (){
-        if (gender.equals("male")){
+    public void setWeightGoal() {
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Your weight");
+                this.weightGoal = scanner.nextDouble();
+                if (this.weightGoal < 0) {
+                    System.out.println("Enter correct value.");
+                } else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Write your weight goal correctly");
+            }
+
+        }
+    }
+
+    private double calculatePPM() {
+        if (gender.equals("male")) {
             PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) + 5;
         } else {
             PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) - 161;
@@ -195,14 +211,22 @@ public class UserData {
         return round(CPM);
     }
 
-    private int round(double d){
+    private int round(double d) {
         double dAbs = Math.abs(d);
         int i = (int) dAbs;
         double result = dAbs - (double) i;
-        if(result<0.5){
-            return d<0 ? -i : i;
-        }else{
-            return d<0 ? -(i+1) : i+1;
+        if (result < 0.5) {
+            return d < 0 ? -i : i;
+        } else {
+            return d < 0 ? -(i + 1) : i + 1;
         }
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public double getWeightGoal() {
+        return weightGoal;
     }
 }

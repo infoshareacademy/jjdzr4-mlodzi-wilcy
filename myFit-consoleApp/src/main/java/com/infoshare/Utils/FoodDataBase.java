@@ -1,6 +1,7 @@
 package com.infoshare.Utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.infoshare.ProductsDataBase;
 
@@ -12,7 +13,7 @@ public class FoodDataBase {
 
 
     public static void saveToFile() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (Writer writer = new FileWriter("src/main/resources/foodData.json")) {
             gson.toJson(foodData, writer);
         } catch (IOException e) {

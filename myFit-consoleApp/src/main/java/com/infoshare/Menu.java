@@ -108,6 +108,11 @@ public class Menu {
                     userData.getCPM();
                     break;
                 case 7: //diet
+                    if (userData.diet.dietDishes.isEmpty()) {
+                        userData.diet = new Diet(userData.getCPM(), userData.getWeightGoal(), userData.getWeight());
+                    }
+                    userData.diet.getDiet();
+                    FileUtils.writeJsonToFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     break;
                 case 8: //Exit
                     System.out.println("Exiting to main menu");
@@ -127,9 +132,10 @@ public class Menu {
             System.out.println("1. user name");
             System.out.println("2. name");
             System.out.println("3. weight");
-            System.out.println("4. level of job activity");
-            System.out.println("5. level of private activity");
-            System.out.println("6. exit");
+            System.out.println("4. height");
+            System.out.println("5. level of job activity");
+            System.out.println("6. level of private activity");
+            System.out.println("7. exit");
             choice = Menu.choiceChecker(numberOfChoices);
             switch (choice) {
                 case 1:
@@ -142,9 +148,11 @@ public class Menu {
                     userData.setWeight();
                     break;
                 case 4:
+                    userData.setHeight();
+                case 5:
                     userData.setLevelOfJobActivity();
                     break;
-                case 5:
+                case 6:
                     userData.setLevelOfPrivateActivity();
                     break;
             }

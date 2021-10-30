@@ -16,6 +16,10 @@ public class DishDataBase {
     public DishDataBase() {
     }
 
+    public DishDataBase(String dishName) {
+        this.dishName = dishName;
+    }
+
     public DishDataBase(String dishName, int sumOfKcalPer100g, double sumOfFatPer100g, double sumOfCarbohydratesPer100g, double sumOfProteinPer100g, List<ProductsDataBase> productsDataBaseList) {
         this.dishName = dishName;
         this.sumOfKcalPer100g = sumOfKcalPer100g;
@@ -112,5 +116,31 @@ public class DishDataBase {
             temporarySumOfProteinPer100g += p.getProteinPer100g();
         }
         return temporarySumOfProteinPer100g;
+    }
+
+    public int getSumOfKcalPer100g() {
+        return sumOfKcalPer100g;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    @Override
+    public String toString() {
+        return "\ndish name: " + dishName + " sumOfKcalPer100g: " + sumOfKcalPer100g;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DishDataBase that = (DishDataBase) o;
+        return Objects.equals(dishName, that.dishName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dishName);
     }
 }
