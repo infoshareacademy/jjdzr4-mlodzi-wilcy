@@ -105,7 +105,11 @@ public class ProductsDataBase {
                     System.out.println("Write how many calories per 100 grams this product has:");
                     Scanner scanner = new Scanner(System.in);
                     kcalPer100g = scanner.nextInt();
-                    break;
+                    if(kcalPer100g < 0) {
+                        System.out.println("Enter correct value");
+                    } else {
+                    break; }
+
                 } catch (InputMismatchException e) {
                     System.out.println("Enter correct value.");
                     continue;
@@ -118,7 +122,12 @@ public class ProductsDataBase {
                 System.out.println("Write how many fats per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
                 fatPer100g = scanner.nextDouble();
-                break;
+                if(fatPer100g < 0) {
+                    System.out.println("Enter correct value.");
+                }
+                else {
+                    break;
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
                 continue;
@@ -129,7 +138,10 @@ public class ProductsDataBase {
                 System.out.println("Write how many carbohydrates per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
                 carbohydratesPer100g = scanner.nextDouble();
-                break;
+                if(carbohydratesPer100g < 0) {
+                    System.out.println("Enter correct value.");
+                } else {
+                break; }
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
                 continue;
@@ -140,7 +152,11 @@ public class ProductsDataBase {
                 System.out.println("Write how many proteins per 100 grams this product has:");
                 Scanner scanner = new Scanner(System.in);
                 proteinPer100g = scanner.nextDouble();
-                break;
+                if(proteinPer100g < 0) {
+                    System.out.println("Enter correct value.");
+                } else {
+                    break;
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Enter correct value.");
                 continue;
