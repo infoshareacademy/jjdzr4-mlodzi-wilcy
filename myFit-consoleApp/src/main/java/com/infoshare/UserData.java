@@ -30,7 +30,7 @@ public class UserData {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Type your name:");
             this.name = scanner.nextLine();
-            Pattern p = Pattern.compile(("\\d+"));
+            Pattern p = Pattern.compile(("\\d+")); // it search number from 0 to 9, "+" means more than 1 times
             Matcher m = p.matcher(name);
             if (m.find() == true) {
                 System.out.println("Type correct name.");
