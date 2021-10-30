@@ -35,10 +35,11 @@ public class Menu {
                 case 1: //Login
                     userLoginData.userLogin();
                     if (userLoginData.checkFileExist()) {
-                        FileUtils.readObjectFromJsonFile(RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
+                        userData = (UserData) FileUtils.readObjectFromJsonFile(RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
                         userLoggedInterface();
                     } else {
                         userData.fillUserData();
+
                         FileUtils.writeJsonToFile(RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     }
                     break;
@@ -103,6 +104,8 @@ public class Menu {
                     dishDataBase.addDish();
                     break;
                 case 6: //Calculate PPM and CPM
+                    userData.getPPM();
+                    userData.getCPM();
                     break;
                 case 7: //diet
                     break;

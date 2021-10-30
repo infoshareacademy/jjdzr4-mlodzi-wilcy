@@ -1,8 +1,13 @@
 package com.infoshare;
 
+import com.infoshare.Utils.FileUtils;
+import com.infoshare.Utils.UserDataBase;
+
 import java.util.Scanner;
+import java.util.function.ToDoubleBiFunction;
 
 public class UserData {
+    UserLoginData userLoginData = new UserLoginData();
     private String name;
     private String gender;
     private int age;
@@ -10,6 +15,8 @@ public class UserData {
     private double weight;
     private String levelOfJobActivity;
     private String levelOfPrivateActivity;
+    private double PPM;
+    private double CPM;
 
     public void fillUserData() {
         System.out.println("Before enter fill your personal information");
@@ -20,6 +27,8 @@ public class UserData {
         setWeight();
         setLevelOfJobActivity();
         setLevelOfPrivateActivity();
+        calculatePPM();
+        calculateCPM();
     }
 
 
@@ -119,6 +128,56 @@ public class UserData {
             case 3:
                 levelOfPrivateActivity = "high";
                 break;
+        }
+    }
+
+    private double calculatePPM (){
+        if (gender.equals("male")){
+            PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) + 5;
+        } else {
+            PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) - 161;
+        }
+        return round(PPM);
+    }
+
+    private double calculateCPM (){
+        if (levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("low")){
+            CPM = PPM * 1.5;
+        } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("medium")) ||
+                (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("low")) ){
+            CPM = PPM * 1.6;
+        } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("high")) ||
+                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("low"))){
+            CPM = PPM * 1.8;
+        } else if ((levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("high")) ||
+                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("medium"))){
+            CPM = PPM * 2;
+        } else if (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("medium")){
+            CPM = PPM * 1.9;
+        } else if (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("high")){
+            CPM = PPM * 2.2;
+        }
+        return round(CPM);
+    }
+
+    public int getPPM() {
+        System.out.println("Your basic metabolism is: " + round(PPM) + " kcal.");
+        return round(PPM);
+    }
+
+    public int getCPM() {
+        System.out.println("Your Total Caloric Demand is: " + round(CPM) + " kcal.");
+        return round(CPM);
+    }
+
+    private int round(double d){
+        double dAbs = Math.abs(d);
+        int i = (int) dAbs;
+        double result = dAbs - (double) i;
+        if(result<0.5){
+            return d<0 ? -i : i;
+        }else{
+            return d<0 ? -(i+1) : i+1;
         }
     }
 }
