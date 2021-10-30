@@ -137,7 +137,7 @@ public class UserData {
         } else {
             PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) - 161;
         }
-        return PPM;
+        return round(PPM);
     }
 
     private double calculateCPM (){
@@ -157,16 +157,27 @@ public class UserData {
         } else if (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("high")){
             CPM = PPM * 2.2;
         }
-        return CPM;
+        return round(CPM);
     }
 
-    public double getPPM() {
-        System.out.println("Your basic metabolism is: " + PPM + " kcal.");
-        return PPM;
+    public int getPPM() {
+        System.out.println("Your basic metabolism is: " + round(PPM) + " kcal.");
+        return round(PPM);
     }
 
-    public double getCPM() {
-        System.out.println("Your Total Caloric Demand is: " + CPM + " kcal.");
-        return CPM;
+    public int getCPM() {
+        System.out.println("Your Total Caloric Demand is: " + round(CPM) + " kcal.");
+        return round(CPM);
+    }
+
+    private int round(double d){
+        double dAbs = Math.abs(d);
+        int i = (int) dAbs;
+        double result = dAbs - (double) i;
+        if(result<0.5){
+            return d<0 ? -i : i;
+        }else{
+            return d<0 ? -(i+1) : i+1;
+        }
     }
 }
