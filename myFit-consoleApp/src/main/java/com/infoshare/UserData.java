@@ -131,7 +131,7 @@ public class UserData {
         }
     }
 
-    public double calculatePPM (){
+    private double calculatePPM (){
         if (gender.equals("male")){
             PPM = (double) (10 * weight) + (6.25 * height) - (5 * age) + 5;
         } else {
@@ -140,17 +140,20 @@ public class UserData {
         return PPM;
     }
 
-    public double calculateCPM (){
+    private double calculateCPM (){
         if (levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("low")){
             CPM = PPM * 1.5;
         } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("medium")) ||
                 (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("low")) ){
-            CPM = PPM * 1.7;
+            CPM = PPM * 1.6;
         } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("high")) ||
                 (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("low"))){
-            CPM = PPM * 1.9;
-        } else if (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("medium")){
+            CPM = PPM * 1.8;
+        } else if ((levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("high")) ||
+                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("medium"))){
             CPM = PPM * 2;
+        } else if (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("medium")){
+            CPM = PPM * 1.9;
         } else if (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("high")){
             CPM = PPM * 2.2;
         }
@@ -158,21 +161,11 @@ public class UserData {
     }
 
     public double getPPM() {
-        //TODO
-        // dodać wczytywanie z pliku zamiast brać zmienną zapamiętaną
-
-//        for (var dataFromDataBase : UserDataBase.loginData) {
-//            System.out.println(dataFromDataBase);
-//        }
-//        Object readingDatabase = FileUtils.readObjectFromJsonFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", UserData.class);
-
         System.out.println("Your basic metabolism is: " + PPM + " kcal.");
         return PPM;
     }
 
     public double getCPM() {
-//TODO
-//        dodać wczytywanie z pliku zamiast brać zmienną zapamiętaną
         System.out.println("Your Total Caloric Demand is: " + CPM + " kcal.");
         return CPM;
     }
