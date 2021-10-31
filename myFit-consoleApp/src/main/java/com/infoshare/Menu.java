@@ -112,6 +112,7 @@ public class Menu {
                         userData.diet.getDiet();
                     } catch (NullPointerException e) {
                         userData.diet = new Diet(userData.getCPM(), userData.getWeightGoal(), userData.getWeight());
+                        userData.diet.getDiet();
                     }
                     FileUtils.writeJsonToFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     break;
@@ -150,6 +151,7 @@ public class Menu {
                     break;
                 case 4:
                     userData.setHeight();
+                    break;
                 case 5:
                     userData.setLevelOfJobActivity();
                     break;
