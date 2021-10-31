@@ -108,10 +108,11 @@ public class Menu {
                     userData.getCPM();
                     break;
                 case 7: //diet
-                    if (userData.diet.dietDishes.isEmpty()) {
+                    try {
+                        userData.diet.getDiet();
+                    } catch (NullPointerException e) {
                         userData.diet = new Diet(userData.getCPM(), userData.getWeightGoal(), userData.getWeight());
                     }
-                    userData.diet.getDiet();
                     FileUtils.writeJsonToFile(Menu.RESOURCES_USER_DATA + userLoginData.getName() + ".json", userData);
                     break;
                 case 8: //Exit

@@ -158,7 +158,7 @@ public class UserData {
         while (true) {
             try {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("Your weight");
+                System.out.println("Your weight goal");
                 this.weightGoal = scanner.nextDouble();
                 if (this.weightGoal < 0) {
                     System.out.println("Enter correct value.");
