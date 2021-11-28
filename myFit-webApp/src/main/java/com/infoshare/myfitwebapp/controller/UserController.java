@@ -1,5 +1,6 @@
 package com.infoshare.myfitwebapp.controller;
 
+import com.infoshare.myfitwebapp.model.DishData;
 import com.infoshare.myfitwebapp.model.UserData;
 import com.infoshare.myfitwebapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class UserController {
     @GetMapping("/")
     public UserData getUser(){
         return userService.createUser();
+    }
+
+    @GetMapping("/dishes")
+    public DishData getUserDishes() {
+        return null;
     }
 }
