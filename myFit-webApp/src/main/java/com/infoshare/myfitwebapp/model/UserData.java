@@ -1,10 +1,6 @@
 package com.infoshare.myfitwebapp.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class UserData {
-    //    UserLoginData userLoginData = new UserLoginData();
     private String name;
     private String gender;
     private int age;
@@ -15,8 +11,6 @@ public class UserData {
     private double weightGoal;
     private double PPM;
     private double CPM;
-//    public Diet diet;
-
 
     public String getName() {
         return name;
