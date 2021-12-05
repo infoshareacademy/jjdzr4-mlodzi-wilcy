@@ -2,7 +2,6 @@ package com.infoshare.myfitwebapp.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class UserData {
     //    UserLoginData userLoginData = new UserLoginData();
     private String name;

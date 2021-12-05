@@ -2,7 +2,6 @@ package com.infoshare.myfitwebapp.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class ProductData {
     private String name;
     private int kcalPer100g;
