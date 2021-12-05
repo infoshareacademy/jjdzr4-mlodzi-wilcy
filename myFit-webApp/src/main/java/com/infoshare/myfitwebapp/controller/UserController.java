@@ -1,27 +1,26 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.DishData;
 import com.infoshare.myfitwebapp.model.UserData;
 import com.infoshare.myfitwebapp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("user")
+@Controller
 public class UserController {
 
-    @Autowired
-    UserService userService;
+    final UserService userService;
 
-    @GetMapping("/")
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("user")
     public UserData getUser(){
         return userService.createUser();
     }
 
-    @GetMapping("/dishes")
-    public DishData getUserDishes() {
-        return null;
+    @GetMapping("user/dishes")
+    public String getUserDishes() {
+        return "user-dishes";
     }
 }

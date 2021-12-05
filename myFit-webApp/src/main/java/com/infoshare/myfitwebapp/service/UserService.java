@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
-    CPMService cpmService;
+    final CPMService cpmService;
+
+    public UserService(CPMService cpmService) {
+        this.cpmService = cpmService;
+    }
 
     public UserData createUser(){
         UserData userData = new UserData();
