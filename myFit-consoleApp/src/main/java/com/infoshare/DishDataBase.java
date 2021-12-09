@@ -11,7 +11,7 @@ public class DishDataBase {
     private double sumOfFatPer100g;
     private double sumOfCarbohydratesPer100g;
     private double sumOfProteinPer100g;
-    private List<ProductsDataBase> productsDataBaseList = new ArrayList<>();
+    private List<String> productsNameList = new ArrayList<>();
 
     public DishDataBase() {
     }
@@ -20,13 +20,13 @@ public class DishDataBase {
         this.dishName = dishName;
     }
 
-    public DishDataBase(String dishName, int sumOfKcalPer100g, double sumOfFatPer100g, double sumOfCarbohydratesPer100g, double sumOfProteinPer100g, List<ProductsDataBase> productsDataBaseList) {
+    public DishDataBase(String dishName, int sumOfKcalPer100g, double sumOfFatPer100g, double sumOfCarbohydratesPer100g, double sumOfProteinPer100g, List<String> productsNameList) {
         this.dishName = dishName;
         this.sumOfKcalPer100g = sumOfKcalPer100g;
         this.sumOfFatPer100g = sumOfFatPer100g;
         this.sumOfCarbohydratesPer100g = sumOfCarbohydratesPer100g;
         this.sumOfProteinPer100g = sumOfProteinPer100g;
-        this.productsDataBaseList = productsDataBaseList;
+        this.productsNameList = productsNameList;
     }
 
     public void addDish() {
@@ -73,7 +73,7 @@ public class DishDataBase {
             }
         }
 
-        DishUtils.dishDataBaseArrayList.add(new DishDataBase(temporaryDishName, temporarySumOfKcalPer100g, temporarySumOfFatPer100g, temporarySumOfCarbohydratesPer100g, temporarySumOfProteinPer100g, temporaryProductsDataBaseList));
+        DishUtils.dishDataBaseArrayList.add(new DishDataBase(temporaryDishName, temporarySumOfKcalPer100g, temporarySumOfFatPer100g, temporarySumOfCarbohydratesPer100g, temporarySumOfProteinPer100g, getProductNames(temporaryProductsDataBaseList)));
         DishUtils.saveToFile();
     }
 
@@ -116,6 +116,14 @@ public class DishDataBase {
             temporarySumOfProteinPer100g += p.getProteinPer100g();
         }
         return temporarySumOfProteinPer100g;
+    }
+
+    private List<String> getProductNames(List<ProductsDataBase> productsDataBaseList) {
+        List<String> listOfDishNames = new ArrayList<>();
+        for (ProductsDataBase product : productsDataBaseList) {
+            listOfDishNames.add(product.getName());
+        }
+        return listOfDishNames;
     }
 
     public int getSumOfKcalPer100g() {
