@@ -1,16 +1,26 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.ProductData;
+import com.infoshare.ProductInfo;
+import com.infoshare.myfitwebapp.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 @Controller
 public class ProductController {
 
-    @GetMapping("products/list")
-    public List<ProductData> getProductDataList() {
-        return null;
+    final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping("product")
+    public ProductInfo getProduct() {
+        return productService.createProduct();
+    }
+
+    @GetMapping("product/new")
+    public String getNewProduct() {
+        return "product-new";
     }
 }
