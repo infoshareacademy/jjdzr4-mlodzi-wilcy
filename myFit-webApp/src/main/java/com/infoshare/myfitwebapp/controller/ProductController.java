@@ -23,4 +23,5 @@ public class ProductController {
     public String getNewProduct() {
         return "product-new";
     }
+
 }
