@@ -14,12 +14,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("product")
+    @GetMapping("user/product")
     public ProductInfo getProduct() {
         return productService.createProduct();
     }
 
-    @GetMapping("product/new")
+    @GetMapping("user/product/new")
     public String getNewProduct() {
         return "product-new";
     }
