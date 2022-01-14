@@ -1,6 +1,7 @@
-package com.infoshare.myfitwebapp.model;
+package com.infoshare.myfitwebapp.entity;
 
-public class ProductData {
+public class ProductEntity {
+
     private String name;
     private int kcalPer100g;
     private double fatPer100g;

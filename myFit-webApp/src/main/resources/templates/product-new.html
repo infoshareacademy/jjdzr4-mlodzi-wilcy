@@ -1,33 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New Product</title>
+    <title th:text="#{addProductPage.title}"></title>
     <meta charset="UTF-8">
 </head>
 <body>
 <div style="text-align: center">
-    <h1>
-        Wypełnij formularz aby dodać produkt do bazy danych!
-    </h1>
-    <p>
-    <form>
-        <label for="productName">Nazwa produktu</label><br>
-        <input type="text" id="productName"><br>
+    <h1 th:text="#{addProductPage.headLine}"></h1>
+    <form th:object="${product}" th:action="@{/user/product/new}" th:method="post">
 
-        <label for="kcalPer100g">Kcal w 100g</label><br>
-        <input type="number" id="kcalPer100g"><br>
+        <label th:for="name_input"> Name </label><br>
+        <input type="text" id="name_input" th:field="*{name}"><br>
 
-        <label for="fatPer100g">Tłuszcz w 100g</label><br>
-        <input type="number" id="fatPer100g"><br>
+        <label th:for="kcalPer100g_input">Kcal w 100g</label><br>
+        <input type="number" id="kcalPer100g_input" th:field="*{kcalPer100g}"><br>
 
-        <label for="carbohydratesPer100g">Węglowodany w 100g</label><br>
-        <input type="number" id="carbohydratesPer100g"><br>
+        <label th:for="fatPer100g_input">Tłuszcz w 100g</label><br>
+        <input type="number" id="fatPer100g_input" th:field="*{fatPer100g}"><br>
 
-        <label for="proteinPer100g">Białko w 100g</label><br>
-        <input type="number" id="proteinPer100g"><br>
+        <label th:for="carbohydratesPer100g_input">Węglowodany w 100g</label><br>
+        <input type="number" id="carbohydratesPer100g_input" th:field="*{carbohydratesPer100g}"><br>
+
+        <label th:for="proteinPer100g">Białko w 100g</label><br>
+        <input type="number" id="proteinPer100g" th:field="*{proteinPer100g}"><br>
         <br>
-        <button type="add">Dodaj</button>
+        <button type="submit">Dodaj</button>
 
     </form>
     </p>

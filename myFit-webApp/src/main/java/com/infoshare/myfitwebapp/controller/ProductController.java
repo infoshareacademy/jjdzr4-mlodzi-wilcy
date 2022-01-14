@@ -1,9 +1,12 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.ProductInfo;
+import com.infoshare.myfitwebapp.model.ProductData;
 import com.infoshare.myfitwebapp.service.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ProductController {
@@ -14,14 +17,15 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("user/product")
-    public ProductInfo getProduct() {
-        return productService.createProduct();
-    }
-
     @GetMapping("user/product/new")
-    public String getNewProduct() {
+    public String getProduct(Model model) {
+        model.addAttribute("product", new ProductData());
         return "product-new";
     }
 
+    @PostMapping("user/product/new")
+    public String sendTask(@ModelAttribute("task") ProductData productData) {
+        return "product-succes";
+
+    }
 }
