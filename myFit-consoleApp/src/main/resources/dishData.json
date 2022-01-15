@@ -1,0 +1,19 @@
+[
+  {
+    "dishName": "kakao",
+    "sumOfKcalPer100g": 123,
+    "sumOfFatPer100g": 123.0,
+    "sumOfCarbohydratesPer100g": 123.0,
+    "sumOfProteinPer100g": 123.0,
+    "productsDataBaseList": [
+      {
+        "typeOfFood": "DRINKS",
+        "name": "kakao",
+        "kcalPer100g": 123,
+        "fatPer100g": 123.0,
+        "carbohydratesPer100g": 123.0,
+        "proteinPer100g": 123.0
+      }
+    ]
+  }
+]
