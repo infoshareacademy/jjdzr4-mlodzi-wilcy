@@ -7,14 +7,6 @@ public class ProductData {
     private double carbohydratesPer100g;
     private double proteinPer100g;
 
-    public ProductData(String name, int kcalPer100g, double fatPer100g, double carbohydratesPer100g, double proteinPer100g) {
-        this.name = name;
-        this.kcalPer100g = kcalPer100g;
-        this.fatPer100g = fatPer100g;
-        this.carbohydratesPer100g = carbohydratesPer100g;
-        this.proteinPer100g = proteinPer100g;
-    }
-
     public String getName() {
         return name;
     }

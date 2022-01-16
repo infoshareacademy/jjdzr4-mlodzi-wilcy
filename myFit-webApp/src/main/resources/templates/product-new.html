@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{addProductPage.title}"></title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div style="text-align: center">
+    <h1 th:text="#{addProductPage.headLine}"></h1>
+    <form th:object="${product}" th:action="@{/user/product/new}" th:method="post">
+
+        <label th:for="name_input" th:text="#{product.name}"> </label><br>
+        <input type="text" id="name_input" th:field="*{name}"><br>
+
+        <label th:for="kcalPer100g_input" th:text="#{product.kcalPer100g}"> </label><br>
+        <input type="number" id="kcalPer100g_input" th:field="*{kcalPer100g}"><br>
+
+        <label th:for="fatPer100g_input" th:text="#{product.fatPer100g}"> </label><br>
+        <input type="number" id="fatPer100g_input" th:field="*{fatPer100g}"><br>
+
+        <label th:for="carbohydratesPer100g_input" th:text="#{product.carboPer100g}"> </label><br>
+        <input type="number" id="carbohydratesPer100g_input" th:field="*{carbohydratesPer100g}"><br>
+
+        <label th:for="proteinPer100g" th:text="#{product.protein100g}" ></label><br>
+        <input type="number" id="proteinPer100g" th:field="*{proteinPer100g}"><br>
+        <br>
+        <button type="submit" th:text="#{productAdd.button}"> </button>
+
+    </form>
+</div>
+</body>
+</html>
