@@ -17,10 +17,15 @@ import java.util.List;
 @Service
 public class RegisterService {
 
-    @Autowired
+    final
     UserLoginRepository userLoginRepository;
-    @Autowired
+    final
     UserDataRepository userDataRepository;
+
+    public RegisterService(UserLoginRepository userLoginRepository, UserDataRepository userDataRepository) {
+        this.userLoginRepository = userLoginRepository;
+        this.userDataRepository = userDataRepository;
+    }
 
 
     public void addUser(){
@@ -52,7 +57,7 @@ public class RegisterService {
        List<UserLogin> list = userLoginRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
-            Writer fileWriter = new FileWriter("loginData.json");
+            Writer fileWriter = new FileWriter("resources/loginData.json");
             gson.toJson(list, fileWriter);
             fileWriter.flush();
             fileWriter.close();
@@ -65,7 +70,7 @@ public class RegisterService {
         List<UserData> list = userDataRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
-            Writer fileWriter = new FileWriter("userData.json");
+            Writer fileWriter = new FileWriter("resources/userData.json");
             gson.toJson(list, fileWriter);
             fileWriter.flush();
             fileWriter.close();

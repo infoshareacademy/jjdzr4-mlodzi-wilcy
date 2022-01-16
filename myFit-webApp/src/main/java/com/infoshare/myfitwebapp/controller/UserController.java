@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
-    @GetMapping("user")
-    public String getUSer(){
-        return "user";
-    }
-
     @GetMapping("user/dishes")
     public String getUserDishes() {
         return "user-dishes";

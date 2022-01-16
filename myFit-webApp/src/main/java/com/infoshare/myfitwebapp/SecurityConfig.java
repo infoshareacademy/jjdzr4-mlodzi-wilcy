@@ -1,7 +1,6 @@
 package com.infoshare.myfitwebapp;
 
 import com.infoshare.myfitwebapp.service.MyUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,6 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public SecurityConfig(MyUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
                 http.authorizeRequests()
@@ -25,11 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .logout()
+                .logout().logoutSuccessUrl("/?logout")
                 .permitAll();
     }
 
-    @Autowired
+    final
     MyUserDetailsService userDetailsService;
 
     @Override

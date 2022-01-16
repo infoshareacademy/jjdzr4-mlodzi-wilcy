@@ -10,7 +10,7 @@ public class DishData {
     private double sumOfFatPer100g;
     private double sumOfCarbohydratesPer100g;
     private double sumOfProteinPer100g;
-    private List<ProductData> productsDataList = new ArrayList<>();
+    private List<ProductData> productsDataList;
 
     public DishData(long id, String dishName, int sumOfKcalPer100g, double sumOfFatPer100g, double sumOfCarbohydratesPer100g, double sumOfProteinPer100g, List<ProductData> productsDataList) {
         this.id = id;
