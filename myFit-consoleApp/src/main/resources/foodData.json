@@ -1,0 +1,10 @@
+[
+  {
+    "typeOfFood": "DRINKS",
+    "name": "kakao",
+    "kcalPer100g": 123,
+    "fatPer100g": 123.0,
+    "carbohydratesPer100g": 123.0,
+    "proteinPer100g": 123.0
+  }
+]

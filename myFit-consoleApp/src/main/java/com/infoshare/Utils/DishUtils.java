@@ -28,7 +28,7 @@ public class DishUtils {
             dishDataBaseArrayList = gson.fromJson(reader, new TypeToken<ArrayList<DishDataBase>>() {
             }.getType());
         } catch (FileNotFoundException e) {
-            System.out.println("and add your first meal.");
+            System.out.println("Or add your first dish!");
         }
     }
 }

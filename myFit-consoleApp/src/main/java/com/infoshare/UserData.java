@@ -70,7 +70,7 @@ public class UserData {
                 System.out.println("Your age:");
                 Scanner scanner = new Scanner(System.in);
                 this.age = scanner.nextInt();
-                if(this.age <=0) {
+                if (this.age <= 0) {
                     System.out.println("Enter correct value.");
                 } else {
                     break;
@@ -87,7 +87,7 @@ public class UserData {
                 System.out.println("Your height");
                 Scanner scanner = new Scanner(System.in);
                 this.height = scanner.nextInt();
-                if(this.height <= 0) {
+                if (this.height <= 0) {
                     System.out.println("Enter correct value.");
                 } else {
                     break;
@@ -104,7 +104,7 @@ public class UserData {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Your weight");
                 this.weight = scanner.nextDouble();
-                if(this.weight < 0) {
+                if (this.weight < 0) {
                     System.out.println("Enter correct value.");
                 } else {
                     break;
@@ -181,21 +181,21 @@ public class UserData {
         return round(PPM);
     }
 
-    private double calculateCPM (){
-        if (levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("low")){
+    private double calculateCPM() {
+        if (levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("low")) {
             CPM = PPM * 1.5;
         } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("medium")) ||
-                (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("low")) ){
+                (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("low"))) {
             CPM = PPM * 1.6;
         } else if ((levelOfPrivateActivity.equals("low") && levelOfJobActivity.equals("high")) ||
-                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("low"))){
+                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("low"))) {
             CPM = PPM * 1.8;
         } else if ((levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("high")) ||
-                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("medium"))){
+                (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("medium"))) {
             CPM = PPM * 2;
-        } else if (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("medium")){
+        } else if (levelOfPrivateActivity.equals("medium") && levelOfJobActivity.equals("medium")) {
             CPM = PPM * 1.9;
-        } else if (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("high")){
+        } else if (levelOfPrivateActivity.equals("high") && levelOfJobActivity.equals("high")) {
             CPM = PPM * 2.2;
         }
         return round(CPM);
