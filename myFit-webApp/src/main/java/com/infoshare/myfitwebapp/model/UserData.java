@@ -1,16 +1,32 @@
 package com.infoshare.myfitwebapp.model;
 
+import javax.persistence.*;
+
+@Entity
 public class UserData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String gender;
+    @Column(nullable = false)
     private int age;
+    @Column(nullable = false)
     private int height;
+    @Column(nullable = false)
     private double weight;
+    @Column(nullable = false)
     private String levelOfJobActivity;
+    @Column(nullable = false)
     private String levelOfPrivateActivity;
+    @Column(nullable = false)
     private double weightGoal;
-    private double PPM;
-    private double CPM;
+    @Column(nullable = false)
+    private double ppm;
+    @Column(nullable = false)
+    private double cpm;
 
     public String getName() {
         return name;
@@ -76,19 +92,26 @@ public class UserData {
         this.weightGoal = weightGoal;
     }
 
-    public double getPPM() {
-        return PPM;
+    public double getPpm() {
+        return ppm;
     }
 
-    public void setPPM(double PPM) {
-        this.PPM = PPM;
+    public void setPpm(double PPM) {
+        this.ppm = PPM;
     }
 
-    public double getCPM() {
-        return CPM;
+    public double getCpm() {
+        return cpm;
     }
 
-    public void setCPM(double CPM) {
-        this.CPM = CPM;
+    public void setCpm(double CPM) {
+        this.cpm = CPM;
     }
+
+    public Long getId(){
+        return this.id;
+    }
+
+
+
 }
