@@ -13,5 +13,4 @@ public class ProductController {
         model.addAttribute("product", new ProductData());
         return "product-new";
     }
-
 }
