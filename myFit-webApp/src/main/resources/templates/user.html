@@ -5,6 +5,7 @@
     <title th:text="#{user.title}"></title>
 </head>
 <body>
+<div th:insert="~{fragments/navBar}"></div>
 <div sec:authorize="isAuthenticated()">
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
     <h1>co sie dziej</h1>

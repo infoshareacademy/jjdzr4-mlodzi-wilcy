@@ -13,16 +13,16 @@ import javax.validation.Valid;
 @Controller
 public class ProductController {
 
-    @GetMapping("user/product/new")
+    @GetMapping("user/products/new")
     public String getProduct(Model model) {
         model.addAttribute("product", new ProductData());
-        return "product-new";
+        return "products-new";
     }
 
-    @PostMapping("user/product/new")
+    @PostMapping("user/products/new")
     public String addProduct(@Valid @ModelAttribute("product") ProductData product, Errors errors) {
         if (errors.hasErrors()) {
-            return "product-new";
+            return "products-new";
         }
 
        /* TODO
