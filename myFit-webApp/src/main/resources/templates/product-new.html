@@ -12,18 +12,23 @@
 
         <label th:for="name_input" th:text="#{product.name}"> </label><br>
         <input type="text" id="name_input" th:field="*{name}"><br>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
 
         <label th:for="kcalPer100g_input" th:text="#{product.kcalPer100g}"> </label><br>
         <input type="number" id="kcalPer100g_input" th:field="*{kcalPer100g}"><br>
+        <div th:if="${#fields.hasErrors('kcalPer100g')}" th:errors="*{kcalPer100g}"></div><br>
 
         <label th:for="fatPer100g_input" th:text="#{product.fatPer100g}"> </label><br>
         <input type="number" id="fatPer100g_input" th:field="*{fatPer100g}"><br>
+        <div th:if="${#fields.hasErrors('fatPer100g')}" th:errors="*{fatPer100g}"></div><br>
 
         <label th:for="carbohydratesPer100g_input" th:text="#{product.carboPer100g}"> </label><br>
         <input type="number" id="carbohydratesPer100g_input" th:field="*{carbohydratesPer100g}"><br>
+        <div th:if="${#fields.hasErrors('carbohydratesPer100g')}" th:errors="*{carbohydratesPer100g}"></div><br>
 
         <label th:for="proteinPer100g" th:text="#{product.protein100g}" ></label><br>
         <input type="number" id="proteinPer100g" th:field="*{proteinPer100g}"><br>
+        <div th:if="${#fields.hasErrors('proteinPer100g')}" th:errors="*{proteinPer100g}"></div><br>
         <br>
         <button type="submit" th:text="#{productAdd.button}"> </button>
 

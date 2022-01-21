@@ -1,10 +1,22 @@
 package com.infoshare.myfitwebapp.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
+
 public class ProductData {
+
+    private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
+    private static final String POSITIVE_OR_ZERO_MESSAGE = "Wartość nie może być ujemna";
+
+    @NotEmpty(message = NOT_EMPTY_MESSAGE)
     private String name;
+    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
     private int kcalPer100g;
+    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
     private double fatPer100g;
+    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
     private double carbohydratesPer100g;
+    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
     private double proteinPer100g;
 
     public String getName() {

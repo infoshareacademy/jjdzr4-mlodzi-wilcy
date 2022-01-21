@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### loginData ###
+src/main/resources/loginData.json
