@@ -13,6 +13,11 @@ import javax.validation.Valid;
 @Controller
 public class ProductController {
 
+    @GetMapping("user/products")
+    public String getAllProducts() {
+        return "products";
+    }
+
     @GetMapping("user/products/new")
     public String getProduct(Model model) {
         model.addAttribute("product", new ProductData());

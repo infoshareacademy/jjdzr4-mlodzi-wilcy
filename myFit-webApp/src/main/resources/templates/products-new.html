@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<div th:insert="~{fragments/navBar}"></div>
 <div style="text-align: center">
     <h1 th:text="#{addProductPage.headLine}"></h1>
     <form th:object="${product}" th:action="@{/user/product/new}" th:method="post">

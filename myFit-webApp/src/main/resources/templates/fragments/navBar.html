@@ -11,32 +11,32 @@
     <title th:text="#{user.title}"></title>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" th:text="#{navBar.appName}"></a>
+                <a class="navbar-brand" th:href="@{/}" th:text="#{navBar.appName}"></a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" th:text="#{navbar.home}"></a></li>
-                <li><a th:href="@{/diet}" th:text="#{navBar.diet}"></a></li>
-                <li><a th:href="@{/user/dishes}" th:text="#{navBar.dishes}"></a></li>
-                <li><a th:href="@{/products}" th:text="#{navbar.products}"></a></li>
+                <li sec:authorize="isAuthenticated()" class="active"><a th:href="@{/user}" th:text="#{navbar.user}"></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/user/diet}" th:text="#{navBar.diet}"></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/user/dishes}" th:text="#{navBar.dishes}"></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/user/products}" th:text="#{navbar.products}"></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
-                <li sec:authorize="isAnonymous()"><a href="#">
+                <li sec:authorize="isAnonymous()"><a th:href="@{/register}">
                     <span class="glyphicon glyphicon-user" th:text="#{navBar.signUp}"></span></a>
                 </li>
                 <li sec:authorize="isAnonymous()"><a th:href="@{/login}">
                     <span class="glyphicon glyphicon-log-in" th:text="#{navBar.login}"></span></a>
                 </li>
-
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/?logout}">
                     <span class="glyphicon glyphicon-log-out" th:text="#{navBar.logout}" value="Sign Out"></span></a>
                 </li>
 
             </ul>
         </div>
+
     </nav>
 </body>
 </html>
