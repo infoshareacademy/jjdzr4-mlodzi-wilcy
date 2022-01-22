@@ -30,8 +30,8 @@
                 <li sec:authorize="isAnonymous()"><a th:href="@{/login}">
                     <span class="glyphicon glyphicon-log-in" th:text="#{navBar.login}"></span></a>
                 </li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/?logout}">
-                    <span class="glyphicon glyphicon-log-out" th:text="#{navBar.logout}" value="Sign Out"></span></a>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">
+                    <span class="glyphicon glyphicon-log-out" th:text="#{navBar.logout}"></span></a>
                 </li>
 
             </ul>
