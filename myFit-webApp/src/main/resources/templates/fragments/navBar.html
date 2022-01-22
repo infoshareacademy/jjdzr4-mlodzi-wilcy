@@ -14,29 +14,85 @@
     <nav class="navbar navbar-inverse ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}" th:text="#{navBar.appName}"></a>
+                <a class="navbar-brand" th:href="@{/}">
+                    <span class="glyphicon glyphicon-home"></span>
+                    <span th:text="#{navBar.appName}"></span>
+                </a>
             </div>
             <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()" class="active"><a th:href="@{/user}" th:text="#{navbar.user}"></a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/user/diet}" th:text="#{navBar.diet}"></a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/user/dishes}" th:text="#{navBar.dishes}"></a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/user/products}" th:text="#{navbar.products}"></a></li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user}">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span th:text="#{navbar.user}"></span>
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user/diet}">
+                        <span class="glyphicon glyphicon-cutlery"></span>
+                        <span th:text="#{navBar.diet}"></span>
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user/dishes}">
+                        <span class="glyphicon glyphicon-glass"></span>
+                        <span th:text="#{navBar.dishes}"></span>
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user/products}" >
+                        <span class="glyphicon glyphicon-apple"></span>
+                        <span th:text="#{navbar.products}"></span>
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
                 <li sec:authorize="isAnonymous()"><a th:href="@{/register}">
-                    <span class="glyphicon glyphicon-user" th:text="#{navBar.signUp}"></span></a>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span th:text="#{navBar.signUp}"></span></a>
                 </li>
                 <li sec:authorize="isAnonymous()"><a th:href="@{/login}">
-                    <span class="glyphicon glyphicon-log-in" th:text="#{navBar.login}"></span></a>
+                    <span class="glyphicon glyphicon-log-in" ></span>
+                    <span th:text="#{navBar.login}"></span></a>
                 </li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">
-                    <span class="glyphicon glyphicon-log-out" th:text="#{navBar.logout}"></span></a>
+                <li sec:authorize="isAuthenticated()"> <a>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span th:text="${#httpServletRequest.remoteUser.toUpperCase()}"></span></a>
                 </li>
 
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">
+                    <span class="glyphicon glyphicon-off"></span>
+                    <span th:text="#{navBar.logout}"></span></a>
+                </li>
             </ul>
         </div>
 
     </nav>
+
+    <!--
+    JavaScript function to highlight navbar items in different endpoints
+    https://stackoverflow.com/questions/49530497/how-do-i-make-bootstrap-navbar-change-active-state
+     -->
+    <script>
+        $(function(){
+            function stripTrailingSlash(str) {
+                if(str.substr(-1) == '/') {
+                    return str.substr(0, str.length - 1);
+                }
+                return str;
+            }
+
+            var url = window.location.pathname;
+            var activePage = stripTrailingSlash(url);
+
+            $('.nav li a').each(function(){
+                var currentPage = stripTrailingSlash($(this).attr('href'));
+
+                if (activePage == currentPage) {
+                    $(this).parent().addClass('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
