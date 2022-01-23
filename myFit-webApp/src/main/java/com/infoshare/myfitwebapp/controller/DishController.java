@@ -9,13 +9,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("dishes")
 public class DishController {
 
-    @GetMapping("dishes")
-    public DishData getAllDishes() {
-        return null;
+    @GetMapping("")
+    public String getAllDishes() {
+        return "dishes";
+    }
+
+    @GetMapping("new")
+    public String addDish() {
+        return "dish-form";
     }
 
     @GetMapping("user/dish/new")

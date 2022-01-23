@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
 <head>
-    <title th:text="#{index.title}"></title>
+    <title th:text="#{user.title}"></title>
 </head>
 <body>
 <div th:insert="~{fragments/navBar}"></div>
-
-
-<div class="p-5 text-center bg-light">
-    <h1 class="mb-3">Welcome to MyFitApp</h1>
-    <div sec:authorize="isAnonymous()">
-    <h4 class="mb-3">Would you like to enter?</h4>
-    <a class="btn btn-primary" th:href="@{/login}" role="button">Login</a>
-        </div>
-</div>
-
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
 <div sec:authorize="isAuthenticated()">
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <h1>co sie dziej</h1>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
 </div>
+<div></div>
 
 </body>
 </html>

@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("products")
 public class ProductController {
 
     final
@@ -35,13 +36,13 @@ public class ProductController {
     @GetMapping("user/product/new")
     public String getProduct(Model model) {
         model.addAttribute("product", new ProductData());
-        return "product-new";
+        return "products-new";
     }
 
-    @PostMapping("user/product/new")
+    @PostMapping("new")
     public String addProduct(@Valid @ModelAttribute("product") ProductData product, Errors errors) {
         if (errors.hasErrors()) {
-            return "product-new";
+            return "products-new";
         }
         productService.save(product);
         //TODO - merge save to file with save
