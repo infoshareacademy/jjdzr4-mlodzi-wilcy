@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{addDishPage.title}"></title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div style="text-align: center">
+    <h1 th:text="#{addDishPage.headLine}"></h1>
+    <form th:object="${dish}" th:action="@{/user/dish/new}" th:method="post">
+
+        <label th:for="name_input" th:text="#{dish.name}"> </label><br>
+        <input type="text" id="name_input" th:field="*{dishName}"><br>
+        <div th:if="${#fields.hasErrors('dishName')}" th:errors="*{dishName}"></div><br>
+
+        <button type="submit" th:text="#{addDishPage.submit}"></button>
+
+    </form>
+</div>
+</body>
+</html>
