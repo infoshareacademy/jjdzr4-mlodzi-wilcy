@@ -50,27 +50,13 @@ public class RegisterService {
         userLogin1.setPassword("123");
         userLoginRepository.save(userLogin1);
         saveToFile();
-        saveToFile2();
     }
 
     public void saveToFile(){
        List<UserLogin> list = userLoginRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
-            Writer fileWriter = new FileWriter("resources/loginData.json");
-            gson.toJson(list, fileWriter);
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void saveToFile2(){
-        List<UserData> list = userDataRepository.findAll();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try {
-            Writer fileWriter = new FileWriter("resources/userData.json");
+            Writer fileWriter = new FileWriter("myFit-webApp/src/main/resources/userData.json");
             gson.toJson(list, fileWriter);
             fileWriter.flush();
             fileWriter.close();
