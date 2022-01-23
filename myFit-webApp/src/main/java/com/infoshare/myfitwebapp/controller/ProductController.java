@@ -28,12 +28,17 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("user/product")
+    @GetMapping("/name")
     public ResponseEntity<List<ProductData>> getProductsByName(@RequestParam String name){
         return new ResponseEntity<>(productDataRepository.findByName(name), HttpStatus.OK);
     }
 
-    @GetMapping("user/product/new")
+    @GetMapping("")
+    public ResponseEntity<List<ProductData>> getProductsByName(){
+        return new ResponseEntity<>(productDataRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("new")
     public String getProduct(Model model) {
         model.addAttribute("product", new ProductData());
         return "products-new";
