@@ -3,7 +3,6 @@ package com.infoshare.myfitwebapp.controller;
 import com.infoshare.myfitwebapp.model.ProductData;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import com.infoshare.myfitwebapp.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -45,7 +44,8 @@ public class ProductController {
             return "product-new";
         }
         productService.save(product);
-        productService.saveProductToFile();
+        //TODO - merge save to file with save
+        productService.saveProductDatabaseToFile();
         return "redirect:/";
     }
 

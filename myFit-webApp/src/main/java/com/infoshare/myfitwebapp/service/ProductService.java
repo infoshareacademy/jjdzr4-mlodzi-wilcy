@@ -3,7 +3,6 @@ package com.infoshare.myfitwebapp.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.infoshare.myfitwebapp.model.ProductData;
-import com.infoshare.myfitwebapp.model.UserLogin;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +28,7 @@ public class ProductService {
         return productDataRepository.saveAll(products);
     }
 
-    public void saveProductToFile(){
+    public void saveProductDatabaseToFile(){
         List<ProductData> list = productDataRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
