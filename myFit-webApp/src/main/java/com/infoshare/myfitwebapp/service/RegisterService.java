@@ -6,7 +6,6 @@ import com.infoshare.myfitwebapp.model.UserData;
 import com.infoshare.myfitwebapp.model.UserLogin;
 import com.infoshare.myfitwebapp.repository.UserDataRepository;
 import com.infoshare.myfitwebapp.repository.UserLoginRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
