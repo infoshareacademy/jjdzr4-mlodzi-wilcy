@@ -7,22 +7,29 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("products")
 public class ProductController {
 
-    @GetMapping("user/product/new")
-    public String getProduct(Model model) {
-        model.addAttribute("product", new ProductData());
-        return "product-new";
+    @GetMapping("")
+    public String getAllProducts() {
+        return "products";
     }
 
-    @PostMapping("user/product/new")
+    @GetMapping("new")
+    public String getProduct(Model model) {
+        model.addAttribute("product", new ProductData());
+        return "products-new";
+    }
+
+    @PostMapping("new")
     public String addProduct(@Valid @ModelAttribute("product") ProductData product, Errors errors) {
         if (errors.hasErrors()) {
-            return "product-new";
+            return "products-new";
         }
 
        /* TODO

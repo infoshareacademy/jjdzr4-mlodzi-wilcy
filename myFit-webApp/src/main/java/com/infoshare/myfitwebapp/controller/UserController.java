@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
-    @GetMapping("user/dishes")
-    public String getUserDishes() {
-        return "user-dishes";
+    @GetMapping("user")
+    public String getUser() {
+        return "user";
     }
-}
+
+    }
