@@ -1,28 +1,30 @@
 [
   {
-    "id": 3,
-    "name": "name",
-    "gender": "male",
-    "age": 10,
-    "height": 100,
-    "weight": 50.0,
-    "levelOfJobActivity": "low",
-    "levelOfPrivateActivity": "low",
-    "weightGoal": 60.0,
-    "ppm": 10.0,
-    "cpm": 10.0
+    "id": 1,
+    "username": "test",
+    "password": "123"
+  },
+  {
+    "id": 4,
+    "username": "abc",
+    "password": "123",
+    "userData": {
+      "id": 5,
+      "name": "name",
+      "gender": "male",
+      "age": 10,
+      "height": 100,
+      "weight": 50.0,
+      "levelOfJobActivity": "low",
+      "levelOfPrivateActivity": "low",
+      "weightGoal": 60.0,
+      "ppm": 10.0,
+      "cpm": 10.0
+    }
   },
   {
     "id": 6,
-    "name": "name",
-    "gender": "male",
-    "age": 10,
-    "height": 100,
-    "weight": 50.0,
-    "levelOfJobActivity": "low",
-    "levelOfPrivateActivity": "low",
-    "weightGoal": 60.0,
-    "ppm": 10.0,
-    "cpm": 10.0
+    "username": "aaaa",
+    "password": "123"
   }
 ]

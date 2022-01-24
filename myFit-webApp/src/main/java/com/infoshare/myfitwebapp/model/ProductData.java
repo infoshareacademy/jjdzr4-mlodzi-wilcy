@@ -68,4 +68,8 @@ public class ProductData {
     public void setProteinPer100g(double proteinPer100g) {
         this.proteinPer100g = proteinPer100g;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

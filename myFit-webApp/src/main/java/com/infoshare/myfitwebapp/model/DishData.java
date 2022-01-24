@@ -1,19 +1,30 @@
 package com.infoshare.myfitwebapp.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class DishData {
     private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     @NotEmpty(message = NOT_EMPTY_MESSAGE)
-    private String dishName;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = true)
     private int sumOfKcalPer100g;
+    @Column(nullable = true)
     private double sumOfFatPer100g;
+    @Column(nullable = true)
     private double sumOfCarbohydratesPer100g;
+    @Column(nullable = true)
     private double sumOfProteinPer100g;
-    private List<ProductData> productsDataList;
+    @ElementCollection
+    private List<String> productsNameList = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -23,12 +34,12 @@ public class DishData {
         this.id = id;
     }
 
-    public String getDishName() {
-        return dishName;
+    public String getName() {
+        return name;
     }
 
-    public void setDishName(String dishName) {
-        this.dishName = dishName;
+    public void setName(String dishName) {
+        this.name = dishName;
     }
 
     public int getSumOfKcalPer100g() {
@@ -63,11 +74,11 @@ public class DishData {
         this.sumOfProteinPer100g = sumOfProteinPer100g;
     }
 
-    public List<ProductData> getProductsDataList() {
-        return productsDataList;
+    public List<String> getProductsDataList() {
+        return productsNameList;
     }
 
-    public void setProductsDataList(List<ProductData> productsDataList) {
-        this.productsDataList = productsDataList;
+    public void setProductsDataList(List<String> productsDataList) {
+        this.productsNameList = productsDataList;
     }
 }
