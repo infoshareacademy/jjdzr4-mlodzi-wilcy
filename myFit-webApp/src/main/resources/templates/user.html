@@ -11,7 +11,7 @@
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
     <h1>co sie dziej</h1>
 
-    <form th:action="@{/edit-user}" method="post">
+    <form th:action="@{/goToUserEdit}" method="post">
         <button type="submit" th:text="#{user.edit}"></button>
     </form>
     <br>
