@@ -1,15 +1,20 @@
 [
   {
     "id": 1,
-    "username": "test",
+    "username": "dummy",
     "password": "123"
   },
   {
-    "id": 7,
-    "username": "abc",
+    "id": 2,
+    "username": "dummy2",
+    "password": "123"
+  },
+  {
+    "id": 4,
+    "username": "xyz",
     "password": "123",
     "userData": {
-      "id": 8,
+      "id": 3,
       "name": "name",
       "gender": "male",
       "age": 10,
@@ -23,8 +28,8 @@
     }
   },
   {
-    "id": 9,
-    "username": "aaaa",
+    "id": 11,
+    "username": "loczek",
     "password": "123"
   }
 ]

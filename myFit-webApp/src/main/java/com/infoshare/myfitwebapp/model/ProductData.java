@@ -33,4 +33,6 @@ public class ProductData {
     @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
     @Column(nullable = false)
     private double proteinPer100g;
+
+
 }

@@ -9,6 +9,7 @@
 <div sec:authorize="isAuthenticated()">
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 <h3>Change account settings:</h3>
+    <h4> <a th:href="#{user.fillInfoRedirect}">Fill Info</a></h4>
 </div>
 
 </body>

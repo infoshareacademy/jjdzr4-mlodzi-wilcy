@@ -9,7 +9,7 @@
 <div th:insert="~{fragments/navBar}"></div>
 <div style="text-align: center">
     <h1 th:text="#{addProductPage.headLine}"></h1>
-    <form th:object="${product}" th:action="@{/user/product/new}" th:method="post">
+    <form th:object="${product}" th:action="@{/products/new}" th:method="post">
 
         <label th:for="name_input" th:text="#{product.name}"> </label><br>
         <input type="text" id="name_input" th:field="*{name}"><br>
