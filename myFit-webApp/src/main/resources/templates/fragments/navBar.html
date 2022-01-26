@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title th:text="#{user.title}"></title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">
+                    <span class="glyphicon glyphicon-home"></span>
+                    <span th:text="#{navBar.appName}"></span>
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user}">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span th:text="#{navbar.user}"></span>
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/diet}">
+                        <span class="glyphicon glyphicon-cutlery"></span>
+                        <span th:text="#{navBar.diet}"></span>
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/dishes}">
+                        <span class="glyphicon glyphicon-glass"></span>
+                        <span th:text="#{navBar.dishes}"></span>
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/products}" >
+                        <span class="glyphicon glyphicon-apple"></span>
+                        <span th:text="#{navbar.products}"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li sec:authorize="isAnonymous()"><a th:href="@{/register}">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span th:text="#{navBar.signUp}"></span></a>
+                </li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login}">
+                    <span class="glyphicon glyphicon-log-in" ></span>
+                    <span th:text="#{navBar.login}"></span></a>
+                </li>
+                <li sec:authorize="isAuthenticated()"> <a>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span th:text="${#httpServletRequest.remoteUser.toUpperCase()}"></span></a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" th:hidden="true" name="LogoutForm">
+                        <input type="submit" value="Logout"/>
+                    </form>
+                    <a  href="javascript:document.LogoutForm.submit()">
+                    <span class="glyphicon glyphicon-off"></span>
+                    <span th:text="#{navBar.logout}"></span></a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!--
+    JavaScript function to highlight navbar items in different endpoints
+    https://stackoverflow.com/questions/49530497/how-do-i-make-bootstrap-navbar-change-active-state
+     -->
+    <script>
+        $(function(){
+            function stripTrailingSlash(str) {
+                if(str.substr(-1) == '/') {
+                    return str.substr(0, str.length - 1);
+                }
+                return str;
+            }
+
+            var url = window.location.pathname;
+            var activePage = stripTrailingSlash(url);
+
+            $('.nav li a').each(function(){
+                var currentPage = stripTrailingSlash($(this).attr('href'));
+
+                if (activePage == currentPage) {
+                    $(this).parent().addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -11,8 +11,4 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("user/dishes")
-    public String getUserDishes() {
-        return "user-dishes";
     }
-}

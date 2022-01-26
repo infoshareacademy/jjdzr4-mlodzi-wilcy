@@ -4,13 +4,10 @@
 <head>
     <title th:text="#{user.title}"></title>
 </head>
-<body>
-<div th:insert="~{fragments/navBar}"></div>
-<div sec:authorize="isAuthenticated()">
+<body sec:authorize="isAuthenticated()">
+<div>
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<h3>Change account settings:</h3>
+    <h1>Czy to działa?</h1>
 </div>
-<div></div>
-
 </body>
 </html>

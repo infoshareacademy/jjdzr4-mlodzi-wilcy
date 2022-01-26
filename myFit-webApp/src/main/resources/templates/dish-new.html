@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{addDishPage.title}"></title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div style="text-align: center">
+    <h1 th:text="#{addDishPage.headLine}"></h1>
+    <form th:object="${dish}" th:action="@{/user/dish/new}" th:method="post">
+
+<!--        <label th:for="name_input" th:text="#{dish.name}"> </label><br>-->
+<!--        <input type="text" id="name_input" th:field="*{name}"><br>-->
+<!--        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>-->
+
+        <form  data-th-action="@{/user/dish/row}"  method="get">
+            <button type="submit">save</button>
+        </form>
+
+        <table>
+            <tr>
+                <th th:text="'Nazwa'"></th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}"></td>
+            </tr>
+        </table>
+
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th th:text="#{addDishPage.row}"></th>-->
+<!--                <th th:text="#{addDishPage.product}"></th>-->
+<!--                <th th:text="#{addDishPage.numberOfProducts}"></th>-->
+<!--                <th>-->
+<!--                    <button type="submit" name="addRow" th:text="#{addDishPage.addRow}"></button>-->
+<!--                </th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="row,rowStat : *{rows}">-->
+<!--                <td th:text="${rowStat.count}">1</td>-->
+<!--                <td>-->
+<!--                    <select th:field="*{rows[__${rowStat.index}__].variety}">-->
+<!--                        <option th:each="var : ${allVarieties}"-->
+<!--                                th:value="${var.id}"-->
+<!--                                th:text="${var.name}">Thymus Thymi</option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{rows[__${rowStat.index}__].seedsPerCell}" />-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <button type="submit" name="removeRow"-->
+<!--                            th:value="${rowStat.index}" th:text="#{seedstarter.row.remove}">Remove row</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+        <button type="submit" th:text="#{addDishPage.submit}"></button>
+
+    </form>
+</div>
+</body>
+</html>

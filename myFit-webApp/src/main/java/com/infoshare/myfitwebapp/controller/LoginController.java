@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @Autowired
+    final
     RegisterService registerService;
+
+    public LoginController(RegisterService registerService) {
+        this.registerService = registerService;
+    }
 
     @GetMapping("/")
     public String hello(){
