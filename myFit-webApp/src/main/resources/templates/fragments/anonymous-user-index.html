@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head>
+    <title th:text="#{user.title}"></title>
+</head>
+<body sec:authorize="isAnonymous()">
+<div>
+    <h1>Jestem niezalogowany?</h1>
+    <div class="p-5 text-center bg-light">
+        <h1 class="mb-3">Welcome to MyFitApp
+        <div class="description ">
+            <h4 class="mb-3">Would you like to enter?</h4>
+            <a class="btn btn-primary" th:href="@{/login}" role="button">Try it!</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

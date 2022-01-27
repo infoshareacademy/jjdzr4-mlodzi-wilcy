@@ -1,16 +1,23 @@
 package com.infoshare.myfitwebapp.model;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class DishData {
+public @Data
+class DishData {
     private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @NotEmpty(message = NOT_EMPTY_MESSAGE)
     @Column(nullable = false)
@@ -26,59 +33,5 @@ public class DishData {
     @ElementCollection
     private List<String> productsNameList = new ArrayList<>();
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String dishName) {
-        this.name = dishName;
-    }
-
-    public int getSumOfKcalPer100g() {
-        return sumOfKcalPer100g;
-    }
-
-    public void setSumOfKcalPer100g(int sumOfKcalPer100g) {
-        this.sumOfKcalPer100g = sumOfKcalPer100g;
-    }
-
-    public double getSumOfFatPer100g() {
-        return sumOfFatPer100g;
-    }
-
-    public void setSumOfFatPer100g(double sumOfFatPer100g) {
-        this.sumOfFatPer100g = sumOfFatPer100g;
-    }
-
-    public double getSumOfCarbohydratesPer100g() {
-        return sumOfCarbohydratesPer100g;
-    }
-
-    public void setSumOfCarbohydratesPer100g(double sumOfCarbohydratesPer100g) {
-        this.sumOfCarbohydratesPer100g = sumOfCarbohydratesPer100g;
-    }
-
-    public double getSumOfProteinPer100g() {
-        return sumOfProteinPer100g;
-    }
-
-    public void setSumOfProteinPer100g(double sumOfProteinPer100g) {
-        this.sumOfProteinPer100g = sumOfProteinPer100g;
-    }
-
-    public List<String> getProductsDataList() {
-        return productsNameList;
-    }
-
-    public void setProductsDataList(List<String> productsDataList) {
-        this.productsNameList = productsDataList;
-    }
 }

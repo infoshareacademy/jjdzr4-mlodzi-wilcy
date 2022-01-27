@@ -1,18 +1,18 @@
 package com.infoshare.myfitwebapp.model;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+@Data
 public class UserPrincipal implements UserDetails {
-    private final UserLogin user;
 
-    public UserPrincipal(UserLogin user){
-        this.user = user;
-    }
+    private final UserLogin user;
 
     @Override
     public String getPassword() {
@@ -26,7 +26,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
