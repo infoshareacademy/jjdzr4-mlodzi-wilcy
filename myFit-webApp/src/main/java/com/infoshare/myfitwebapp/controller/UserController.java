@@ -44,7 +44,7 @@ public class UserController {
             return "fillInfo";
         }
         UserLogin userLogin = userService.load(authentication.getName());
-        userLogin.setUserData(new UserData());
+        userLogin.setUserData(userData);
         userService.save(userLogin);
         userService.saveToFile();
         return "redirect:/";

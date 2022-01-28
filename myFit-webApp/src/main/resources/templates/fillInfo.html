@@ -16,11 +16,10 @@
         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
 
         <label th:for="gender_input" th:text="#{userData.gender}"> </label><br>
-<!--        <select th:name="gender_input" th:field="*{gender}">-->
-<!--            <option th:value="#{userData.value.gender.male}">meszczyzna</option>-->
-<!--            <option th:value="#{userData.value.gender.female}">kobieta</option>-->
-<!--        </select>-->
-        <input type="text" id="gender_input" th:field="*{gender}">
+        <select th:name="gender_input" th:field="*{gender}">
+            <option th:value="#{userData.value.gender.male}">meszczyzna</option>
+            <option th:value="#{userData.value.gender.female}">kobieta</option>
+        </select>
         <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div><br>
 
         <label th:for="age_input" th:text="#{userData.age}"> </label><br>
