@@ -17,7 +17,6 @@ import java.util.List;
 public class UserService {
 
     private UserLoginRepository userRepository;
-    private UserDataRepository userDataRepository;
 
     public UserService(UserLoginRepository userRepository) {
         this.userRepository = userRepository;
@@ -33,10 +32,6 @@ public class UserService {
 
     public UserLogin load(String userName){
         return userRepository.findByUsername(userName);
-    }
-
-    public UserData save(UserData userData){
-        return userDataRepository.save(userData);
     }
 
     public void saveToFile(){

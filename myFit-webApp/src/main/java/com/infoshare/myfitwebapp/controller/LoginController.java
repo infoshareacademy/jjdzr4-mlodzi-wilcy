@@ -1,7 +1,10 @@
 package com.infoshare.myfitwebapp.controller;
 
+import com.infoshare.myfitwebapp.model.UserData;
 import com.infoshare.myfitwebapp.model.UserLogin;
+import com.infoshare.myfitwebapp.service.CPMService;
 import com.infoshare.myfitwebapp.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,13 +18,21 @@ import javax.validation.Valid;
 public class LoginController {
 
     final UserService userService;
+    final CPMService cpmService;
 
-    public LoginController(UserService userService) {
+    public LoginController(UserService userService, CPMService cpmService) {
        this.userService = userService;
+       this.cpmService = cpmService;
     }
 
     @GetMapping("/")
-    public String hello(){
+    public String hello(Authentication authentication, Model model){
+        if (authentication != null) {
+            UserLogin userLogin = userService.load(authentication.getName());
+            if (userLogin.getUserData() == null) {
+                return fillUserData(model);
+            }
+        }
         return "index";
     }
 
@@ -41,6 +52,25 @@ public class LoginController {
         if (errors.hasErrors()){
             return "register";
         }
+        userService.save(userLogin);
+        userService.saveToFile();
+        return "redirect:/";
+    }
+
+    @GetMapping("fillInfo")
+    public String fillUserData(Model model){
+        model.addAttribute("userData", new UserData());
+        return "fillInfo";
+    }
+
+    @PostMapping("fillInfo")
+    public String fillUserDataFinish(@Valid @ModelAttribute("userData") UserData userData, Errors errors, Authentication authentication){
+        if(errors.hasErrors()){
+            return "fillInfo";
+        }
+        UserLogin userLogin = userService.load(authentication.getName());
+        userData.setPpm(cpmService.calculatePPM(userData));
+        userLogin.setUserData(userData);
         userService.save(userLogin);
         userService.saveToFile();
         return "redirect:/";
