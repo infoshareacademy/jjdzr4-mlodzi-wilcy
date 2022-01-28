@@ -34,3 +34,10 @@ modules.xml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Files with dish/food/products/user/login Data
+/myFit-webApp/src/main/resources/dishData.json
+/myFit-webApp/src/main/resources/foodData.json
+/myFit-webApp/src/main/resources/productsData.json
+/myFit-webApp/src/main/resources/userData.json
+/myFit-webApp/src/main/resources/loginData.json
