@@ -74,11 +74,11 @@ public class DishData {
         this.sumOfProteinPer100g = sumOfProteinPer100g;
     }
 
-    public List<String> getProductsDataList() {
+    public List<String> getProductsNameList() {
         return productsNameList;
     }
 
-    public void setProductsDataList(List<String> productsDataList) {
-        this.productsNameList = productsDataList;
+    public void setProductsNameList(List<String> productsNameList) {
+        this.productsNameList = productsNameList;
     }
 }

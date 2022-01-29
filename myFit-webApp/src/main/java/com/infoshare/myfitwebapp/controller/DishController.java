@@ -1,6 +1,7 @@
 package com.infoshare.myfitwebapp.controller;
 
 import com.infoshare.myfitwebapp.model.DishDto;
+import com.infoshare.myfitwebapp.model.ProductDto;
 import com.infoshare.myfitwebapp.model.ProductRow;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("dishes")
@@ -41,9 +43,10 @@ public class DishController {
         if (errors.hasErrors()) {
             return "dish-new";
         }
-//        dishService.save(dish);
-//        dishService.saveDishDatabaseToFile();
-        return "redirect:/";
+        List<String> stringList = dishDto.getRows().stream().map(ProductRow::getProduct).collect(Collectors.toList());
+        dishService.save(dishService.createDish(dishDto.getName(), stringList));
+        dishService.saveDishDatabaseToFile();
+        return "redirect:/dishes";
     }
 
     @GetMapping(value="/new")
@@ -66,8 +69,7 @@ public class DishController {
     }
 
     @ModelAttribute("allProducts")
-    public List<String> populateProducts() {
-        // tutaj docelowo -> productService.getProductDtos();
-        return List.of("Product 1", "Product 2", "Product 3");
+    public List<ProductDto> populateProducts() {
+        return productService.getProductDtos();
     }
 }

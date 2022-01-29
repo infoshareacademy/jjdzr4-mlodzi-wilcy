@@ -36,9 +36,9 @@
                                 th:text="${var}">Product name</option>
                     </select>
                 </td>
-                <td>
-                    <input type="text" th:field="*{rows[__${rowStat.index}__].amount}" />
-                </td>
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{rows[__${rowStat.index}__].amount}" />-->
+<!--                </td>-->
                 <td>
                     <button type="submit" name="removeRow" th:value="${rowStat.index}" th:text="#{addDishPage.removeRow}"></button>
                 </td>

@@ -1,7 +1,7 @@
 [
   {
     "id": 5,
-    "name": "aaaa",
+    "name": "kakao",
     "kcalPer100g": 1,
     "fatPer100g": 1.0,
     "carbohydratesPer100g": 1.0,
@@ -9,7 +9,7 @@
   },
   {
     "id": 6,
-    "name": "dummy",
+    "name": "mleko",
     "kcalPer100g": 1230,
     "fatPer100g": 12.0,
     "carbohydratesPer100g": 12.0,
