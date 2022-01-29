@@ -39,7 +39,6 @@ public class DishService {
 
     public DishData createDish(String dishName, List<String> productNames) {
         DishData dishData = new DishData();
-        dishData.setId(123);
         dishData.setName(dishName);
         dishData.setProductsNameList(productNames);
         return dishData;
