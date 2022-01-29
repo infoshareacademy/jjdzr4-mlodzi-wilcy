@@ -17,27 +17,36 @@
     You have been logged out.
 </div>
 
-<div class = "container">
-    <div class = "row">
-        <table class = "table table-responsive table-bordered table-striped">
-            <thead>
-            <tr>
-                <th> Employee First Name</th>
-                <th> Employee Last Name</th>
-                <th> Employee Email</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>first name</td>
-                <td>last name</td>
-            </tr>
-            </tbody>
-        </table>
+
+<div class="card text-center">
+    <div class="card-header">
+       <h2>My Fit Web App</h2>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Welcome on our page</h5>
+        <p class="card-text">We offer free app where you can easily manage your diet.</p>
+        <a th:href="@{/register}" class="btn btn-primary">Join us !</a>
     </div>
 </div>
+<!-- CARD WITH IMG
+<div class="card text-center">
+    <img class="card-img-top" th:src="@{img/slide/slide2.jpg}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+-->
 
 <div th:insert="~{fragments/footer :: footer}"></div>
 
+
+<!-- Vendor JS Files -->
+
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/static/js/main.js"></script>
 </body>
 </html>
