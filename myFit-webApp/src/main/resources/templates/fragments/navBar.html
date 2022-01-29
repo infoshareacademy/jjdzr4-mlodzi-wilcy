@@ -60,7 +60,11 @@
                     <span th:text="${#httpServletRequest.remoteUser.toUpperCase()}"></span></a>
                 </li>
 
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">
+                <li sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" th:hidden="true" name="LogoutForm">
+                        <input type="submit" value="Logout"/>
+                    </form>
+                    <a  href="javascript:document.LogoutForm.submit()">
                     <span class="glyphicon glyphicon-off"></span>
                     <span th:text="#{navBar.logout}"></span></a>
                 </li>
