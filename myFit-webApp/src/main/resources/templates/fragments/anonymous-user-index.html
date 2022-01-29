@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head>
+    <title th:text="#{user.title}"></title>
+</head>
+<body sec:authorize="isAnonymous()">
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2>My Fit Web App</h2>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Welcome on our page</h5>
+        <p class="card-text">We offer free app where you can easily manage your diet.</p>
+        <a th:href="@{/register}" class="btn btn-primary">Join us !</a>
+    </div>
+</div>
+<!-- TODO CARD WITH IMG ON WELCOME PAGE
+<div class="card text-center">
+    <img class="card-img-top" th:src="@{img/slide/slide2.jpg}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+-->
+</body>
+</html>
