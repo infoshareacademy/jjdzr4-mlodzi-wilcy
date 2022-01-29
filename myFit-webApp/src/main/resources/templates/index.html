@@ -13,12 +13,11 @@
 <div th:insert="~{fragments/navBar}"></div>
 <div th:insert="~{fragments/authenticated-user-index}"></div>
 
-<div th:if="${param.logout}">
+<div th:if="${param.logout}" class="card text-center">
     You have been logged out.
 </div>
 
-
-<div class="card text-center">
+<div class="card text-center" sec:authorize="isAnonymous()">
     <div class="card-header">
        <h2>My Fit Web App</h2>
     </div>
@@ -28,7 +27,9 @@
         <a th:href="@{/register}" class="btn btn-primary">Join us !</a>
     </div>
 </div>
-<!-- CARD WITH IMG
+
+
+<!-- CARD WITH IMG TODO
 <div class="card text-center">
     <img class="card-img-top" th:src="@{img/slide/slide2.jpg}" alt="Card image cap">
     <div class="card-body">
@@ -40,13 +41,5 @@
 -->
 
 <div th:insert="~{fragments/footer :: footer}"></div>
-
-
-<!-- Vendor JS Files -->
-
-<script src="/static/js/bootstrap.bundle.min.js"></script>
-
-<!-- Template Main JS File -->
-<script src="/static/js/main.js"></script>
 </body>
 </html>
