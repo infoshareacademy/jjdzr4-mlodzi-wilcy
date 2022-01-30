@@ -24,5 +24,5 @@ public class UserLogin {
     @NotEmpty(message = NOT_EMPTY_MESSAGE)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
-    private UserData userData;
+    private User userData;
 }

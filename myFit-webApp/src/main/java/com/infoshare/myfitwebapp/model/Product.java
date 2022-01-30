@@ -2,7 +2,6 @@ package com.infoshare.myfitwebapp.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,7 +10,7 @@ import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Data
-public class ProductData {
+public class Product {
 
     private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
     private static final String POSITIVE_OR_ZERO_MESSAGE = "Wartość nie może być ujemna";

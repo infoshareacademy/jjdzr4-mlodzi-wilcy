@@ -1,24 +1,24 @@
 package com.infoshare.myfitwebapp.service;
 
-import com.infoshare.myfitwebapp.model.UserData;
+import com.infoshare.myfitwebapp.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CPMService {
     private static final String MALE = "male";
 
-    public double calculatePPM(UserData userData) {
+    public double calculatePPM(User user) {
         double ppm;
 
-        if (userData.getGender().equals(MALE)) {
-            ppm = calculateBasicPPM(userData) + 5;
+        if (user.getGender().equals(MALE)) {
+            ppm = calculateBasicPPM(user) + 5;
         } else {
-            ppm = calculateBasicPPM(userData) - 161;
+            ppm = calculateBasicPPM(user) - 161;
         }
         return ppm; // todo
     }
 
-    private double calculateBasicPPM(UserData userData) {
-        return (10 * userData.getWeight()) + (6.25 * userData.getHeight()) - (5 * userData.getAge());
+    private double calculateBasicPPM(User user) {
+        return (10 * user.getWeight()) + (6.25 * user.getHeight()) - (5 * user.getAge());
     }
 }

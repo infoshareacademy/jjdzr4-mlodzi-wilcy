@@ -1,6 +1,6 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.UserData;
+import com.infoshare.myfitwebapp.model.User;
 import com.infoshare.myfitwebapp.model.UserLogin;
 import com.infoshare.myfitwebapp.service.CPMService;
 import com.infoshare.myfitwebapp.service.UserService;
@@ -65,18 +65,18 @@ public class LoginController {
 
     @GetMapping("fillInfo")
     public String fillUserData(Model model){
-        model.addAttribute("userData", new UserData());
+        model.addAttribute("user", new User());
         return "fillInfo";
     }
 
     @PostMapping("fillInfo")
-    public String fillUserDataFinish(@Valid @ModelAttribute("userData") UserData userData, Errors errors, Authentication authentication){
+    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, Errors errors, Authentication authentication){
         if(errors.hasErrors()){
             return "fillInfo";
         }
         UserLogin userLogin = userService.load(authentication.getName());
-        userData.setPpm(cpmService.calculatePPM(userData));
-        userLogin.setUserData(userData);
+        user.setPpm(cpmService.calculatePPM(user));
+        userLogin.setUserData(user);
         userService.save(userLogin);
         userService.saveToFile();
         return "redirect:/";

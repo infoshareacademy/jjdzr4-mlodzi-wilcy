@@ -2,9 +2,7 @@ package com.infoshare.myfitwebapp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshare.myfitwebapp.model.UserData;
 import com.infoshare.myfitwebapp.model.UserLogin;
-import com.infoshare.myfitwebapp.repository.UserDataRepository;
 import com.infoshare.myfitwebapp.repository.UserLoginRepository;
 import org.springframework.stereotype.Service;
 

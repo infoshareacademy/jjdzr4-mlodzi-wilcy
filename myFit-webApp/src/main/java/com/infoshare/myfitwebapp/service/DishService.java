@@ -2,8 +2,8 @@ package com.infoshare.myfitwebapp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshare.myfitwebapp.model.DishData;
-import com.infoshare.myfitwebapp.model.ProductData;
+import com.infoshare.myfitwebapp.model.Dish;
+import com.infoshare.myfitwebapp.model.Product;
 import com.infoshare.myfitwebapp.repository.DishDataRepository;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import org.springframework.stereotype.Service;
@@ -25,68 +25,68 @@ public class DishService {
         this.productDataRepository = productDataRepository;
     }
 
-    public DishData save(DishData dish) {
+    public Dish save(Dish dish) {
         return dishDataRepository.save(dish);
     }
 
-    public Iterable<DishData> save(List<DishData> dish) {
+    public Iterable<Dish> save(List<Dish> dish) {
         return dishDataRepository.saveAll(dish);
     }
 
-    public List<DishData> findAll() {
+    public List<Dish> findAll() {
         return dishDataRepository.findAll();
     }
 
-    public List<DishData> findByName(String name) {
+    public List<Dish> findByName(String name) {
         return dishDataRepository.findByName(name);
     }
 
-    public DishData createDish(String dishName, List<String> productNames) {
-        List<ProductData> productDataList = productNames.stream().map(productDataRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
-        DishData dishData = new DishData();
-        dishData.setName(dishName);
-        dishData.setProductsNameList(productNames);
-        dishData.setSumOfKcalPer100g(calculateSumOfKcalPer100g(productDataList));
-        dishData.setSumOfFatPer100g(calculateSumOfFatPer100g(productDataList));
-        dishData.setSumOfCarbohydratesPer100g(calculateSumOfCarbohydratesPer100g(productDataList));
-        dishData.setSumOfProteinPer100g(calculateSumOfProteinPer100g(productDataList));
-        return dishData;
+    public Dish createDish(String dishName, List<String> productNames) {
+        List<Product> productList = productNames.stream().map(productDataRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
+        Dish dish = new Dish();
+        dish.setName(dishName);
+        dish.setProductsNameList(productNames);
+        dish.setSumOfKcalPer100g(calculateSumOfKcalPer100g(productList));
+        dish.setSumOfFatPer100g(calculateSumOfFatPer100g(productList));
+        dish.setSumOfCarbohydratesPer100g(calculateSumOfCarbohydratesPer100g(productList));
+        dish.setSumOfProteinPer100g(calculateSumOfProteinPer100g(productList));
+        return dish;
     }
 
-    private int calculateSumOfKcalPer100g(List<ProductData> productDataList) {
+    private int calculateSumOfKcalPer100g(List<Product> productList) {
         int temporarySumOfKcalPer100g = 0;
-        for (ProductData p : productDataList) {
+        for (Product p : productList) {
             temporarySumOfKcalPer100g += p.getKcalPer100g();
         }
         return temporarySumOfKcalPer100g;
     }
 
-    private double calculateSumOfFatPer100g(List<ProductData> productDataList) {
+    private double calculateSumOfFatPer100g(List<Product> productList) {
         double temporarySumOfFatPer100g = 0.0;
-        for (ProductData p : productDataList) {
+        for (Product p : productList) {
             temporarySumOfFatPer100g += p.getFatPer100g();
         }
         return temporarySumOfFatPer100g;
     }
 
-    private double calculateSumOfCarbohydratesPer100g(List<ProductData> productDataList) {
+    private double calculateSumOfCarbohydratesPer100g(List<Product> productList) {
         double temporarySumOfCarbohydratesPer100g = 0.0;
-        for (ProductData p : productDataList) {
+        for (Product p : productList) {
             temporarySumOfCarbohydratesPer100g += p.getCarbohydratesPer100g();
         }
         return temporarySumOfCarbohydratesPer100g;
     }
 
-    private double calculateSumOfProteinPer100g(List<ProductData> productDataList) {
+    private double calculateSumOfProteinPer100g(List<Product> productList) {
         double temporarySumOfProteinPer100g = 0.0;
-        for (ProductData p : productDataList) {
+        for (Product p : productList) {
             temporarySumOfProteinPer100g += p.getProteinPer100g();
         }
         return temporarySumOfProteinPer100g;
     }
 
     public void saveDishDatabaseToFile() {
-        List<DishData> list = dishDataRepository.findAll();
+        List<Dish> list = dishDataRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
             Writer fileWriter = new FileWriter("myFit-webApp/src/main/resources/dishData.json");
