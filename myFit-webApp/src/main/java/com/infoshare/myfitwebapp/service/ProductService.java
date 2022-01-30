@@ -3,12 +3,14 @@ package com.infoshare.myfitwebapp.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.infoshare.myfitwebapp.model.ProductData;
+import com.infoshare.myfitwebapp.model.ProductDto;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +28,16 @@ public class ProductService {
 
     public Iterable<ProductData> save(List<ProductData> products) {
         return productDataRepository.saveAll(products);
+    }
+
+    public List<ProductDto> getProductDtos() {
+        List<ProductDto> productDtoList = new ArrayList<>();
+        productDataRepository.findAll().stream().forEach(
+                productData -> {
+                    productDtoList.add(new ProductDto(productData.getId(), productData.getName()));
+                }
+        );
+        return productDtoList;
     }
 
     public void saveProductDatabaseToFile(){
