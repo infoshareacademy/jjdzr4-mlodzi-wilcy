@@ -8,18 +8,16 @@
 <body>
 <div th:insert="~{fragments/navBar}"></div>
 <div sec:authorize="isAuthenticated()">
-    <h1>Welcome to User edit.</h1>
     <div>
-
-        <h1 th:text="${user.name}"></h1>
-
-<!--        <form th:action="@{/editUser}" th:object="${user}" th:method="post">
+        <form th:action="@{/editUser}" th:object="${user}" th:method="post">
             <label for="name" th:text="#{user.name}"></label>
             <input type="hidden" name="_method" th:value="put"/>
             <input th:type="text" id="name" th:field="*{name}"/>
             <br>
-
-        </form>-->
+            <label for="age" th:text="#{user.age}"></label>
+            <input th:type="text" id="age" th:field="*{age}"/>
+            <br>
+        </form>
     </div>
 </div>
 </body>

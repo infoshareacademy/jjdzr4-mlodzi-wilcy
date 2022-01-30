@@ -27,9 +27,16 @@ public class UserService {
         return userRepository.save(userLogin);
     }
 
-    public UserData getByName(String userName) {
-        UserLogin userLogin = userRepository.findByUsername(userName);
-        Long userId = userLogin.getId();
-        return userDataRepository.getById(userId);
+    public UserLogin load(String userName) {
+        return userRepository.findByUsername(userName);
     }
+
+    public Iterable<UserData> saveUsersData(List<UserData> users) {
+        return userDataRepository.saveAll(users);
+    }
+
+    public UserData loadUserData(Long id) {
+        return userDataRepository.findById(id).get();
+    }
+
 }
