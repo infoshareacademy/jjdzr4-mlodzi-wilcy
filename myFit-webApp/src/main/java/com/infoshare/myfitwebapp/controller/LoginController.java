@@ -53,7 +53,7 @@ public class LoginController {
             return "register";
         }
         try {
-            userService.load(userLogin.getUsername());{
+            userService.load(userLogin.getUsername()).getUsername();{
             }
         } catch (NullPointerException e){
             userService.save(userLogin);
