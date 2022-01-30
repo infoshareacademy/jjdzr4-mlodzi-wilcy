@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{fillInfo.title}"></title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:insert="~{fragments/navBar}"></div>
+<div style="text-align: center">
+    <h1 th:text="#{fillInfo.headLine}"></h1>
+    <form th:object="${userData}" th:action="@{fillInfo}" th:method="post">
+
+        <label th:for="name_input" th:text="#{userData.name}"> </label><br>
+        <input type="text" id="name_input" th:field="*{name}"><br>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
+
+        <label th:for="gender_input" th:text="#{userData.gender}"> </label><br>
+        <select th:name="gender_input" th:field="*{gender}">
+            <option th:value="#{userData.value.gender.male}">meszczyzna</option>
+            <option th:value="#{userData.value.gender.female}">kobieta</option>
+        </select>
+        <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div><br>
+
+        <label th:for="age_input" th:text="#{userData.age}"> </label><br>
+        <input type="number" id="age_input" th:field="*{age}"><br>
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br>
+
+        <label th:for="weight_input" th:text="#{userData.weight}"> </label><br>
+        <input type="number" id="weight_input" th:field="*{weight}"><br>
+        <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div><br>
+
+        <label th:for="height_input" th:text="#{userData.height}"> </label><br>
+        <input type="number" id="height_input" th:field="*{height}"><br>
+        <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div><br>
+
+        <label th:for="levelOfJobActivity_input" th:text="#{userData.levelOfJobActivity}" ></label><br>
+        <select th:name="levelOfJobActivity_input" th:field="*{levelOfJobActivity}">
+            <option th:value="#{userData.value.activityLevel.high}">wysokie</option>
+            <option th:value="#{userData.value.activityLevel.medium}">srednie</option>
+            <option th:value="#{userData.value.activityLevel.low}">niskie</option>
+        </select>
+        <div th:if="${#fields.hasErrors('levelOfJobActivity')}" th:errors="*{levelOfJobActivity}"></div><br>
+
+        <label th:for="levelOfPrivateActivity_input" th:text="#{userData.levelOfPrivateActivity}" ></label><br>
+        <select th:name="levelOfPrivateActivity_input" th:field="*{levelOfPrivateActivity}">
+            <option th:value="#{userData.value.activityLevel.high}">wysokie</option>
+            <option th:value="#{userData.value.activityLevel.medium}">srednie</option>
+            <option th:value="#{userData.value.activityLevel.low}">niskie</option>
+        </select>
+        <div th:if="${#fields.hasErrors('levelOfPrivateActivity')}" th:errors="*{levelOfPrivateActivity}"></div><br>
+
+        <label th:for="weightGoal_input" th:text="#{userData.weightGoal}" ></label><br>
+        <input type="number" id="weightGoal_input" th:field="*{weightGoal}"><br>
+        <div th:if="${#fields.hasErrors('weightGoal')}" th:errors="*{weightGoal}"></div><br>
+        <br>
+        <button type="submit" th:text="#{userData.button}"> </button>
+
+    </form>
+</div>
+</body>
+</html>
