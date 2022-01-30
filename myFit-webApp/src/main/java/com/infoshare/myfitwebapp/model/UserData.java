@@ -1,7 +1,9 @@
 package com.infoshare.myfitwebapp.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -15,7 +17,7 @@ public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Getter
+    @Setter(AccessLevel.NONE)
     private Long id;
     @Column(nullable = false)
     @NotEmpty(message = NOT_EMPTY_MESSAGE)

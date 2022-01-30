@@ -1,7 +1,9 @@
 package com.infoshare.myfitwebapp.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -15,7 +17,7 @@ class DishData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Getter
+    @Setter(AccessLevel.NONE)
     private Long id;
     @NotEmpty(message = NOT_EMPTY_MESSAGE)
     @Column(nullable = false)
@@ -29,5 +31,7 @@ class DishData {
     @Column(nullable = true)
     private double sumOfProteinPer100g;
     @ElementCollection
-    private List<String> productsDataList = new ArrayList<>();
+    private List<String> productsNameList = new ArrayList<>();
+
+
 }
