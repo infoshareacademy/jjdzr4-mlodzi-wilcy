@@ -5,15 +5,27 @@
     <title th:text="#{user.title}"></title>
 </head>
 <body sec:authorize="isAnonymous()">
-<div>
-    <h1>Jestem niezalogowany?</h1>
-    <div class="p-5 text-center bg-light">
-        <h1 class="mb-3">Welcome to MyFitApp
-        <div class="description ">
-            <h4 class="mb-3">Would you like to enter?</h4>
-            <a class="btn btn-primary" th:href="@{/login}" role="button">Try it!</a>
-        </div>
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2>My Fit Web App</h2>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Welcome on our page</h5>
+        <p class="card-text">We offer free app where you can easily manage your diet.</p>
+        <a th:href="@{/register}" class="btn btn-primary">Join us !</a>
     </div>
 </div>
+<!-- TODO CARD WITH IMG ON WELCOME PAGE
+<div class="card text-center">
+    <img class="card-img-top" th:src="@{img/slide/slide2.jpg}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+-->
 </body>
 </html>
