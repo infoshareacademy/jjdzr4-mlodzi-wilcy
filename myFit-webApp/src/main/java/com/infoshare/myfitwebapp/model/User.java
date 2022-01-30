@@ -11,8 +11,6 @@ import javax.validation.constraints.PositiveOrZero;
 @Entity
 @Data
 public class User {
-    private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
-    private static final String POSITIVE_OR_ZERO_MESSAGE = "Wartość nie może być ujemna";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,22 +18,22 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message = NOT_EMPTY_MESSAGE)
+    @NotBlank(message = "{message.notEmpty}")
     private String name;
 
     @Column(nullable = false)
     private String gender;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
+    @PositiveOrZero(message = "{message.positiveOrZero}")
     private int age;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
+    @PositiveOrZero(message = "{message.positiveOrZero}")
     private int height;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
+    @PositiveOrZero(message = "{message.positiveOrZero}")
     private double weight;
 
     @Column(nullable = false)
@@ -45,7 +43,7 @@ public class User {
     private String levelOfPrivateActivity;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = POSITIVE_OR_ZERO_MESSAGE)
+    @PositiveOrZero(message = "{message.positiveOrZero}")
     private double weightGoal;
 
     @Column(nullable = false)
