@@ -52,9 +52,15 @@ public class LoginController {
         if (errors.hasErrors()){
             return "register";
         }
-        userService.save(userLogin);
-        userService.saveToFile();
-        return "redirect:/";
+        try {
+            userService.load(userLogin.getUsername());{
+            }
+        } catch (NullPointerException e){
+            userService.save(userLogin);
+            userService.saveToFile();
+            return "redirect:/";
+        }
+        return "redirect:register?error";
     }
 
     @GetMapping("fillInfo")
