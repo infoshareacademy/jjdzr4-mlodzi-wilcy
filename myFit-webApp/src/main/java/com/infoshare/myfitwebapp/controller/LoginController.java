@@ -21,12 +21,12 @@ public class LoginController {
     final CPMService cpmService;
 
     public LoginController(UserService userService, CPMService cpmService) {
-       this.userService = userService;
-       this.cpmService = cpmService;
+        this.userService = userService;
+        this.cpmService = cpmService;
     }
 
     @GetMapping("/")
-    public String hello(Authentication authentication, Model model){
+    public String hello(Authentication authentication, Model model) {
         if (authentication != null) {
             UserLogin userLogin = userService.load(authentication.getName());
             if (userLogin.getUser() == null) {
@@ -37,25 +37,24 @@ public class LoginController {
     }
 
     @GetMapping("login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @GetMapping("register")
-    public String register(Model model){
-       model.addAttribute("user", new UserLogin());
+    public String register(Model model) {
+        model.addAttribute("user", new UserLogin());
         return "register";
     }
 
     @PostMapping("register")
-    public String addUser(@Valid @ModelAttribute("user") UserLogin userLogin, Errors errors){
-        if (errors.hasErrors()){
+    public String addUser(@Valid @ModelAttribute("user") UserLogin userLogin, Errors errors) {
+        if (errors.hasErrors()) {
             return "register";
         }
         try {
-            userService.load(userLogin.getUsername()).getUsername();{
-            }
-        } catch (NullPointerException e){
+            userService.load(userLogin.getUsername()).getUsername();
+        } catch (NullPointerException e) {
             userService.save(userLogin);
             userService.saveToFile();
             return "redirect:/";
@@ -64,18 +63,18 @@ public class LoginController {
     }
 
     @GetMapping("fillInfo")
-    public String fillUserData(Model model){
+    public String fillUserData(Model model) {
         model.addAttribute("user", new User());
         return "fillInfo";
     }
 
     @PostMapping("fillInfo")
-    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, Errors errors, Authentication authentication){
-        if(errors.hasErrors()){
+    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, Errors errors, Authentication authentication) {
+        if (errors.hasErrors()) {
             return "fillInfo";
         }
         UserLogin userLogin = userService.load(authentication.getName());
-        user.setBasalMetabolicRate(cpmService.calculatePPM(user));
+        user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
         userLogin.setUser(user);
         userService.save(userLogin);
         userService.saveToFile();

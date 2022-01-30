@@ -29,7 +29,7 @@ class MyFitWebAppApplicationTests {
         user.setGender("male");
 
 
-        Assertions.assertThat(cpmService.calculatePPM(user)).isEqualTo(1873.75);
+        Assertions.assertThat(cpmService.calculateBasalMetabolicRate(user)).isEqualTo(1873.75);
 
     }
 

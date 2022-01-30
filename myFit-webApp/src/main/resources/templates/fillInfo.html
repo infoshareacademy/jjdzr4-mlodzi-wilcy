@@ -17,8 +17,8 @@
 
         <label th:for="gender_input" th:text="#{user.gender}"> </label><br>
         <select th:name="gender_input" th:field="*{gender}">
-            <option th:value="#{user.value.gender.male}">meszczyzna</option>
-            <option th:value="#{user.value.gender.female}">kobieta</option>
+            <option th:value="#{user.value.gender.male}" th:text="#{user.value.gender.male}"></option>
+            <option th:value="#{user.value.gender.female}" th:text="#{user.value.gender.female}"></option>
         </select>
         <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div><br>
 
@@ -36,17 +36,17 @@
 
         <label th:for="levelOfJobActivity_input" th:text="#{user.levelOfJobActivity}" ></label><br>
         <select th:name="levelOfJobActivity_input" th:field="*{levelOfJobActivity}">
-            <option th:value="#{user.value.activityLevel.high}">wysokie</option>
-            <option th:value="#{user.value.activityLevel.medium}">srednie</option>
-            <option th:value="#{user.value.activityLevel.low}">niskie</option>
+            <option th:value="#{user.value.activityLevel.high}" th:text="#{user.value.activityLevel.high}"></option>
+            <option th:value="#{user.value.activityLevel.medium}" th:text="#{user.value.activityLevel.medium}"></option>
+            <option th:value="#{user.value.activityLevel.low}" th:text="#{user.value.activityLevel.low}"></option>
         </select>
         <div th:if="${#fields.hasErrors('levelOfJobActivity')}" th:errors="*{levelOfJobActivity}"></div><br>
 
         <label th:for="levelOfPrivateActivity_input" th:text="#{user.levelOfPrivateActivity}" ></label><br>
         <select th:name="levelOfPrivateActivity_input" th:field="*{levelOfPrivateActivity}">
-            <option th:value="#{user.value.activityLevel.high}">wysokie</option>
-            <option th:value="#{user.value.activityLevel.medium}">srednie</option>
-            <option th:value="#{user.value.activityLevel.low}">niskie</option>
+            <option th:value="#{user.value.activityLevel.high}" th:text="#{user.value.activityLevel.high}"></option>
+            <option th:value="#{user.value.activityLevel.medium}" th:text="#{user.value.activityLevel.medium}"></option>
+            <option th:value="#{user.value.activityLevel.low}" th:text="#{user.value.activityLevel.low}"></option>
         </select>
         <div th:if="${#fields.hasErrors('levelOfPrivateActivity')}" th:errors="*{levelOfPrivateActivity}"></div><br>
 

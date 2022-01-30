@@ -53,36 +53,36 @@ public class DishService {
         return dish;
     }
 
-    private int calculateSumOfKcalPer100g(List<Product> productList) {
-        int temporarySumOfKcalPer100g = 0;
-        for (Product p : productList) {
-            temporarySumOfKcalPer100g += p.getKcalPer100g();
+    private int calculateSumOfKcalPer100g(List<Product> products) {
+        int sumOfKcalPer100g = 0;
+        for (Product p : products) {
+            sumOfKcalPer100g += p.getKcalPer100g();
         }
-        return temporarySumOfKcalPer100g;
+        return sumOfKcalPer100g;
     }
 
-    private double calculateSumOfFatPer100g(List<Product> productList) {
-        double temporarySumOfFatPer100g = 0.0;
-        for (Product p : productList) {
-            temporarySumOfFatPer100g += p.getFatPer100g();
+    private double calculateSumOfFatPer100g(List<Product> products) {
+        double sumOfFatPer100g = 0.0;
+        for (Product p : products) {
+            sumOfFatPer100g += p.getFatPer100g();
         }
-        return temporarySumOfFatPer100g;
+        return sumOfFatPer100g;
     }
 
-    private double calculateSumOfCarbohydratesPer100g(List<Product> productList) {
-        double temporarySumOfCarbohydratesPer100g = 0.0;
-        for (Product p : productList) {
-            temporarySumOfCarbohydratesPer100g += p.getCarbohydratesPer100g();
+    private double calculateSumOfCarbohydratesPer100g(List<Product> products) {
+        double sumOfCarbohydratesPer100g = 0.0;
+        for (Product p : products) {
+            sumOfCarbohydratesPer100g += p.getCarbohydratesPer100g();
         }
-        return temporarySumOfCarbohydratesPer100g;
+        return sumOfCarbohydratesPer100g;
     }
 
-    private double calculateSumOfProteinPer100g(List<Product> productList) {
-        double temporarySumOfProteinPer100g = 0.0;
-        for (Product p : productList) {
-            temporarySumOfProteinPer100g += p.getProteinPer100g();
+    private double calculateSumOfProteinPer100g(List<Product> products) {
+        double sumOfProteinPer100g = 0.0;
+        for (Product p : products) {
+            sumOfProteinPer100g += p.getProteinPer100g();
         }
-        return temporarySumOfProteinPer100g;
+        return sumOfProteinPer100g;
     }
 
     public void saveDishDatabaseToFile() {

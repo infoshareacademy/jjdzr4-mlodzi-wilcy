@@ -10,7 +10,7 @@
   {
     "id": 6,
     "name": "mleko",
-    "kcalPer100g": 1230,
+    "kcalPer100g": 18,
     "fatPer100g": 12.0,
     "carbohydratesPer100g": 12.0,
     "proteinPer100g": 12.0
@@ -18,7 +18,7 @@
   {
     "id": 10,
     "name": "random",
-    "kcalPer100g": 420,
+    "kcalPer100g": 23,
     "fatPer100g": 69.0,
     "carbohydratesPer100g": 21.0,
     "proteinPer100g": 37.0

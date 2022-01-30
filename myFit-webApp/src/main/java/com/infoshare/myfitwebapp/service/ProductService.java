@@ -15,8 +15,8 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    final
-    ProductDataRepository productDataRepository;
+
+    private final ProductDataRepository productDataRepository;
 
     public ProductService(ProductDataRepository productDataRepository) {
         this.productDataRepository = productDataRepository;
@@ -31,24 +31,24 @@ public class ProductService {
     }
 
     public List<ProductDto> getProductDtos() {
-        List<ProductDto> productDtoList = new ArrayList<>();
+        List<ProductDto> products = new ArrayList<>();
         productDataRepository.findAll().stream().forEach(
                 productData -> {
-                    productDtoList.add(new ProductDto(productData.getId(), productData.getName()));
+                    products.add(new ProductDto(productData.getId(), productData.getName()));
                 }
         );
-        return productDtoList;
+        return products;
     }
 
-    public void saveProductDatabaseToFile(){
-        List<Product> list = productDataRepository.findAll();
+    public void saveProductDatabaseToFile() {
+        List<Product> products = productDataRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
             Writer fileWriter = new FileWriter("myFit-webApp/src/main/resources/productsData.json");
-            gson.toJson(list, fileWriter);
+            gson.toJson(products, fileWriter);
             fileWriter.flush();
             fileWriter.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
