@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<div th:if="${param.error}">
+    Username already exists.
+</div>
 <div th:insert="~{fragments/navBar}"></div>
 <div style="text-align: center">
     <h1 th:text="#{register.headLine}"></h1>
