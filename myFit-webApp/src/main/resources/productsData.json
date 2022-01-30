@@ -14,5 +14,13 @@
     "fatPer100g": 12.0,
     "carbohydratesPer100g": 12.0,
     "proteinPer100g": 12.0
+  },
+  {
+    "id": 10,
+    "name": "random",
+    "kcalPer100g": 420,
+    "fatPer100g": 69.0,
+    "carbohydratesPer100g": 21.0,
+    "proteinPer100g": 37.0
   }
 ]

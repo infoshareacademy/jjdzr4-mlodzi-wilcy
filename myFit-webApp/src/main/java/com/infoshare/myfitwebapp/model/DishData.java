@@ -31,7 +31,7 @@ class DishData {
     @Column(nullable = true)
     private double sumOfProteinPer100g;
     @ElementCollection
-    private List<String> productsNameList = new ArrayList<>();
+    private List<String> productsDataList = new ArrayList<>();
 
 
 }
