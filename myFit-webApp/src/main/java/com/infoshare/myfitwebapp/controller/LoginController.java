@@ -75,7 +75,7 @@ public class LoginController {
             return "fillInfo";
         }
         UserLogin userLogin = userService.load(authentication.getName());
-        user.setPpm(cpmService.calculatePPM(user));
+        user.setBasalMetabolicRate(cpmService.calculatePPM(user));
         userLogin.setUser(user);
         userService.save(userLogin);
         userService.saveToFile();
