@@ -29,7 +29,7 @@ public class LoginController {
     public String hello(Authentication authentication, Model model){
         if (authentication != null) {
             UserLogin userLogin = userService.load(authentication.getName());
-            if (userLogin.getUserData() == null) {
+            if (userLogin.getUser() == null) {
                 return fillUserData(model);
             }
         }
@@ -76,7 +76,7 @@ public class LoginController {
         }
         UserLogin userLogin = userService.load(authentication.getName());
         user.setPpm(cpmService.calculatePPM(user));
-        userLogin.setUserData(user);
+        userLogin.setUser(user);
         userService.save(userLogin);
         userService.saveToFile();
         return "redirect:/";
