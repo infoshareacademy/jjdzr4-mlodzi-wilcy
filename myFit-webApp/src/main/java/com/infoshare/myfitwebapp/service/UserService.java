@@ -2,9 +2,7 @@ package com.infoshare.myfitwebapp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshare.myfitwebapp.model.UserData;
 import com.infoshare.myfitwebapp.model.UserLogin;
-import com.infoshare.myfitwebapp.repository.UserDataRepository;
 import com.infoshare.myfitwebapp.repository.UserLoginRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private UserLoginRepository userRepository;
+    private final UserLoginRepository userRepository;
 
     public UserService(UserLoginRepository userRepository) {
         this.userRepository = userRepository;
@@ -30,19 +28,19 @@ public class UserService {
         return userRepository.save(userLogin);
     }
 
-    public UserLogin load(String userName){
+    public UserLogin load(String userName) {
         return userRepository.findByUsername(userName);
     }
 
-    public void saveToFile(){
-        List<UserLogin> list = userRepository.findAll();
+    public void saveToFile() {
+        List<UserLogin> users = userRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
             Writer fileWriter = new FileWriter("myFit-webApp/src/main/resources/loginData.json");
-            gson.toJson(list, fileWriter);
+            gson.toJson(users, fileWriter);
             fileWriter.flush();
             fileWriter.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }

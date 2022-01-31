@@ -2,10 +2,10 @@
   {
     "id": 4,
     "name": "kakao",
-    "sumOfKcalPer100g": 123,
-    "sumOfFatPer100g": 123.0,
-    "sumOfCarbohydratesPer100g": 123.0,
-    "sumOfProteinPer100g": 123.0,
+    "sumOfKcalPer100g": 23,
+    "sumOfFatPer100g": 23.0,
+    "sumOfCarbohydratesPer100g": 23.0,
+    "sumOfProteinPer100g": 23.0,
     "productsNameList": []
   },
   {
@@ -20,10 +20,10 @@
   {
     "id": 6,
     "name": "aaaa",
-    "sumOfKcalPer100g": 246,
-    "sumOfFatPer100g": 246.0,
-    "sumOfCarbohydratesPer100g": 246.0,
-    "sumOfProteinPer100g": 246.0,
+    "sumOfKcalPer100g": 20,
+    "sumOfFatPer100g": 20.0,
+    "sumOfCarbohydratesPer100g": 20.0,
+    "sumOfProteinPer100g": 20.0,
     "productsNameList": [
       "kakao",
       "kakao"

@@ -18,8 +18,8 @@
       "levelOfJobActivity": "low",
       "levelOfPrivateActivity": "low",
       "weightGoal": 60.0,
-      "ppm": 10.0,
-      "cpm": 10.0
+      "basalMetabolicRate": 10.0,
+      "completeMetabolism": 10.0
     }
   },
   {

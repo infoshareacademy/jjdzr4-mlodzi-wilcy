@@ -1,6 +1,6 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.ProductData;
+import com.infoshare.myfitwebapp.model.Product;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import com.infoshare.myfitwebapp.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -29,23 +29,23 @@ public class ProductController {
     }
 
     @GetMapping("/name")
-    public ResponseEntity<List<ProductData>> getProductsByName(@RequestParam String name){
+    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String name){
         return new ResponseEntity<>(productDataRepository.findByName(name), HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<ProductData>> getProductsByName(){
+    public ResponseEntity<List<Product>> getProductsByName(){
         return new ResponseEntity<>(productDataRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("new")
     public String getProduct(Model model) {
-        model.addAttribute("product", new ProductData());
+        model.addAttribute("product", new Product());
         return "products-new";
     }
 
     @PostMapping("new")
-    public String addProduct(@Valid @ModelAttribute("product") ProductData product, Errors errors) {
+    public String addProduct(@Valid @ModelAttribute("product") Product product, Errors errors) {
         if (errors.hasErrors()) {
             return "products-new";
         }

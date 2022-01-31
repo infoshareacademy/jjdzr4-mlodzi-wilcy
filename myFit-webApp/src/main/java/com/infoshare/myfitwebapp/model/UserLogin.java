@@ -1,10 +1,11 @@
 package com.infoshare.myfitwebapp.model;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -18,11 +19,11 @@ public class UserLogin {
     @Setter(AccessLevel.NONE)
     private Long id;
     @Column(nullable = false, unique = true)
-    @NotEmpty(message = NOT_EMPTY_MESSAGE)
+    @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String username;
     @Column(nullable = false)
-    @NotEmpty(message = NOT_EMPTY_MESSAGE)
+    @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
-    private UserData userData;
+    private User user;
 }
