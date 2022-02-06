@@ -1,102 +1,100 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    -->
-    <title th:text="#{user.title}"></title>
-</head>
 <body>
-<nav class="navbar navbar-inverse" th:fragment="nav">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" th:href="@{/}">
-                <span class="glyphicon glyphicon-home"></span>
-                <span th:text="#{navBar.appName}"></span>
-            </a>
+<div th:fragment="nav">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}" th:text="#{navBar.appName}">
+                    <span th:text="#{navBar.appName}"></span>
+                </a>
+            </div>
+            <button type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    class="navbar-toggler"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav text-center">
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a th:href="@{/user}" class="nav-link">
+                            <span th:text="#{navbar.user}"></span>
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a th:href="@{/diet}" class="nav-link">
+                            <span th:text="#{navBar.diet}"></span>
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a th:href="@{/dishes}" class="nav-link">
+                            <span th:text="#{navBar.dishes}"></span>
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a th:href="@{/products}" class="nav-link">
+                            <span th:text="#{navbar.products}"></span>
+                        </a>
+                    </li>
+                </ul>
+
+            <ul class="navbar-nav ms-auto text-center">
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a th:href="@{/register}" class="nav-link">
+                        <span th:text="#{navBar.signUp}"></span></a>
+                </li>
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a th:href="@{/login}" class="nav-link">
+                        <span th:text="#{navBar.login}"></span></a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link">
+                        <span th:text="${#httpServletRequest.remoteUser.toUpperCase()}"></span></a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <form th:action="@{/logout}" method="post" th:hidden="true" name="LogoutForm">
+                        <input type="submit" value="Logout"/>
+                    </form>
+                    <a href="javascript:document.LogoutForm.submit()" class="nav-link">
+                        <span class="glyphicon glyphicon-off"></span>
+                        <span th:text="#{navBar.logout}"></span></a>
+                </li>
+            </ul>
+            </div>
         </div>
-        <ul class="nav navbar-nav">
-            <li sec:authorize="isAuthenticated()">
-                <a th:href="@{/user}">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <span th:text="#{navbar.user}"></span>
-                </a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a th:href="@{/diet}">
-                    <span class="glyphicon glyphicon-cutlery"></span>
-                    <span th:text="#{navBar.diet}"></span>
-                </a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a th:href="@{/dishes}">
-                    <span class="glyphicon glyphicon-glass"></span>
-                    <span th:text="#{navBar.dishes}"></span>
-                </a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a th:href="@{/products}">
-                    <span class="glyphicon glyphicon-apple"></span>
-                    <span th:text="#{navbar.products}"></span>
-                </a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
 
-            <li sec:authorize="isAnonymous()"><a th:href="@{/register}">
-                <span class="glyphicon glyphicon-user"></span>
-                <span th:text="#{navBar.signUp}"></span></a>
-            </li>
-            <li sec:authorize="isAnonymous()"><a th:href="@{/login}">
-                <span class="glyphicon glyphicon-log-in"></span>
-                <span th:text="#{navBar.login}"></span></a>
-            </li>
-            <li sec:authorize="isAuthenticated()"><a>
-                <span class="glyphicon glyphicon-user"></span>
-                <span th:text="${#httpServletRequest.remoteUser.toUpperCase()}"></span></a>
-            </li>
-
-            <li sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" method="post" th:hidden="true" name="LogoutForm">
-                    <input type="submit" value="Logout"/>
-                </form>
-                <a href="javascript:document.LogoutForm.submit()">
-                    <span class="glyphicon glyphicon-off"></span>
-                    <span th:text="#{navBar.logout}"></span></a>
-            </li>
-        </ul>
-    </div>
-
-</nav>
-
-<!--
+    </nav>
+    <!--
 JavaScript function to highlight navbar items in different endpoints
 https://stackoverflow.com/questions/49530497/how-do-i-make-bootstrap-navbar-change-active-state
  -->
-<script>
-    $(function () {
-        function stripTrailingSlash(str) {
-            if (str.substr(-1) == '/') {
-                return str.substr(0, str.length - 1);
+    <script>
+        $(function () {
+            function stripTrailingSlash(str) {
+                if (str.substr(-1) == '/') {
+                    return str.substr(0, str.length - 1);
+                }
+                return str;
             }
-            return str;
-        }
 
-        var url = window.location.pathname;
-        var activePage = stripTrailingSlash(url);
+            var url = window.location.pathname;
+            var activePage = stripTrailingSlash(url);
 
-        $('.nav li a').each(function () {
-            var currentPage = stripTrailingSlash($(this).attr('href'));
+            $('.nav li a').each(function () {
+                var currentPage = stripTrailingSlash($(this).attr('href'));
 
-            if (activePage == currentPage) {
-                $(this).parent().addClass('active');
-            }
+                if (activePage == currentPage) {
+                    $(this).parent().addClass('active');
+                }
+            });
         });
-    });
-</script>
+    </script>
+</div>
+
 </body>
 </html>
