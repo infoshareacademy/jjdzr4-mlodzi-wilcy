@@ -1,6 +1,6 @@
 [
   {
-    "id": 4,
+    "id": 8,
     "name": "kakao",
     "sumOfKcalPer100g": 23,
     "sumOfFatPer100g": 23.0,
@@ -9,7 +9,7 @@
     "productsNameList": []
   },
   {
-    "id": 5,
+    "id": 9,
     "name": "aaa",
     "sumOfKcalPer100g": 0,
     "sumOfFatPer100g": 0.0,
@@ -18,7 +18,7 @@
     "productsNameList": []
   },
   {
-    "id": 6,
+    "id": 10,
     "name": "aaaa",
     "sumOfKcalPer100g": 20,
     "sumOfFatPer100g": 20.0,
@@ -27,6 +27,19 @@
     "productsNameList": [
       "kakao",
       "kakao"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "kakao",
+    "sumOfKcalPer100g": 422,
+    "sumOfFatPer100g": 71.0,
+    "sumOfCarbohydratesPer100g": 23.0,
+    "sumOfProteinPer100g": 38.0,
+    "productsNameList": [
+      "kakao",
+      "random",
+      "jjj"
     ]
   }
 ]
