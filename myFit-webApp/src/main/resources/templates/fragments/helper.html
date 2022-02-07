@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
 <body>
-<div th:insert="~{fragments/navBar}"></div>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<!-- https://bootstraptor.com/snippets/bootstrap-snippet-login-form/ -->
+
 <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="min-height: 100vh; background-size: cover; background-image: url(https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1920&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=c0d43804e2c7c93143fe8ff65398c8e9);">
     <div class="container-fluid">
         <div class="row  justify-content-center align-items-center d-flex-row text-center h-100">
             <div class="col-12 col-md-4 col-lg-3   h-50 ">
                 <div class="card shadow">
                     <div class="card-body mx-auto">
-                        <h4 class="card-title mt-3 text-center">Login</h4>
-                        <p class="text-center">Login into your account</p>
+                        <h4 class="card-title mt-3 text-center">Create Account</h4>
+                        <p class="text-center">Get started with your free account</p>
                         <p>
                             <a href="" class="btn btn-block btn-info">
                                 <i class="fab fa-twitter mr-2"></i>Login via Twitter</a>
@@ -27,26 +24,36 @@
                         <p class="text-muted font-weight-bold ">
                             <span>OR</span>
                         </p>
-                        <form th:action="@{/login}" method="post">
-
+                        <form>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                 </div>
-                                <input name="" class="form-control" th:placeholder="#{login.username}" type="text">
+                                <input name="" class="form-control" placeholder="Full name" type="text">
                             </div>
-
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                </div>
+                                <input name="" class="form-control" placeholder="Email address" type="email">
+                            </div>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input class="form-control" th:placeholder="#{login.password}" type="password">
+                                <input class="form-control" placeholder="Create password" type="password">
+                            </div>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input class="form-control" placeholder="Repeat password" type="password">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" th:text="#{login.login}"></button>
+                                <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
                             </div>
-                            <p class="text-center">Don't have an account?
-                                <a th:href="@{/register}">Register</a>
+                            <p class="text-center">Have an account?
+                                <a href="">Log In</a>
                             </p>
                         </form>
                     </div>
@@ -55,17 +62,5 @@
         </div>
     </div>
 </section>
-<!-- OLD VERSION
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
--->
-<div th:insert="~{fragments/footer :: footer}"></div>
-<script th:src="@{/webjars/font-awesome/5.15.4/css/all.min.css}"></script>
-<script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
