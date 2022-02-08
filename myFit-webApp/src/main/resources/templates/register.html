@@ -1,76 +1,122 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
-<section class="vh-100" style="background-color: #eee;">
-    <div th:insert="~{fragments/navBar}"></div>
-    <div class="container-fluid h-25">
-        <div class="row mx-auto align-items-center justify-content-center h-100">
-            <div class="col-lg-12 col-xl-11">
-                        <div class="justify-content-center">
-                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+<div th:insert="~{fragments/navBar}"></div>
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="background-color: #eee;">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 col-md-4 col-lg-3 h-50">
+                <div class="card shadow">
+                    <div class="card-body mx-auto">
+                        <h4 class="card-title mt-3 text-center" th:text="#{register.headLine}"></h4>
+                        <p class="text-center"
+                           th:text="#{register.desc}"></p>
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
-                                   th:text="#{register.headLine}"></p>
-
-                                <form th:object="${user}" th:action="@{/register}" th:method="post"
-                                      class="mx-1 mx-md-4">
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label th:for="username_input" th:text="#{register.username}"
-                                                   class="form-label"> </label>
-                                            <input type="text" id="username_input" th:field="*{username}"
-                                                   class="form-control">
-                                        </div>
-                                    </div>
-                                    <div th:if="${param.error}">
-                                        <p th:text="#{register.exists}"></p>
-                                    </div>
-                                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label th:for="password_input" th:text="#{register.password}"
-                                                   class="form-label"> </label>
-                                            <input type="password" id="password_input" th:field="*{password}"
-                                                   class="form-control ">
-                                        </div>
-                                    </div>
-
-                                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-
-                                    <div class="form-check d-flex justify-content-center mb-5">
-                                        <input
-                                                class="form-check-input me-2"
-                                                type="checkbox"
-                                                value=""
-                                                id="terms-of-service"
-                                        />
-                                        <label class="form-check-label" for="terms-of-service">
-                                            I agree all statements in <a
-                                                href="https://infoshareacademy.com/privacypolicy/"
-                                                class="text-body"><u>Terms of service</u></a>
-                                        </label>
-                                    </div>
-
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit"
-                                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                                                th:text="#{register.button}"></button>
-                                    </div>
-
-                                    <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
-                                            th:href="@{/login}" class="fw-bold text-body"><u>Login here</u></a></p>
-
-                                </form>
+                        <p class="d-grid gap-2">
+                            <a href="" class="btn btn-block btn-primary col-12 mx-auto"
+                               style="background-color: #55acee; border-color:#55acee; col"
+                               role="button">
+                                <i class="fab fa-twitter me-2"></i>
+                                <span th:text="#{register.twitter}"></span>
+                            </a>
+                            <a href="" class="btn btn-block btn-primary col-12"
+                               style="background-color: #3b5998; border-color:#3b5998;"
+                               role="button">
+                                <i class="fab fa-facebook-f me-2"></i>
+                                <span th:text="#{register.fb}"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted font-weight-bold">
+                            <span th:text="#{register.or}"></span>
+                        </p>
+                        <form th:object="${user}"
+                              th:action="@{/register}"
+                              th:method="post"
+                              class="d-grid gap-3">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{register.username}"
+                                       th:field="*{username}"
+                                       type="text"
+                                       name="username"/>
                             </div>
-                        </div>
+                            <!--
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-user"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label th:for="username_input" th:text="#{register.username}"
+                                           class="form-label"> </label>
+                                    <input type="text" id="username_input" th:field="*{username}"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            -->
+                            <div th:if="${param.error}">
+                                <p th:text="#{register.exists}"></p>
+                            </div>
+                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{login.password}"
+                                       th:field="*{password}"
+                                       type="password"
+                                       name="password"/>
+                            </div>
+                            <!--
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label th:for="password_input" th:text="#{register.password}"
+                                           class="form-label"> </label>
+                                    <input type="password" id="password_input" th:field="*{password}"
+                                           class="form-control ">
+                                </div>
+                            </div>
+-->
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                            <div class="form-check d-flex justify-content-center mb-5">
+                                <input
+                                        class="form-check-input me-2"
+                                        type="checkbox"
+                                        value=""
+                                        id="terms-of-service"
+                                />
+                                <label class="form-check-label" for="terms-of-service">
+                                    I agree all statements in <a
+                                        href="https://infoshareacademy.com/privacypolicy/"
+                                        class="text-body"><u>Terms of service</u></a>
+                                </label>
+                            </div>
+
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                        th:text="#{register.button}"></button>
+                            </div>
+
+                            <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                                    th:href="@{/login}" class="fw-bold text-body"><u>Login here</u></a></p>
+
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
 </section>
 <div th:insert="~{fragments/footer :: footer}"></div>
