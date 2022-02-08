@@ -87,12 +87,12 @@
                                                 value="terms-of-use"
                                                 id="terms-of-use"
                                         />
-                                        <span th:text="#{register.termsLink}"></span>
+                                        <span th:text="#{register.termsDesc}"></span>
                                     </label>
                                     <label class="form-check-label" for="terms-of-use">
-                                        <a href="https://infoshareacademy.com/privacypolicy/"
-                                           class="text-body">
-                                            <span th:text="#{register.termsDesc}"></span>
+                                        <a href="https://policies.google.com/terms"
+                                           style="text-decoration:#00838F;">
+                                            <span th:text="#{register.termsLink}"></span>
                                         </a>
                                     </label>
                                 </div>
@@ -103,13 +103,21 @@
                                     <span th:text="#{register.button}"></span>
                                 </button>
                             </div>
-                    </div>
-
-
-                    <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
-                            th:href="@{/login}" class="fw-bold text-body"><u>Login here</u></a></p>
-
+                            <p class="text-center">
+                                <span th:text="#{login.noAccount}"></span>
+                                <a th:href="@{/register}"
+                                   class="link-primary"
+                                   style="text-decoration: none">
+                                    <span th:text="#{login.register}"></span></a>
+                            </p>
                     </form>
+
+                    <p class="text-center text-muted mt-5 mb-0" th:text="#{register.hasAccount}">
+                        <a th:href="@{/login}" class="fw-bold text-body">
+                            <span th:text="#{register.login}"></span>
+                        </a>
+                    </p>
+
                 </div>
             </div>
         </div>
