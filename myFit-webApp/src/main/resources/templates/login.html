@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <title>Spring Security Example </title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
 <div th:insert="~{fragments/navBar}"></div>
 <div th:if="${param.error}">
@@ -11,12 +10,106 @@
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<!-- https://bootstraptor.com/snippets/bootstrap-snippet-login-form/ -->
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark"
+         style="min-height: 100vh;
+                background-size: cover;
+                background-image: url(https://hdwallsource.com/img/2015/11/healthy-food-wallpaper-48530-50138-hd-wallpapers.jpg);">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 col-md-4 col-lg-3 h-50 ">
+                <div class="card shadow">
+                    <div class="card-body mx-auto">
+                        <h4 class="card-title mt-3 text-center" th:text="#{login.login}"></h4>
+                        <p class="text-center" th:text="#{login.loginDesc}"></p>
+                        <p class="d-grid gap-2">
+                            <a href="" class="btn btn-block btn-primary col-12 mx-auto"
+                               style="background-color: #55acee; border-color:#55acee; col"
+                               role="button">
+                                <i class="fab fa-twitter me-2"></i>
+                                <span th:text="#{login.loginTwitter}"></span>
+                            </a>
+                            <a href="" class="btn btn-block btn-primary col-12"
+                               style="background-color: #3b5998; border-color:#3b5998;"
+                               role="button">
+                                <i class="fab fa-facebook-f me-2"></i>
+                                <span th:text="#{login.loginFb}"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted font-weight-bold">
+                            <span th:text="#{login.or}"></span>
+                        </p>
+                        <form th:action="@{/login}" method="post" class="d-grid gap-3">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{login.username}"
+                                       type="text"
+                                       name="username"/>
+                            </div>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{login.password}"
+                                       type="password"
+                                       name="password"/>
+                            </div>
+                            <div class="row">
+                                <div class="checkbox col-auto">
+                                    <label>
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               value="remember-me">
+                                        <span th:text="#{login.remember}"></span>
+                                    </label>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#"
+                                       style="text-decoration: none"
+                                       class="text-muted">
+                                        <span th:text="#{login.forgot}"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block col-12">
+                                    <span th:text="#{login.login}"></span>
+                                </button>
+                            </div>
+                            <p class="text-center text-muted">
+                                <span th:text="#{login.noAccount}"></span>
+                                <a th:href="@{/register}"
+                                   class="link-primary"
+                                   style="text-decoration: none">
+                                    <span th:text="#{login.register}"></span></a>
+                            </p>
+                        </form>
+                        <a href="https://policies.google.com/terms"
+                           class="small text-muted me-1"
+                           style="text-decoration: none">
+                            <span th:text="#{login.termsOfUse}"></span></a>
 
-<div th:insert="~{fragments/footer :: footer}"></div>
+                        <a href="https://infoshareacademy.com/privacypolicy/"
+                           class="small text-muted ms-1"
+                           style="text-decoration: none">
+                            <span th:text="#{login.privacyPolicy}"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
 </html>

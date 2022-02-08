@@ -1,30 +1,125 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="#{register.title}"></title>
-    <meta charset="UTF-8">
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
-<div th:if="${param.error}">
-    Username already exists.
-</div>
 <div th:insert="~{fragments/navBar}"></div>
-<div style="text-align: center">
-    <h1 th:text="#{register.headLine}"></h1>
-    <form th:object="${user}" th:action="@{/register}" th:method="post">
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-secondary"
+         style="min-height: 100vh;
+                background-size: cover;
+                background-image: url(https://idowaz.com/blog/wp-content/uploads/2021/10/Healthy-Food-Doesnt-Have-To-Be-Expensive.jpg);">>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 col-md-4 col-lg-3 h-50">
+                <div class="card shadow">
+                    <div class="card-body mx-auto">
+                        <h4 class="card-title mt-3 text-center" th:text="#{register.headLine}"></h4>
+                        <p class="text-center"
+                           th:text="#{register.desc}"></p>
 
-        <label th:for="username_input" th:text="#{register.username}"> </label><br>
-        <input type="text" id="username_input" th:field="*{username}"><br>
-        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br>
+                        <p class="d-grid gap-2">
+                            <a href="" class="btn btn-block btn-primary col-12 mx-auto"
+                               style="background-color: #55acee; border-color:#55acee; col"
+                               role="button">
+                                <i class="fab fa-twitter me-2"></i>
+                                <span th:text="#{register.twitter}"></span>
+                            </a>
+                            <a href="" class="btn btn-block btn-primary col-12"
+                               style="background-color: #3b5998; border-color:#3b5998;"
+                               role="button">
+                                <i class="fab fa-facebook-f me-2"></i>
+                                <span th:text="#{register.fb}"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted font-weight-bold">
+                            <span th:text="#{register.or}"></span>
+                        </p>
+                        <form th:object="${user}"
+                              th:action="@{/register}"
+                              th:method="post"
+                              class="d-grid gap-3">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{register.username}"
+                                       th:field="*{username}"
+                                       type="text"
+                                       name="username"/>
+                            </div>
+                            <div th:if="${param.error}">
+                                <p th:text="#{register.exists}"></p>
+                            </div>
+                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 
-        <label th:for="password_input" th:text="#{register.password}"> </label><br>
-        <input type="password" id="password_input" th:field="*{password}"><br>
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{register.password}"
+                                       th:field="*{password}"
+                                       type="password"
+                                       name="password"/>
+                            </div>
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
-        <button type="submit" th:text="#{register.button}"> </button>
-
-    </form>
-</div>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control"
+                                       th:placeholder="#{register.repeatPassword}"
+                                       th:field="*{password}"
+                                       type="password"
+                                       name="password"/>
+                            </div>
+                            <div class="row">
+                                <div class="checkbox col-form-label">
+                                    <label>
+                                        <input class="form-check-input me-2"
+                                               type="checkbox"
+                                               value="terms-of-use"
+                                               id="terms-of-use"
+                                        />
+                                        <span th:text="#{register.termsDesc}"></span>
+                                    </label>
+                                    <label class="form-check-label" for="terms-of-use">
+                                        <a href="https://policies.google.com/terms"
+                                           style="text-decoration:#00838F;">
+                                            <span th:text="#{register.termsLink}"></span>
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"
+                                        class="btn btn-primary btn-block col-12">
+                                    <span th:text="#{register.button}"></span>
+                                </button>
+                            </div>
+                            <p class="text-center text-muted">
+                                <span th:text="#{register.hasAccount}"></span>
+                                <a th:href="@{/login}"
+                                   class="link-primary"
+                                   style="text-decoration: none">
+                                    <span th:text="#{register.login}"></span></a>
+                            </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
