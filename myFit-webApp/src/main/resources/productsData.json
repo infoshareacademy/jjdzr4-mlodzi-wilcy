@@ -1,7 +1,15 @@
 [
   {
-    "id": 3,
+    "id": 4,
     "name": "11",
+    "kcalPer100g": 0,
+    "fatPer100g": 0.0,
+    "carbohydratesPer100g": 0.0,
+    "proteinPer100g": 0.0
+  },
+  {
+    "id": 6,
+    "name": "kaako",
     "kcalPer100g": 0,
     "fatPer100g": 0.0,
     "carbohydratesPer100g": 0.0,

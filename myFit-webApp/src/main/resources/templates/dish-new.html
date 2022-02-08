@@ -1,52 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
-<div style="text-align: center">
-    <h1 th:text="#{addDishPage.headLine}"></h1>
-    <form th:object="${dishDto}" th:action="@{/dishes/user/dish/new}" th:method="post">
+<div th:insert="~{fragments/navBar}"></div>
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-light"
+         style="min-height: 50vh;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 ">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-center"
+                            th:text="#{addDishPage.headLine}">
+                        </h3>
+                        <form th:object="${dishDto}" th:action="@{/dishes/user/dish/new}" th:method="post">
+                            <label
+                                    th:for="name_input"
+                                    th:text="#{dish.name}"></label>
+                            <input type="text" id="name_input" th:field="*{name}">
+                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 
-
-        <label th:for="name_input" th:text="#{dish.name}"> </label><br>
-        <input type="text" id="name_input" th:field="*{name}"><br>
-        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
-
-        <table>
-            <thead>
-            <tr>
-                <th th:text="#{addDishPage.row}"></th>
-                <th th:text="#{addDishPage.product}"></th>
-                <th th:text="#{addDishPage.numberOfProducts}"></th>
-                <th>
-                    <button type="submit" name="addRow" th:text="#{addDishPage.addRow}"></button>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="row,rowStat : *{rows}">
-                <td th:text="${rowStat.count}">1</td>
-                <td>
-                    <select th:field="*{rows[__${rowStat.index}__].product}">
-                        <option th:each="var : ${allProducts}"
-                                th:value="${var}"
-                                th:text="${var}">Product name</option>
-                    </select>
-                </td>
-<!--                <td>-->
-<!--                    <input type="text" th:field="*{rows[__${rowStat.index}__].amount}" />-->
-<!--                </td>-->
-                <td>
-                    <button type="submit" name="removeRow" th:value="${rowStat.index}" th:text="#{addDishPage.removeRow}"></button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <button type="submit" th:text="#{addDishPage.submit}"></button>
-
-    </form>
-
-</div>
+                            <table class="table table-striped table-hover">
+                                <caption th:text="#{addDishPage.tableDesc}"></caption>
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" th:text="#{addDishPage.row}"></th>
+                                    <th scope="col" th:text="#{addDishPage.product}"></th>
+                                    <th scope="col" th:text="#{addDishPage.numberOfProducts}"></th>
+                                    <th scope="col">
+                                        <button class="button-success"
+                                                type="submit"
+                                                name="addRow"
+                                                th:text="#{addDishPage.addRow}">
+                                        </button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="row,rowStat : *{rows}">
+                                    <th th:text="${rowStat.count}" scope="row">1</th>
+                                    <td>
+                                        <select th:field="*{rows[__${rowStat.index}__].product}">
+                                            <option th:each="var : ${allProducts}"
+                                                    th:value="${var}"
+                                                    th:text="${var}">Product name
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <!--                <td>-->
+                                    <!--                    <input type="text" th:field="*{rows[__${rowStat.index}__].amount}" />-->
+                                    <!--                </td>-->
+                                    <td>
+                                        <button type="submit" name="removeRow" th:value="${rowStat.index}"
+                                                th:text="#{addDishPage.removeRow}"></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button type="submit" th:text="#{addDishPage.submit}"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>
