@@ -81,11 +81,10 @@
                             <div class="row">
                                 <div class="checkbox col-form-label">
                                     <label>
-                                        <input
-                                                class="form-check-input me-2"
-                                                type="checkbox"
-                                                value="terms-of-use"
-                                                id="terms-of-use"
+                                        <input class="form-check-input me-2"
+                                               type="checkbox"
+                                               value="terms-of-use"
+                                               id="terms-of-use"
                                         />
                                         <span th:text="#{register.termsDesc}"></span>
                                     </label>
@@ -103,21 +102,14 @@
                                     <span th:text="#{register.button}"></span>
                                 </button>
                             </div>
-                            <p class="text-center">
-                                <span th:text="#{login.noAccount}"></span>
-                                <a th:href="@{/register}"
+                            <p class="text-center text-muted">
+                                <span th:text="#{register.hasAccount}"></span>
+                                <a th:href="@{/login}"
                                    class="link-primary"
                                    style="text-decoration: none">
-                                    <span th:text="#{login.register}"></span></a>
+                                    <span th:text="#{register.login}"></span></a>
                             </p>
                     </form>
-
-                    <p class="text-center text-muted mt-5 mb-0" th:text="#{register.hasAccount}">
-                        <a th:href="@{/login}" class="fw-bold text-body">
-                            <span th:text="#{register.login}"></span>
-                        </a>
-                    </p>
-
                 </div>
             </div>
         </div>
