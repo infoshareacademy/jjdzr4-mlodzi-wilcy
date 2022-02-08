@@ -90,10 +90,14 @@
                                     <span th:text="#{login.register}"></span></a>
                             </p>
                         </form>
-                        <a href="#!" class="small text-muted me-1" style="text-decoration: none">
+                        <a href="#!"
+                           class="small text-muted me-1"
+                           style="text-decoration: none">
                             <span th:text="#{login.termsOfUse}"></span></a>
 
-                        <a href="#!" class="small text-muted ms-1" style="text-decoration: none">
+                        <a href="https://infoshareacademy.com/privacypolicy/"
+                           class="small text-muted ms-1"
+                           style="text-decoration: none">
                             <span th:text="#{login.privacyPolicy}"></span>
                         </a>
                     </div>
@@ -102,16 +106,8 @@
         </div>
     </div>
 </section>
-<!-- OLD VERSION
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
--->
 <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
-
 </body>
 </html>
