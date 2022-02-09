@@ -11,7 +11,7 @@
             <div class="col-12">
                 <div class="card shadow">
                     <h3 class="card-header text-center m-4"
-                        style="background-color: antiquewhite"
+                        style="background-color: #f0fff0"
                         th:text="#{addDish.headLine}">
                     </h3>
                     <div class="card-body mx-4">
@@ -43,14 +43,14 @@
                                      th:errors="*{name}"></div>
                             </div>
                             <div>
-                                <table class="table table-hover table-bordered">
+                                <table class="table table-hover table-bordered caption-top">
                                     <caption th:text="#{addDish.tableDesc}"></caption>
                                     <thead class="thead-dark">
-                                    <tr >
-                                        <th scope="col" th:text="#{addDish.row}"></th>
-                                        <th scope="col" th:text="#{addDish.product}"></th>
-                                        <th scope="col" th:text="#{addDish.numberOfProducts}"></th>
-                                        <th scope="col">
+                                    <tr>
+                                        <th class="col-sm-1 align-middle" th:text="#{addDish.row}"></th>
+                                        <th class="col-sm-4" th:text="#{addDish.product}"></th>
+                                        <th class="col-sm-2" th:text="#{addDish.numberOfProducts}"></th>
+                                        <th class="col-sm-5">
                                             <button class="btn btn-outline-success"
                                                     type="submit"
                                                     name="addRow"
@@ -59,11 +59,14 @@
                                         </th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody >
                                     <tr th:each="row,rowStat : *{rows}">
-                                        <th th:text="${rowStat.count}" scope="row">1</th>
+                                        <th th:text="${rowStat.count}"
+                                            scope="row"
+                                            class="text-secondary align-middle" ></th>
                                         <td>
-                                            <select th:field="*{rows[__${rowStat.index}__].product}">
+                                            <select  class="form-select"
+                                                     th:field="*{rows[__${rowStat.index}__].product}">
                                                 <option th:each="var : ${allProducts}"
                                                         th:value="${var}"
                                                         th:text="${var}">
@@ -71,14 +74,24 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" th:field="*{rows[__${rowStat.index}__].amount}"/>
+                                            <input class="form-control" type="text" th:field="*{rows[__${rowStat.index}__].amount}"/>
                                         </td>
-                                        <td>
+                                        <td >
+                                            <div >
+                                                <button class="btn btn-outline-success"
+                                                        type="submit"
+                                                        name="addRow"
+                                                        th:text="#{addDish.addRow}">
+                                                </button>
+                                            </div>
+                                            <div class="m-2">
                                             <button class="btn btn-outline-danger"
                                                     type="submit"
                                                     name="removeRow"
                                                     th:value="${rowStat.index}"
                                                     th:text="#{addDish.removeRow}"></button>
+                                            </div>
+
                                         </td>
                                     </tr>
                                     </tbody>
