@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"> </head>
+<body>
+<div th:insert="~{fragments/navBar}"></div>
+<div sec:authorize="isAuthenticated()">
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<h3>Change account settings:</h3>
+
+</div>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>
