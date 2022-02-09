@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments/header :: header"></head>
 <body>
+
 <div th:insert="~{fragments/navBar}"></div>
 <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-light"
          style="min-height: 50vh;">
@@ -47,15 +48,17 @@
                                     <caption th:text="#{addDish.tableDesc}"></caption>
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th class="col-sm-1 align-middle" th:text="#{addDish.row}"></th>
-                                        <th class="col-sm-4" th:text="#{addDish.product}"></th>
-                                        <th class="col-sm-2" th:text="#{addDish.numberOfProducts}"></th>
-                                        <th class="col-sm-5">
+                                        <th class="col-sm-2 align-middle" th:text="#{addDish.row}"></th>
+                                        <th class="col-sm-4 align-middle" th:text="#{addDish.product}"></th>
+                                        <th class="col-sm-3 align-middle" th:text="#{addDish.numberOfProducts}"></th>
+                                        <th class="col-sm-3 align-middle">
                                             <button class="btn btn-outline-success"
                                                     type="submit"
                                                     name="addRow"
                                                     th:text="#{addDish.addRow}">
+                                                <span class="fa-solid fa-circle-plus"></span>
                                             </button>
+                                            <span class="fa-solid fa-circle-plus"></span>
                                         </th>
                                     </tr>
                                     </thead>
@@ -64,7 +67,7 @@
                                         <th th:text="${rowStat.count}"
                                             scope="row"
                                             class="text-secondary align-middle" ></th>
-                                        <td>
+                                        <td class="align-middle">
                                             <select  class="form-select"
                                                      th:field="*{rows[__${rowStat.index}__].product}">
                                                 <option th:each="var : ${allProducts}"
@@ -73,25 +76,28 @@
                                                 </option>
                                             </select>
                                         </td>
-                                        <td>
+                                        <td class="align-middle">
                                             <input class="form-control" type="text" th:field="*{rows[__${rowStat.index}__].amount}"/>
                                         </td>
-                                        <td >
-                                            <div >
+                                        <td class="align-middle">
+                                            <div class="container">
+                                            <div class="row">
+                                            <div class="col-sm">
                                                 <button class="btn btn-outline-success"
                                                         type="submit"
                                                         name="addRow"
                                                         th:text="#{addDish.addRow}">
                                                 </button>
                                             </div>
-                                            <div class="m-2">
+                                            <div class="col-sm">
                                             <button class="btn btn-outline-danger"
                                                     type="submit"
                                                     name="removeRow"
                                                     th:value="${rowStat.index}"
                                                     th:text="#{addDish.removeRow}"></button>
                                             </div>
-
+                                            </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
