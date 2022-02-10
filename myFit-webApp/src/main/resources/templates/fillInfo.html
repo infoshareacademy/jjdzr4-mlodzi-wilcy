@@ -1,58 +1,121 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
 <div th:insert="~{fragments/navBar}"></div>
-<div style="text-align: center">
-    <h1 th:text="#{fillInfo.headLine}"></h1>
-    <form th:object="${user}" th:action="@{fillInfo}" th:method="post">
 
-        <label th:for="name_input" th:text="#{user.name}"> </label><br>
-        <input type="text" id="name_input" th:field="*{name}"><br>
-        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
+<section class="py-5 mt-0 align-items-center d-flex bg-light"
+         style="min-height: 50vh;">
+    <div class="container w-50">
+        <div class="d-flex justify-content-center">
+            <div class="card shadow">
+                <h1 class="card-header text-center m-4" th:text="#{fillInfo.headLine}"></h1>
+                <div class="card-body mx-4">
+                    <form class="form-group needs-validation"
+                          th:object="${user}"
+                          th:action="@{fillInfo}"
+                          th:method="post">
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label class="col-form-label"
+                                       for="name_input"
+                                       th:text="#{user.name}">
+                                </label>
+                                <input class="form-control"
+                                       type="text"
+                                       id="name_input"
+                                       th:field="*{name}">
+                                <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}"
+                                     th:errors="*{name}"></div>
+                            </div>
+                            <div class="col-6">
+                                <label class="col-form-label"
+                                       for="lastName_input"
+                                       th:text="#{user.lastName}">
+                                </label>
+                                <input class="form-control"
+                                       type="text"
+                                       id="lastName_input"/>
+                            </div>
+                        </div>
 
-        <label th:for="gender_input" th:text="#{user.gender}"> </label><br>
-        <select th:name="gender_input" th:field="*{gender}">
-            <option th:value="#{user.value.gender.male}" th:text="#{user.value.gender.male}"></option>
-            <option th:value="#{user.value.gender.female}" th:text="#{user.value.gender.female}"></option>
-        </select>
-        <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div><br>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label th:for="age_input" th:text="#{user.age}"> </label>
+                                <input type="number" id="age_input" th:field="*{age}">
+                                <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}"
+                                     th:errors="*{age}"></div>
+                            </div>
+                            <div class="col-6">
+                                <label th:for="gender_input" th:text="#{user.gender}"> </label>
+                                <select th:name="gender_input" th:field="*{gender}">
+                                    <option th:value="#{user.value.gender.male}"
+                                            th:text="#{user.value.gender.male}"></option>
+                                    <option th:value="#{user.value.gender.female}"
+                                            th:text="#{user.value.gender.female}"></option>
+                                </select>
+                                <div class="alert alert-danger" th:if="${#fields.hasErrors('gender')}"
+                                     th:errors="*{gender}"></div>
+                            </div>
+                        </div>
 
-        <label th:for="age_input" th:text="#{user.age}"> </label><br>
-        <input type="number" id="age_input" th:field="*{age}"><br>
-        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label th:for="weight_input" th:text="#{user.weight}"> </label>
+                                <input type="number" id="weight_input" th:field="*{weight}">
+                                <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
+                            </div>
+                            <div class="col-6">
+                                <label th:for="height_input" th:text="#{user.height}"> </label>
+                                <input type="number" id="height_input" th:field="*{height}">
+                                <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div>
+                            </div>
+                        </div>
 
-        <label th:for="weight_input" th:text="#{user.weight}"> </label><br>
-        <input type="number" id="weight_input" th:field="*{weight}"><br>
-        <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div><br>
-
-        <label th:for="height_input" th:text="#{user.height}"> </label><br>
-        <input type="number" id="height_input" th:field="*{height}"><br>
-        <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div><br>
-
-        <label th:for="levelOfJobActivity_input" th:text="#{user.levelOfJobActivity}" ></label><br>
-        <select th:name="levelOfJobActivity_input" th:field="*{levelOfJobActivity}">
-            <option th:value="#{user.value.activityLevel.high}" th:text="#{user.value.activityLevel.high}"></option>
-            <option th:value="#{user.value.activityLevel.medium}" th:text="#{user.value.activityLevel.medium}"></option>
-            <option th:value="#{user.value.activityLevel.low}" th:text="#{user.value.activityLevel.low}"></option>
-        </select>
-        <div th:if="${#fields.hasErrors('levelOfJobActivity')}" th:errors="*{levelOfJobActivity}"></div><br>
-
-        <label th:for="levelOfPrivateActivity_input" th:text="#{user.levelOfPrivateActivity}" ></label><br>
-        <select th:name="levelOfPrivateActivity_input" th:field="*{levelOfPrivateActivity}">
-            <option th:value="#{user.value.activityLevel.high}" th:text="#{user.value.activityLevel.high}"></option>
-            <option th:value="#{user.value.activityLevel.medium}" th:text="#{user.value.activityLevel.medium}"></option>
-            <option th:value="#{user.value.activityLevel.low}" th:text="#{user.value.activityLevel.low}"></option>
-        </select>
-        <div th:if="${#fields.hasErrors('levelOfPrivateActivity')}" th:errors="*{levelOfPrivateActivity}"></div><br>
-
-        <label th:for="weightGoal_input" th:text="#{user.weightGoal}" ></label><br>
-        <input type="number" id="weightGoal_input" th:field="*{weightGoal}"><br>
-        <div th:if="${#fields.hasErrors('weightGoal')}" th:errors="*{weightGoal}"></div><br>
-        <br>
-        <button type="submit" th:text="#{user.button}"> </button>
-
-    </form>
-</div>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label th:for="levelOfJobActivity_input" th:text="#{user.levelOfJobActivity}"></label>
+                                <select th:name="levelOfJobActivity_input" th:field="*{levelOfJobActivity}">
+                                    <option th:value="#{user.value.activityLevel.high}"
+                                            th:text="#{user.value.activityLevel.high}"></option>
+                                    <option th:value="#{user.value.activityLevel.medium}"
+                                            th:text="#{user.value.activityLevel.medium}"></option>
+                                    <option th:value="#{user.value.activityLevel.low}"
+                                            th:text="#{user.value.activityLevel.low}"></option>
+                                    <div th:if="${#fields.hasErrors('levelOfJobActivity')}"
+                                         th:errors="*{levelOfJobActivity}"></div>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label th:for="levelOfPrivateActivity_input"
+                                       th:text="#{user.levelOfPrivateActivity}"></label>
+                                <select th:name="levelOfPrivateActivity_input" th:field="*{levelOfPrivateActivity}">
+                                    <option th:value="#{user.value.activityLevel.high}"
+                                            th:text="#{user.value.activityLevel.high}"></option>
+                                    <option th:value="#{user.value.activityLevel.medium}"
+                                            th:text="#{user.value.activityLevel.medium}"></option>
+                                    <option th:value="#{user.value.activityLevel.low}"
+                                            th:text="#{user.value.activityLevel.low}"></option>
+                                </select>
+                                <div th:if="${#fields.hasErrors('levelOfPrivateActivity')}"
+                                     th:errors="*{levelOfPrivateActivity}"></div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label th:for="weightGoal_input" th:text="#{user.weightGoal}"></label>
+                            <input type="number" id="weightGoal_input" th:field="*{weightGoal}"><br>
+                            <div th:if="${#fields.hasErrors('weightGoal')}" th:errors="*{weightGoal}"></div>
+                        </div>
+                        <div class="row">
+                            <button class="btn-outline-success" type="submit" th:text="#{user.button}"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
