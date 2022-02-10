@@ -50,10 +50,8 @@
                                        type="text"
                                        name="username"/>
                             </div>
-                            <div th:if="${param.error}">
-                                <p th:text="#{register.exists}"></p>
-                            </div>
-                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                            <div class="alert alert-danger" th:if="${param.error}" th:text="#{register.exists}"></div>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:text="#{register.empty}"></div>
 
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -67,7 +65,7 @@
                                        type="password"
                                        name="password"/>
                             </div>
-                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></div>
 
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -88,10 +86,11 @@
                                                type="checkbox"
                                                value="terms-of-use"
                                                id="terms-of-use"
+                                               required
                                         />
                                         <span th:text="#{register.termsDesc}"></span>
                                     </label>
-                                    <label class="form-check-label" for="terms-of-use">
+                                    <label class="form-check-label" for="terms-of-use" >
                                         <a href="https://policies.google.com/terms"
                                            style="text-decoration:#00838F;">
                                             <span th:text="#{register.termsLink}"></span>
