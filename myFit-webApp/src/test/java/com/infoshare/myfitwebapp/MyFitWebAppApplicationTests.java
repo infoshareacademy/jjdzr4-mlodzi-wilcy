@@ -21,16 +21,27 @@ class MyFitWebAppApplicationTests {
 
     @Test
     void shouldReturnPPM() {
-
         User user = new User();
         user.setAge(15);
         user.setHeight(167);
         user.setWeight(90);
-        user.setGender("male");
-
+        user.setGender("Male");
 
         Assertions.assertThat(cpmService.calculateBasalMetabolicRate(user)).isEqualTo(1873.75);
 
+    }
+    @Test
+    void shouldReturnCPM() {
+        User user = new User();
+        user.setAge(15);
+        user.setHeight(167);
+        user.setWeight(90);
+        user.setGender("Male");
+        user.setLevelOfJobActivity("Low");
+        user.setLevelOfPrivateActivity("Medium");
+        user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
+
+        Assertions.assertThat(cpmService.calculateCompleteMetabolism(user)).isEqualTo(2998.0);
     }
 
 }

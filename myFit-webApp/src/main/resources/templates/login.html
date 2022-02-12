@@ -4,22 +4,25 @@
 <head th:replace="fragments/header :: header"></head>
 <body>
 <div th:insert="~{fragments/navBar}"></div>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
+
 <!-- https://bootstraptor.com/snippets/bootstrap-snippet-login-form/ -->
-<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark"
-         style="min-height: 100vh;
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-light"
+         style="min-height: 94vh;
                 background-size: cover;
                 background-image: url(https://hdwallsource.com/img/2015/11/healthy-food-wallpaper-48530-50138-hd-wallpapers.jpg);">
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
-            <div class="col-12 col-md-4 col-lg-3 h-50 ">
+            <div class="col-12 col-md-4 col-lg-3 h-100">
                 <div class="card shadow">
                     <div class="card-body mx-auto">
+
+                        <div class="alert alert-danger" th:if="${param.error}">
+                            Invalid username and password.
+                        </div>
+
+                        <div class="alert alert-info" th:if="${param.logout}">
+                            You have been logged out.
+                        </div>
                         <h4 class="card-title mt-3 text-center" th:text="#{login.login}"></h4>
                         <p class="text-center" th:text="#{login.loginDesc}"></p>
                         <p class="d-grid gap-2">
@@ -39,7 +42,7 @@
                         <p class="text-muted font-weight-bold">
                             <span th:text="#{login.or}"></span>
                         </p>
-                        <form th:action="@{/login}" method="post" class="d-grid gap-3">
+                        <form th:action="@{/login}" th:method="post" class="d-grid gap-3">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text h-100">
