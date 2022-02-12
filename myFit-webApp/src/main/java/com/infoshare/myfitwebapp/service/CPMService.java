@@ -1,7 +1,6 @@
 package com.infoshare.myfitwebapp.service;
 
 import com.infoshare.myfitwebapp.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,25 +32,49 @@ public class CPMService {
 
     public double calculateCompleteMetabolism(User user) {
         double CompleteMetabolism;
-        if (user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY)) {
+        if (isFirstLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * FIRST_LEVEL_OF_ACTIVITY;
-        } else if ((user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY)) ||
-                (user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY))) {
+        } else if (isSecondLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * SECOND_LEVEL_OF_ACTIVITY;
-        } else if ((user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) ||
-                (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY))) {
+        } else if (isThirdLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * THIRD_LEVEL_OF_ACTIVITY;
-        } else if ((user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) ||
-                (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY))) {
+        } else if (isFifthLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * FIFTH_LEVEL_OF_ACTIVITY;
-        } else if (user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY)) {
+        } else if (isFourthLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * FOURTH_LEVEL_OF_ACTIVITY;
-        } else if (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) {
+        } else if (isSixthLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * SIXTH_LEVEL_OF_ACTIVITY;
         } else {
             CompleteMetabolism = 0;
         }
         return CompleteMetabolism;
+    }
+
+    private boolean isSixthLevelOfActivity(User user) {
+        return user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY);
+    }
+
+    private boolean isFifthLevelOfActivity(User user) {
+        return (user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) ||
+                (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY));
+    }
+
+    private boolean isFourthLevelOfActivity(User user) {
+        return user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY);
+    }
+
+    private boolean isThirdLevelOfActivity(User user) {
+        return (user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) ||
+                (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY));
+    }
+
+    private boolean isSecondLevelOfActivity(User user) {
+        return (user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY)) ||
+                (user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY));
+    }
+
+    private boolean isFirstLevelOfActivity(User user) {
+        return user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY);
     }
 
 }
