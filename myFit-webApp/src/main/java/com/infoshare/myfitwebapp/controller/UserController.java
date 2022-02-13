@@ -3,7 +3,7 @@ package com.infoshare.myfitwebapp.controller;
 import com.infoshare.myfitwebapp.model.User;
 import com.infoshare.myfitwebapp.model.UserLogin;
 import com.infoshare.myfitwebapp.service.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping("/edit")
     public String getUpdate(Authentication authentication, Model model) {
         if (authentication != null) {
-            UserLogin userLogin = userService.load(authentication.name());
+            UserLogin userLogin = userService.load(authentication.getName());
             User user = userLogin.getUser();
             model.addAttribute("user", user);
         }
