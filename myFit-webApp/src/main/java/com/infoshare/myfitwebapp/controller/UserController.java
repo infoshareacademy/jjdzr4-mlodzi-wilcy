@@ -6,9 +6,7 @@ import com.infoshare.myfitwebapp.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -41,4 +39,19 @@ public class UserController {
         return "user-edit";
     }
 
+    @GetMapping("/edit-user-form")
+    public String getUpdateUserForm(Authentication authentication) {
+        return "user-edit";
     }
+
+    @PostMapping(value = "/edit-user-form", params = "update")
+    public String updateUser(Authentication authentication, @ModelAttribute("user") User user) {
+        if (authentication != null) {
+            UserLogin userLogin = userService.load(authentication.getName());
+            user = userLogin.getUser();
+            userLogin.setUser(user);
+            userService.save(userLogin);
+        }
+        return "redirect:/";
+    }
+}

@@ -9,10 +9,11 @@
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
         <h3>Change account settings:</h3>
 
-        <form th:action="@{/edit-user-form}" th:object="${user}">
+        <form th:action="@{edit-user-form}" th:object="${user}" th:method="post">
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label" th:text="#{user.name}"></label>
                 <div class="col-sm-10">
+                    <input type="hidden" name="_method" th:value="put"/>
                     <input type="text" class="form-control" id="name" th:field="*{name}">
                 </div>
             </div>
@@ -21,12 +22,12 @@
                     <legend class="col-form-label col-sm-2 pt-0" th:text="#{user.gender}"></legend>
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="female" th:value="female"
+                            <input class="form-check-input" type="radio" name="gridRadios" id="female" th:value='female'
                                    th:checked="${user.gender == 'female'}">
                             <label class="form-check-label" for="female" th:text="Female"></label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="male" th:value="male"
+                            <input class="form-check-input" type="radio" name="gridRadios" id="male" th:value='male'
                                    th:checked="${user.gender == 'male'}">
                             <label class="form-check-label" for="male" th:text="Male"></label>
                         </div>
@@ -81,7 +82,7 @@
 
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary" th:text="#{user.button}"></button>
+                    <button type="submit" name="update" class="btn btn-primary" th:text="#{user.button}"></button>
                 </div>
             </div>
         </form>
