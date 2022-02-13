@@ -38,7 +38,7 @@ public class DishController {
         return new ResponseEntity<>(dishService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/user/dish/new")
+    @PostMapping("/new")
     public String addProduct(@Valid final DishDto dishDto, Errors errors) {
         if (errors.hasErrors()) {
             return "dish-new";
@@ -55,13 +55,13 @@ public class DishController {
         return "dish-new";
     }
 
-    @RequestMapping(value="/user/dish/new", params={"addRow"})
+    @RequestMapping(value="/new", params={"addRow"})
     public String addRow(final DishDto dishDto, final BindingResult bindingResult) {
         dishDto.addRow(new ProductRow());
         return "dish-new";
     }
 
-    @RequestMapping(value="/user/dish/new", params={"removeRow"})
+    @RequestMapping(value="/new", params={"removeRow"})
     public String removeRow(final DishDto dishDto, final BindingResult bindingResult, final HttpServletRequest req) {
         final int rowId = Integer.parseInt(req.getParameter("removeRow"));
         dishDto.removeRow(rowId);

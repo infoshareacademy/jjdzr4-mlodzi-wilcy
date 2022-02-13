@@ -1,52 +1,129 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
-<div style="text-align: center">
-    <h1 th:text="#{addDishPage.headLine}"></h1>
-    <form th:object="${dishDto}" th:action="@{/dishes/user/dish/new}" th:method="post">
 
-
-        <label th:for="name_input" th:text="#{dish.name}"> </label><br>
-        <input type="text" id="name_input" th:field="*{name}"><br>
-        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
-
-        <table>
-            <thead>
-            <tr>
-                <th th:text="#{addDishPage.row}"></th>
-                <th th:text="#{addDishPage.product}"></th>
-                <th th:text="#{addDishPage.numberOfProducts}"></th>
-                <th>
-                    <button type="submit" name="addRow" th:text="#{addDishPage.addRow}"></button>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="row,rowStat : *{rows}">
-                <td th:text="${rowStat.count}">1</td>
-                <td>
-                    <select th:field="*{rows[__${rowStat.index}__].product}">
-                        <option th:each="var : ${allProducts}"
-                                th:value="${var}"
-                                th:text="${var}">Product name</option>
-                    </select>
-                </td>
-<!--                <td>-->
-<!--                    <input type="text" th:field="*{rows[__${rowStat.index}__].amount}" />-->
-<!--                </td>-->
-                <td>
-                    <button type="submit" name="removeRow" th:value="${rowStat.index}" th:text="#{addDishPage.removeRow}"></button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <button type="submit" th:text="#{addDishPage.submit}"></button>
-
-    </form>
-
-</div>
+<div th:insert="~{fragments/navBar}"></div>
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-light"
+         style="min-height: 50vh;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12">
+                <div class="card shadow">
+                    <h3 class="card-header text-center m-4"
+                        th:text="#{addDish.headLine}">
+                    </h3>
+                    <div class="card-body mx-4">
+                        <form class="d-grid gap-4"
+                              th:object="${dishDto}"
+                              th:action="@{/dishes/new}"
+                              th:method="post">
+                            <div class="row g-3 form-group input-group align-items-center ">
+                                <div class="col-auto">
+                                    <label for="name_input"
+                                           class="col-form-label">
+                                        <i th:text="#{dish.name}"></i>
+                                    </span>
+                                </div>
+                                <div class="col-auto">
+                                <input class="form-control "
+                                       type="text"
+                                       id="name_input"
+                                       aria-describedby="nameHelpInline"
+                                       th:field="*{name}">
+                                </div>
+                                <div class="col-auto">
+                                     <span id="nameHelpInline"
+                                           class="form-text"
+                                           th:text="#{addDish.nameHelpline}">
+                                        </span>
+                                </div>
+                                <div th:if="${#fields.hasErrors('name')}"
+                                     th:errors="*{name}"></div>
+                            </div>
+                            <div>
+                                <table class="table table-hover table-bordered caption-top">
+                                    <caption th:text="#{addDish.tableDesc}"></caption>
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th class="col-sm-1 align-middle" th:text="#{addDish.row}"></th>
+                                        <th class="col-sm-3 align-middle" th:text="#{addDish.product}"></th>
+                                        <th class="col-sm-2 align-middle" th:text="#{addDish.numberOfProducts}"></th>
+                                        <th class="col-sm-2 align-middle" th:text="#{addDish.unit}"></th>
+                                        <th class="col-sm-3 align-middle">
+                                            <button class="btn btn-outline-success"
+                                                    type="submit"
+                                                    name="addRow">
+                                                <i class="fa fa-plus"></i>
+                                                <span th:text="#{addDish.addRow}"></span>
+                                            </button>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <tr th:each="row,rowStat : *{rows}">
+                                        <th th:text="${rowStat.count}"
+                                            scope="row"
+                                            class="text-secondary align-middle" ></th>
+                                        <td class="align-middle">
+                                            <select  class="form-select"
+                                                     th:field="*{rows[__${rowStat.index}__].product}">
+                                                <option th:each="var : ${allProducts}"
+                                                        th:value="${var}"
+                                                        th:text="${var}">
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td class="align-middle">
+                                            <input class="form-control" type="text" th:field="*{rows[__${rowStat.index}__].amount}"/>
+                                        </td>
+                                        <td class="align-middle">
+                                            <select class="form-select">
+                                                <option value="piece" ></option>
+                                                <option value="g"></option>
+                                            </select>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="container">
+                                            <div class="row">
+                                            <div class="col-sm">
+                                                <button class="btn btn-outline-success"
+                                                        type="submit"
+                                                        name="addRow"
+                                                        >
+                                                    <i class="fa fa-plus"></i>
+                                                    <span th:text="#{addDish.add}"></span>
+                                                </button>
+                                            </div>
+                                            <div class="col-sm">
+                                            <button class="btn btn-outline-danger"
+                                                    type="submit"
+                                                    name="removeRow"
+                                                    th:value="${rowStat.index}">
+                                                <i class="fa fa-trash"></i>
+                                                <span th:text="#{addDish.removeRow}"></span>
+                                            </button>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary"
+                                        type="submit"
+                                        th:text="#{addDish.submit}"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>

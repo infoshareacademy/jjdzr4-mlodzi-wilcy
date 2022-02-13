@@ -75,6 +75,7 @@ public class LoginController {
         }
         UserLogin userLogin = userService.load(authentication.getName());
         user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
+        user.setCompleteMetabolism(cpmService.calculateCompleteMetabolism(user));
         userLogin.setUser(user);
         userService.save(userLogin);
         userService.saveToFile();

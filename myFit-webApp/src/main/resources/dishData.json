@@ -1,6 +1,6 @@
 [
   {
-    "id": 5,
+    "id": 6,
     "name": "edd",
     "sumOfKcalPer100g": 0,
     "sumOfFatPer100g": 0.0,
@@ -22,6 +22,18 @@
     "productsNameList": [
       "kaako",
       "kaako",
+      "11"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "22",
+    "sumOfKcalPer100g": 0,
+    "sumOfFatPer100g": 0.0,
+    "sumOfCarbohydratesPer100g": 0.0,
+    "sumOfProteinPer100g": 0.0,
+    "productsNameList": [
+      "11",
       "11"
     ]
   }
