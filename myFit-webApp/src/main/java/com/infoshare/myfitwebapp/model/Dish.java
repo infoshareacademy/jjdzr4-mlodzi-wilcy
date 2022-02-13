@@ -21,14 +21,4 @@ class Dish {
     @NotEmpty(message = "{message.notEmpty}")
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private int sumOfKcalPer100g;
-    @Column(nullable = false)
-    private double sumOfFatPer100g;
-    @Column(nullable = false)
-    private double sumOfCarbohydratesPer100g;
-    @Column(nullable = false)
-    private double sumOfProteinPer100g;
-    @ElementCollection
-    private List<String> productsNameList = new ArrayList<>();
 }

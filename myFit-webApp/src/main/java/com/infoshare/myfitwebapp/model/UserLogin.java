@@ -7,9 +7,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-
-@Entity
-@Data
+//
+//@Entity
+//@Data
 public class UserLogin {
 
     private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
