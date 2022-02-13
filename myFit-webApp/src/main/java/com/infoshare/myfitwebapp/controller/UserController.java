@@ -38,7 +38,7 @@ public class UserController {
             User user = userLogin.getUser();
             model.addAttribute("user", user);
         }
-        return "edit-user";
+        return "user-edit";
     }
 
     }
