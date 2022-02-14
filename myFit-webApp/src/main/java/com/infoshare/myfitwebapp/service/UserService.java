@@ -36,7 +36,7 @@ public class UserService {
         List<UserLogin> users = userRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
-            Writer fileWriter = new FileWriter("myFit-webApp/src/main/resources/loginData.json");
+            Writer fileWriter = new FileWriter("src/main/resources/loginData.json");
             gson.toJson(users, fileWriter);
             fileWriter.flush();
             fileWriter.close();
