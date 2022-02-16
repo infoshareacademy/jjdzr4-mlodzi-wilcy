@@ -30,6 +30,7 @@ public class CPMService {
         return (10 * user.getWeight()) + (6.25 * user.getHeight()) - (5 * user.getAge());
     }
 
+
     public double calculateCompleteMetabolism(User user) {
         double CompleteMetabolism;
         if (isFirstLevelOfActivity(user)) {

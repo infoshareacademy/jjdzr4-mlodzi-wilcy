@@ -1,12 +1,20 @@
 package com.infoshare.myfitwebapp.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.PositiveOrZero;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Data
@@ -22,11 +30,15 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
-    private int age;
+    @Past(message = "{message.past}")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate birthDate;
 
     @Column(nullable = false)
     @PositiveOrZero(message = "{message.positiveOrZero}")
@@ -37,10 +49,12 @@ public class User {
     private double weight;
 
     @Column(nullable = false)
-    private String levelOfJobActivity;
+    @Enumerated(EnumType.STRING)
+    private ActivityLevel levelOfJobActivity;
 
     @Column(nullable = false)
-    private String levelOfPrivateActivity;
+    @Enumerated(EnumType.STRING)
+    private ActivityLevel levelOfPrivateActivity;
 
     @Column(nullable = false)
     @PositiveOrZero(message = "{message.positiveOrZero}")
@@ -51,4 +65,10 @@ public class User {
 
     @Column(nullable = false)
     private double completeMetabolism;
+
+    public int getAge() {
+        LocalDate today = LocalDate.now();
+        return Period.between(birthDate, today).getYears();
+
+    }
 }
