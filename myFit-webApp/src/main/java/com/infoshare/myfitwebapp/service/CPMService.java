@@ -27,7 +27,7 @@ public class CPMService {
     }
 
     private double calculateBasicBasalMetabolicRate(User user) {
-        return (10 * user.getWeight()) + (6.25 * user.getHeight()) - (5 * user.getAge());
+        return (10 * user.getWeight()) + (6.25 * user.getHeight()) - (5 * user.calculateAge());
     }
 
 

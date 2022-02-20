@@ -52,11 +52,11 @@
                                 <input class="form-control"
                                        type="number"
                                        id="age_input"
-                                       th:field="*{age}"
+                                       th:field="*{calculateAge}"
                                        aria-describedby="ageHelpBlock">
                                 <div id="ageHelpBlock" class="form-text" th:text="#{fillInfo.ageHelp}"></div>
                                 <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}"
-                                     th:errors="*{age}"></div>
+                                     th:errors="*{calculateAge}"></div>
                             </div>
                             <div class="col-6">
                                 <label class="col-form-label" for="gender_input" th:text="#{user.gender}"> </label>

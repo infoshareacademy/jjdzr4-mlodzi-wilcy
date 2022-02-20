@@ -1,9 +1,5 @@
 package com.infoshare.myfitwebapp.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -11,10 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
-import java.time.Period;
 
 @Entity
 @Data
@@ -33,11 +27,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(nullable = false)
-    @Past(message = "{message.past}")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @Column(nullable = false)
+    @Column
+//    @Past(message = "{message.past}")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonSerialize(using = LocalDateSerializer.class)
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 
     @Column(nullable = false)
@@ -66,9 +63,12 @@ public class User {
     @Column(nullable = false)
     private double completeMetabolism;
 
-    public int getAge() {
-        LocalDate today = LocalDate.now();
-        return Period.between(birthDate, today).getYears();
-
+    public int calculateAge() {
+/*        LocalDate today = LocalDate.now();
+//        LocalDate today = LocalDate.now();
+        LocalDate bday = LocalDate.of(birthDate);
+//        return Period.between(birthDate, today).getYears();
+        return Period.between(bday, today).getYears();*/
+        return 0;
     }
 }

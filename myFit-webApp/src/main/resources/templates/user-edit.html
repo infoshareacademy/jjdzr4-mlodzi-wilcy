@@ -3,7 +3,8 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments/header :: header"></head>
 <body>
-<div th:insert="~{fragments/navBar}"></div>
+<!--<div th:insert="~{fragments/navBar}"></div>-->
+<div th:replace="fragments/navBar :: nav"></div>
 <div sec:authorize="isAuthenticated()">
     <div class="container p-4">
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
@@ -40,7 +41,7 @@
             <div class="form-group row">
                 <label for="birthDate" class="col-sm-2 col-form-label" th:text="#{user.birthDate}"></label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" id="birthDate" th:field="*{{birthDate}}">
+                    <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}">
                 </div>
             </div>
 
@@ -101,6 +102,7 @@
     </div>
 </div>
 
-<div th:insert="~{fragments/footer :: footer}"></div>
+<!--<div th:insert="~{fragments/footer :: footer}"></div>-->
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
