@@ -3,7 +3,6 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments/header :: header"></head>
 <body>
-<!--<div th:insert="~{fragments/navBar}"></div>-->
 <div th:replace="fragments/navBar :: nav"></div>
 <div sec:authorize="isAuthenticated()">
     <div class="container p-4">
@@ -101,8 +100,6 @@
         </form>
     </div>
 </div>
-
-<!--<div th:insert="~{fragments/footer :: footer}"></div>-->
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

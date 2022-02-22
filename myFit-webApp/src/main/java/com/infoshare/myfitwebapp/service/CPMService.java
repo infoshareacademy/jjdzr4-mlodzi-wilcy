@@ -1,14 +1,12 @@
 package com.infoshare.myfitwebapp.service;
 
+import com.infoshare.myfitwebapp.model.ActivityLevel;
+import com.infoshare.myfitwebapp.model.Gender;
 import com.infoshare.myfitwebapp.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CPMService {
-    private static final String MALE = "Male";
-    private static final String LOW_ACTIVITY = "Low";
-    private static final String MEDIUM_ACTIVITY = "Medium";
-    private static final String HIGH_ACTIVITY = "High";
     private static final Double FIRST_LEVEL_OF_ACTIVITY = 1.5;
     private static final Double SECOND_LEVEL_OF_ACTIVITY = 1.6;
     private static final Double THIRD_LEVEL_OF_ACTIVITY = 1.8;
@@ -18,7 +16,7 @@ public class CPMService {
 
     public double calculateBasalMetabolicRate(User user) {
         double bmr;
-        if (user.getGender().equals(MALE)) {
+        if (user.getGender().equals(Gender.MALE)) {
             bmr = calculateBasicBasalMetabolicRate(user) + 5;
         } else {
             bmr = calculateBasicBasalMetabolicRate(user) - 161;
@@ -52,30 +50,30 @@ public class CPMService {
     }
 
     private boolean isSixthLevelOfActivity(User user) {
-        return user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY);
+        return user.getLevelOfPrivateActivity().equals(ActivityLevel.HIGH) && user.getLevelOfJobActivity().equals(ActivityLevel.HIGH);
     }
 
     private boolean isFifthLevelOfActivity(User user) {
-        return (user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) ||
-                (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY));
+        return (user.getLevelOfPrivateActivity().equals(ActivityLevel.MEDIUM) && user.getLevelOfJobActivity().equals(ActivityLevel.HIGH)) ||
+                (user.getLevelOfPrivateActivity().equals(ActivityLevel.HIGH) && user.getLevelOfJobActivity().equals(ActivityLevel.MEDIUM));
     }
 
     private boolean isFourthLevelOfActivity(User user) {
-        return user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY);
+        return user.getLevelOfPrivateActivity().equals(ActivityLevel.MEDIUM) && user.getLevelOfJobActivity().equals(ActivityLevel.MEDIUM);
     }
 
     private boolean isThirdLevelOfActivity(User user) {
-        return (user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(HIGH_ACTIVITY)) ||
-                (user.getLevelOfPrivateActivity().equals(HIGH_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY));
+        return (user.getLevelOfPrivateActivity().equals(ActivityLevel.LOW) && user.getLevelOfJobActivity().equals(ActivityLevel.HIGH)) ||
+                (user.getLevelOfPrivateActivity().equals(ActivityLevel.HIGH) && user.getLevelOfJobActivity().equals(ActivityLevel.LOW));
     }
 
     private boolean isSecondLevelOfActivity(User user) {
-        return (user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(MEDIUM_ACTIVITY)) ||
-                (user.getLevelOfPrivateActivity().equals(MEDIUM_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY));
+        return (user.getLevelOfPrivateActivity().equals(ActivityLevel.LOW) && user.getLevelOfJobActivity().equals(ActivityLevel.MEDIUM)) ||
+                (user.getLevelOfPrivateActivity().equals(ActivityLevel.MEDIUM) && user.getLevelOfJobActivity().equals(ActivityLevel.LOW));
     }
 
     private boolean isFirstLevelOfActivity(User user) {
-        return user.getLevelOfPrivateActivity().equals(LOW_ACTIVITY) && user.getLevelOfJobActivity().equals(LOW_ACTIVITY);
+        return user.getLevelOfPrivateActivity().equals(ActivityLevel.LOW) && user.getLevelOfJobActivity().equals(ActivityLevel.LOW);
     }
 
 }

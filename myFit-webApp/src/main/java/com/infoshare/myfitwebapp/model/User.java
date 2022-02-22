@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Data
@@ -27,13 +28,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @Column(nullable = false)
     @Column
-//    @Past(message = "{message.past}")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
-//    @JsonSerialize(using = LocalDateSerializer.class)
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 
@@ -64,11 +59,7 @@ public class User {
     private double completeMetabolism;
 
     public int calculateAge() {
-/*        LocalDate today = LocalDate.now();
-//        LocalDate today = LocalDate.now();
-        LocalDate bday = LocalDate.of(birthDate);
-//        return Period.between(birthDate, today).getYears();
-        return Period.between(bday, today).getYears();*/
-        return 0;
+        LocalDate today = LocalDate.now();
+        return Period.between(birthDate, today).getYears();
     }
 }
