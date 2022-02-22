@@ -7,7 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -30,14 +31,15 @@ public class User {
 
     @Column
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past(message = "{message.past}")
     private LocalDate birthDate;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
+    @Positive(message = "{message.positive}")
     private int height;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
+    @Positive(message = "{message.positive}")
     private double weight;
 
     @Column(nullable = false)
@@ -49,7 +51,7 @@ public class User {
     private ActivityLevel levelOfPrivateActivity;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
+    @Positive(message = "{message.positive}")
     private double weightGoal;
 
     @Column(nullable = false)
