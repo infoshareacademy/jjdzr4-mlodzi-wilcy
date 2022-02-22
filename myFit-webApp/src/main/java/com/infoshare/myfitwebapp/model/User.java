@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
@@ -27,11 +28,13 @@ public class User {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "{message.notEmpty}")
     private Gender gender;
 
     @Column
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past(message = "{message.past}")
+    @NotNull(message = "{message.notEmpty}")
     private LocalDate birthDate;
 
     @Column(nullable = false)
