@@ -1,10 +1,12 @@
 package com.infoshare.myfitwebapp.entity;
 
+import com.infoshare.myfitwebapp.validation.PasswordMatches;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 
@@ -14,6 +16,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Table(name = UserLogin.TABLE_NAME)
+//@PasswordMatches
 public class UserLogin {
 
     public static final String TABLE_NAME = "user_login";
@@ -34,6 +37,9 @@ public class UserLogin {
     @Column(name = COLUMN_PREFIX + "password", nullable = false)
     @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String password;
+
+
+    private String matchingPassword;
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;

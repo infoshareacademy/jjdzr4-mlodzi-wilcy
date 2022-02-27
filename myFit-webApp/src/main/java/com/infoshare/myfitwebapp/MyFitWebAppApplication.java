@@ -48,11 +48,6 @@ public class MyFitWebAppApplication {
             } catch (IOException e){
                 System.out.println("Unable to save data to json file: " + e.getMessage());
             }
-
-//            UserLogin user = users.get(0);
-//            user.id = null;
-//            user.getUser().id = null;
-//            userService.save(user);
         };
     }
 }

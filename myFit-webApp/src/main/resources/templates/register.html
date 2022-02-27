@@ -76,10 +76,13 @@
                                 </div>
                                 <input class="form-control"
                                        th:placeholder="#{register.repeatPassword}"
-                                       th:field="*{password}"
+                                       th:field="*{matchingPassword}"
                                        type="password"
                                        name="password"/>
                             </div>
+<!--                            <p th:each="error : ${#fields.errors('matchingPassword')}"-->
+<!--                               th:text="${error}">Validation error</p>-->
+                            <div class="alert alert-danger" th:if="${param.mismatch}" th:text="#{password.noMatch}"></div>
                             <div class="row">
                                 <div class="checkbox col-form-label">
                                     <label>
