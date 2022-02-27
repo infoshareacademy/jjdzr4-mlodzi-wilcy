@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@Table(name = Dish.TABLE_NAME)
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@Table(name = Dish.TABLE_NAME)
 public class Dish {
 
     public static final String TABLE_NAME = "dish";

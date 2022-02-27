@@ -26,8 +26,8 @@ public class User {
 
     @Id
     @GeneratedValue()
-//    @Column(name = COLUMN_PREFIX + "id")
-//    @Setter(AccessLevel.NONE)
+    @Column(name = COLUMN_PREFIX + "id")
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     @Column(name = COLUMN_PREFIX + "name", nullable = false)

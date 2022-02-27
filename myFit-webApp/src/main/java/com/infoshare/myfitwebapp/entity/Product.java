@@ -8,44 +8,44 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
-@Data
-@Table(name = User.TABLE_NAME)
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@Table(name = Product.TABLE_NAME)
 public class Product {
 
     public static final String TABLE_NAME = "product";
     public static final String COLUMN_PREFIX = "p_";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue()
+    @Column(name = COLUMN_PREFIX + "id")
     @Setter(AccessLevel.NONE)
     private Long id;
 
     @NotBlank(message = "{message.notEmpty}")
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "name", nullable = false)
     private String name;
 
     @PositiveOrZero(message = "{message.positiveOrZero}")
     @Max(value = 100, message = "{message.max100}")
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "kcalPer100g", nullable = false)
     private int kcalPer100g;
 
     @PositiveOrZero(message = "{message.positiveOrZero}")
     @Max(value = 100, message = "{message.max100}")
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "fatPer100g", nullable = false)
     private double fatPer100g;
 
     @PositiveOrZero(message = "{message.positiveOrZero}")
     @Max(value = 100, message = "{message.max100}")
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "carbohydratesPer100g", nullable = false)
     private double carbohydratesPer100g;
 
     @PositiveOrZero(message = "{message.positiveOrZero}")
     @Max(value = 100, message = "{message.max100}")
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "proteinPer100g", nullable = false)
     private double proteinPer100g;
 
 

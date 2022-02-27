@@ -15,10 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    public SecurityConfig(MyUserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
-
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
                 http.authorizeRequests()
@@ -33,18 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-//
-//    final
-//    MyUserDetailsService userDetailsService;
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.userDetailsService(userDetailsService);
-//    }
-//
-
-//    @Bean
-//    public PasswordEncoder getPasswordEncoder(){
-//        return NoOpPasswordEncoder.getInstance();
-//    }
+    @Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
 }
