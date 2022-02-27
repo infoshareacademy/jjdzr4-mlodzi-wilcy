@@ -2,12 +2,14 @@ package com.infoshare.myfitwebapp;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.infoshare.myfitwebapp.model.Dish;
 import com.infoshare.myfitwebapp.model.Product;
 import com.infoshare.myfitwebapp.model.UserLogin;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
 import com.infoshare.myfitwebapp.service.UserService;
+import com.infoshare.myfitwebapp.util.JsonMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,7 +29,7 @@ public class MyFitWebAppApplication {
     @Bean
     CommandLineRunner runner(UserService userService, ProductService productService, DishService dishService){
         return args -> {
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = new JsonMapper().getObjectMapper();
             TypeReference<List<UserLogin>> userLoginTypeReference = new TypeReference<>(){};
             TypeReference<List<Product>> productTypeReference = new TypeReference<>(){};
             TypeReference<List<Dish>> dishDataTypeReference = new TypeReference<>(){};

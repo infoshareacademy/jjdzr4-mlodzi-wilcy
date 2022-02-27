@@ -3,10 +3,15 @@ package com.infoshare.myfitwebapp.model;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Data
@@ -22,28 +27,34 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "{message.notEmpty}")
+    private Gender gender;
+
+    @Column
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past(message = "{message.past}")
+    @NotNull(message = "{message.notEmpty}")
+    private LocalDate birthDate;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
-    private int age;
-
-    @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
+    @Positive(message = "{message.positive}")
     private int height;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
+    @Positive(message = "{message.positive}")
     private double weight;
 
     @Column(nullable = false)
-    private String levelOfJobActivity;
+    @Enumerated(EnumType.STRING)
+    private ActivityLevel levelOfJobActivity;
 
     @Column(nullable = false)
-    private String levelOfPrivateActivity;
+    @Enumerated(EnumType.STRING)
+    private ActivityLevel levelOfPrivateActivity;
 
     @Column(nullable = false)
-    @PositiveOrZero(message = "{message.positiveOrZero}")
+    @Positive(message = "{message.positive}")
     private double weightGoal;
 
     @Column(nullable = false)
@@ -51,4 +62,9 @@ public class User {
 
     @Column(nullable = false)
     private double completeMetabolism;
+
+    public int calculateAge() {
+        LocalDate today = LocalDate.now();
+        return Period.between(birthDate, today).getYears();
+    }
 }
