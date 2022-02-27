@@ -1,4 +1,6 @@
 spring:
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
   datasource:
     username: root
     password: password
@@ -8,6 +10,6 @@ spring:
     init:
       platform: mysql
       mode: always
-    jpa:
-      hibernate:
-        ddl-auto: create-drop
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
