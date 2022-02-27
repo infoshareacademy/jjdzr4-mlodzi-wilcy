@@ -1,18 +1,19 @@
 package com.infoshare.myfitwebapp.entity;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 
 @Entity
-@Data
-@Table(name = UserLogin.TABLE_NAME)
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@Table(name = UserLogin.TABLE_NAME)
 public class UserLogin {
 
     public static final String TABLE_NAME = "user_login";
@@ -36,4 +37,17 @@ public class UserLogin {
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        UserLogin userLogin = (UserLogin) o;
+        return id != null && Objects.equals(id, userLogin.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

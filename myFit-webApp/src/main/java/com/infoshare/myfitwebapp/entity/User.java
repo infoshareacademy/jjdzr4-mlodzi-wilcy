@@ -14,21 +14,20 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Entity
-@Data
-@Table(name = User.TABLE_NAME)
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@Table(name = User.TABLE_NAME)
 public class User {
 
     public static final String TABLE_NAME = "user";
     public static final String COLUMN_PREFIX = "u_";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = COLUMN_PREFIX + "id")
-    @Setter(AccessLevel.NONE)
+    @GeneratedValue()
+//    @Column(name = COLUMN_PREFIX + "id")
+//    @Setter(AccessLevel.NONE)
     private Long id;
 
     @Column(name = COLUMN_PREFIX + "name", nullable = false)
