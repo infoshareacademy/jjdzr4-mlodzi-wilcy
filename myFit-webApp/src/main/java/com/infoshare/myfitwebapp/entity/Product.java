@@ -1,4 +1,4 @@
-package com.infoshare.myfitwebapp.model;
+package com.infoshare.myfitwebapp.entity;
 
 import lombok.*;
 

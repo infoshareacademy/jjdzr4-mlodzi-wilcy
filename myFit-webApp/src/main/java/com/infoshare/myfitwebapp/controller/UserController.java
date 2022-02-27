@@ -1,7 +1,7 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.User;
-import com.infoshare.myfitwebapp.model.UserLogin;
+import com.infoshare.myfitwebapp.entity.User;
+import com.infoshare.myfitwebapp.entity.UserLogin;
 import com.infoshare.myfitwebapp.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

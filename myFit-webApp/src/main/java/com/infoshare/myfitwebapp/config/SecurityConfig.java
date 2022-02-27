@@ -1,4 +1,4 @@
-package com.infoshare.myfitwebapp;
+package com.infoshare.myfitwebapp.config;
 
 import com.infoshare.myfitwebapp.service.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -35,13 +36,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     final
     MyUserDetailsService userDetailsService;
 
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+//        auth.userDetailsService(userDetailsService);
+//    }
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userDetailsService);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password(encoder.encode("admin"))
+                .roles("ADMIN")
+                .and()
+                .withUser("user")
+                .password(encoder.encode("user"))
+                .roles();
     }
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+//    @Bean
+//    public PasswordEncoder getPasswordEncoder(){
+//        return NoOpPasswordEncoder.getInstance();
+//    }
 }

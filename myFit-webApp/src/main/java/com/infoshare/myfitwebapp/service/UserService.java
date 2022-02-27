@@ -1,6 +1,6 @@
 package com.infoshare.myfitwebapp.service;
 
-import com.infoshare.myfitwebapp.model.UserLogin;
+import com.infoshare.myfitwebapp.entity.UserLogin;
 import com.infoshare.myfitwebapp.repository.UserLoginRepository;
 import com.infoshare.myfitwebapp.util.JsonMapper;
 import org.springframework.stereotype.Service;

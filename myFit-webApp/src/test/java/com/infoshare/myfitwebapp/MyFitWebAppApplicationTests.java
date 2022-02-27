@@ -1,8 +1,8 @@
 package com.infoshare.myfitwebapp;
 
-import com.infoshare.myfitwebapp.model.ActivityLevel;
-import com.infoshare.myfitwebapp.model.Gender;
-import com.infoshare.myfitwebapp.model.User;
+import com.infoshare.myfitwebapp.enums.ActivityLevel;
+import com.infoshare.myfitwebapp.enums.Gender;
+import com.infoshare.myfitwebapp.entity.User;
 import com.infoshare.myfitwebapp.service.CPMService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

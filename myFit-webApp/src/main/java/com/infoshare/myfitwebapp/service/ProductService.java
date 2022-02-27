@@ -2,8 +2,8 @@ package com.infoshare.myfitwebapp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshare.myfitwebapp.model.Product;
-import com.infoshare.myfitwebapp.model.ProductDto;
+import com.infoshare.myfitwebapp.entity.Product;
+import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import org.springframework.stereotype.Service;
 

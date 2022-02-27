@@ -1,4 +1,4 @@
-package com.infoshare.myfitwebapp.model;
+package com.infoshare.myfitwebapp.entity;
 
 import lombok.*;
 
@@ -22,14 +22,18 @@ public class UserLogin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = COLUMN_PREFIX + "id")
     @Setter(AccessLevel.NONE)
     private Long id;
-    @Column(nullable = false, unique = true)
+
+    @Column(name = COLUMN_PREFIX + "username", nullable = false, unique = true)
     @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String username;
-    @Column(nullable = false)
+
+    @Column(name = COLUMN_PREFIX + "password", nullable = false)
     @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String password;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }

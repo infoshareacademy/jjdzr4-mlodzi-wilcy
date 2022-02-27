@@ -1,5 +1,6 @@
-package com.infoshare.myfitwebapp.model;
+package com.infoshare.myfitwebapp.dto;
 
+import com.infoshare.myfitwebapp.model.ProductRow;
 import lombok.Data;
 
 import java.util.ArrayList;

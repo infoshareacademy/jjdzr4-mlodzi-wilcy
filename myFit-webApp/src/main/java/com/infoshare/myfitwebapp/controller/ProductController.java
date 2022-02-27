@@ -1,6 +1,6 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.Product;
+import com.infoshare.myfitwebapp.entity.Product;
 import com.infoshare.myfitwebapp.repository.ProductDataRepository;
 import com.infoshare.myfitwebapp.service.ProductService;
 import org.springframework.http.HttpStatus;
