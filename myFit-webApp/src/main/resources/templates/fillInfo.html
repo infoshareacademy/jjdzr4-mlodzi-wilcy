@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 <head th:replace="fragments/header :: header"></head>
 <body>
 <style>
-    .col-form-label{
+    .col-form-label {
         color: black;
     }
 </style>
@@ -35,40 +35,40 @@
                                 <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}"
                                      th:errors="*{name}"></div>
                             </div>
-                            <div class="col-6">
-                                <label class="col-form-label"
-                                       for="lastName_input"
-                                       th:text="#{user.lastName}">
-                                </label>
-                                <input class="form-control"
-                                       type="text"
-                                       id="lastName_input"/>
-                            </div>
                         </div>
 
                         <div class="row mb-4">
                             <div class="col-6">
-                                <label class="col-form-label" for="age_input" th:text="#{user.age}"> </label>
-                                <input class="form-control"
-                                       type="number"
-                                       id="age_input"
-                                       th:field="*{age}"
-                                       aria-describedby="ageHelpBlock">
-                                <div id="ageHelpBlock" class="form-text" th:text="#{fillInfo.ageHelp}"></div>
-                                <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}"
-                                     th:errors="*{age}"></div>
+                                <label for="birthDate" class="col-form-label"
+                                       th:text="#{user.birthDate}"></label>
+                                <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}">
+                                <div>
+                                    <div class="alert alert-danger" role="alert"
+                                         th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
+                                </div>
                             </div>
                             <div class="col-6">
-                                <label class="col-form-label" for="gender_input" th:text="#{user.gender}"> </label>
-                                <select class="form-select" id="gender_input" th:name="gender_input" th:field="*{gender}">
-                                    <option th:value="'ssss'" selected th:text="#{fillInfo.genderHelp}"></option>
-                                    <option th:value="#{user.value.gender.male}"
-                                            th:text="#{user.value.gender.male}"></option>
-                                    <option th:value="#{user.value.gender.female}"
-                                            th:text="#{user.value.gender.female}"></option>
-                                </select>
-                                <div  class="alert alert-danger" th:if="${#fields.hasErrors('gender')}"
-                                     th:errors="*{gender}"></div>
+                                <legend class="col-form-label" th:text="#{user.gender}"></legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="female"
+                                               th:field="*{gender}"
+                                               th:value="${T(com.infoshare.myfitwebapp.model.Gender).FEMALE}">
+                                        <label class="form-check-label" for="female"
+                                               th:text="#{user.value.gender.female}"></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="male"
+                                               th:field="*{gender}"
+                                               th:value="${T(com.infoshare.myfitwebapp.model.Gender).MALE}">
+                                        <label class="form-check-label" for="male"
+                                               th:text="#{user.value.gender.male}"></label>
+                                    </div>
+                                    <div>
+                                        <div class="alert alert-danger" role="alert"
+                                             th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -76,49 +76,49 @@
                             <div class="col-6">
                                 <label class="col-form-label" for="weight_input" th:text="#{user.weight}"> </label>
                                 <input class="form-control" type="number" id="weight_input" th:field="*{weight}">
-                                <div class="alert alert-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
+                                <div class="alert alert-danger" th:if="${#fields.hasErrors('weight')}"
+                                     th:errors="*{weight}"></div>
                             </div>
                             <div class="col-6">
                                 <label class="col-form-label" for="height_input" th:text="#{user.height}"> </label>
                                 <input class="form-control" type="number" id="height_input" th:field="*{height}">
-                                <div class="alert alert-danger" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div>
+                                <div class="alert alert-danger" th:if="${#fields.hasErrors('height')}"
+                                     th:errors="*{height}"></div>
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <div class="col-6">
-                                <label class="col-form-label" for="levelOfJobActivity_input" th:text="#{user.levelOfJobActivity}"></label>
-                                <select class="form-select" id="levelOfJobActivity_input" th:name="levelOfJobActivity_input" th:field="*{levelOfJobActivity}">
-                                    <option th:value="#{user.value.activityLevel.low}"
-                                            th:text="#{user.value.activityLevel.low}"></option>
-                                    <option th:value="#{user.value.activityLevel.medium}"
-                                            th:text="#{user.value.activityLevel.medium}"></option>
-                                    <option th:value="#{user.value.activityLevel.high}"
-                                            th:text="#{user.value.activityLevel.high}"></option>
-                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('levelOfJobActivity')}"
-                                         th:errors="*{levelOfJobActivity}"></div>
+                                <label for="lvlJobActivity" class="col-form-label"
+                                       th:text="#{user.levelOfJobActivity}"></label>
+                                <select id="lvlJobActivity" class="form-select" aria-label="Default select example"
+                                        name="lvlJobActivity" th:field="*{levelOfJobActivity}"/>
+                                <option th:each="lvl : ${T(com.infoshare.myfitwebapp.model.ActivityLevel).values()}"
+                                        th:value="${lvl.name()}"
+                                        th:text="${lvl.name()}">
+                                </option>
                                 </select>
                             </div>
                             <div class="col-6">
-                                <label class="col-form-label" for="levelOfPrivateActivity_input"
+                                <label for="lvlPrivateActivity" class="col-form-label"
                                        th:text="#{user.levelOfPrivateActivity}"></label>
-                                <select class="form-select" id="levelOfPrivateActivity_input" th:name="levelOfPrivateActivity_input" th:field="*{levelOfPrivateActivity}">
-                                    <option th:value="#{user.value.activityLevel.low}"
-                                            th:text="#{user.value.activityLevel.low}"></option>
-                                    <option th:value="#{user.value.activityLevel.medium}"
-                                            th:text="#{user.value.activityLevel.medium}"></option>
-                                    <option th:value="#{user.value.activityLevel.high}"
-                                            th:text="#{user.value.activityLevel.high}"></option>
+                                <select id="lvlPrivateActivity" class="form-select" aria-label="Default select example"
+                                        name="lvlPrivateActivity" th:field="*{levelOfPrivateActivity}"/>
+                                <option th:each="lvl : ${T(com.infoshare.myfitwebapp.model.ActivityLevel).values()}"
+                                        th:value="${lvl.name()}"
+                                        th:text="${lvl.name()}">
+                                </option>
                                 </select>
-                                <div class="alert alert-danger" th:if="${#fields.hasErrors('levelOfPrivateActivity')}"
-                                     th:errors="*{levelOfPrivateActivity}"></div>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-6">
-                            <label class="col-form-label" for="weightGoal_input" th:text="#{user.weightGoal}"></label>
-                            <input class="form-control" type="number" id="weightGoal_input" th:field="*{weightGoal}"><br>
-                            <div class="alert alert-danger" th:if="${#fields.hasErrors('weightGoal')}" th:errors="*{weightGoal}"></div>
+                                <label class="col-form-label" for="weightGoal_input"
+                                       th:text="#{user.weightGoal}"></label>
+                                <input class="form-control" type="number" id="weightGoal_input"
+                                       th:field="*{weightGoal}"><br>
+                                <div class="alert alert-danger" th:if="${#fields.hasErrors('weightGoal')}"
+                                     th:errors="*{weightGoal}"></div>
                             </div>
                         </div>
                         <div class="row mb-4">
