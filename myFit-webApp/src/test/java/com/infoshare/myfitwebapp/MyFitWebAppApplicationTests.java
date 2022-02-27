@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class MyFitWebAppApplicationTests {
+
     @Autowired
     CPMService cpmService;
 

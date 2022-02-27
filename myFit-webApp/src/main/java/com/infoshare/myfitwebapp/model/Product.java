@@ -1,8 +1,6 @@
 package com.infoshare.myfitwebapp.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -11,7 +9,15 @@ import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Data
+@Table(name = User.TABLE_NAME)
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Product {
+
+    public static final String TABLE_NAME = "product";
+    public static final String COLUMN_PREFIX = "p_";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

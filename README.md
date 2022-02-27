@@ -16,7 +16,6 @@
 * docker rm $(docker ps -aq)
 ## Tworzenie nowego obrazu w Dockerze
 * docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=example --rm -d mysql
-
 ## Korzystanie z docker-compose
 * docker-compose up --build
 * docker-compose down

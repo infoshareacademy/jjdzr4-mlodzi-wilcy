@@ -1,8 +1,6 @@
 package com.infoshare.myfitwebapp.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,7 +8,15 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
+@Table(name = UserLogin.TABLE_NAME)
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class UserLogin {
+
+    public static final String TABLE_NAME = "user_login";
+    public static final String COLUMN_PREFIX = "u_l_";
 
     private static final String NOT_EMPTY_MESSAGE = "Pole nie może być puste";
 

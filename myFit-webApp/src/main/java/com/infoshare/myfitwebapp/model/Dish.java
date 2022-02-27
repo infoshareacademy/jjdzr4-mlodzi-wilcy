@@ -1,8 +1,6 @@
 package com.infoshare.myfitwebapp.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -11,8 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public @Data
-class Dish {
+@Data
+@Table(name = Dish.TABLE_NAME)
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Dish {
+
+    public static final String TABLE_NAME = "dish";
+    public static final String COLUMN_PREFIX = "d_";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

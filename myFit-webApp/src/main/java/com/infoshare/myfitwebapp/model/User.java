@@ -1,8 +1,6 @@
 package com.infoshare.myfitwebapp.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,7 +13,15 @@ import java.time.Period;
 
 @Entity
 @Data
+@Table(name = User.TABLE_NAME)
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class User {
+
+    public static final String TABLE_NAME = "user";
+    public static final String COLUMN_PREFIX = "u_";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

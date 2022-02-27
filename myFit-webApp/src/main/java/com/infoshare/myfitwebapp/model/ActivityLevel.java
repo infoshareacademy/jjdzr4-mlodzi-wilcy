@@ -5,7 +5,6 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-
 public enum ActivityLevel {
     LOW, MEDIUM, HIGH
 }
