@@ -1,5 +1,6 @@
 package com.infoshare.myfitwebapp.model;
 
+import com.infoshare.myfitwebapp.entity.UserLogin;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

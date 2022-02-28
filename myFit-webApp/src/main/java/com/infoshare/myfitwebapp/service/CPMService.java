@@ -1,8 +1,8 @@
 package com.infoshare.myfitwebapp.service;
 
-import com.infoshare.myfitwebapp.model.ActivityLevel;
-import com.infoshare.myfitwebapp.model.Gender;
-import com.infoshare.myfitwebapp.model.User;
+import com.infoshare.myfitwebapp.enums.ActivityLevel;
+import com.infoshare.myfitwebapp.enums.Gender;
+import com.infoshare.myfitwebapp.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service

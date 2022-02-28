@@ -27,14 +27,14 @@
                     <div class="col-sm-10">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="gridRadios" id="female"
-                                   th:field="*{gender}" th:value="${T(com.infoshare.myfitwebapp.model.Gender).FEMALE}"
-                                   th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.model.Gender).FEMALE}">
+                                   th:field="*{gender}" th:value="${T(com.infoshare.myfitwebapp.enums.Gender).FEMALE}"
+                                   th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.enums.Gender).FEMALE}">
                             <label class="form-check-label" for="female" th:text="#{user.value.gender.female}"></label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="gridRadios" id="male"
-                                   th:field="*{gender}" th:value="${T(com.infoshare.myfitwebapp.model.Gender).MALE}"
-                                   th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.model.Gender).MALE}">
+                                   th:field="*{gender}" th:value="${T(com.infoshare.myfitwebapp.enums.Gender).MALE}"
+                                   th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.enums.Gender).MALE}">
                             <label class="form-check-label" for="male" th:text="#{user.value.gender.male}"></label>
                         </div>
                     </div>
@@ -88,8 +88,8 @@
                 <div class="col-sm-10">
                     <select id="lvlJobActivity" class="form-select" aria-label="Default select example"
                             name="lvlJobActivity" th:field="*{levelOfJobActivity}"/>
-                    <option th:each="lvl : ${T(com.infoshare.myfitwebapp.model.ActivityLevel).values()}"
-                            th:value="${lvl.name()}"
+                    <option th:each="lvl : ${T(com.infoshare.myfitwebapp.enums.ActivityLevel).values()}"
+                            th:value="${lvl}"
                             th:text="${lvl.name()}"
                             th:selected="${lvl.name()} == ${user.levelOfJobActivity.name()}">
                     </option>
@@ -103,8 +103,8 @@
                 <div class="col-sm-10">
                     <select id="lvlPrivateActivity" class="form-select" aria-label="Default select example"
                             name="lvlPrivateActivity" th:field="*{levelOfPrivateActivity}"/>
-                    <option th:each="lvl : ${T(com.infoshare.myfitwebapp.model.ActivityLevel).values()}"
-                            th:value="${lvl.name()}"
+                    <option th:each="lvl : ${T(com.infoshare.myfitwebapp.enums.ActivityLevel).values()}"
+                            th:value="${lvl}"
                             th:text="${lvl.name()}"
                             th:selected="${lvl.name()} == ${user.levelOfPrivateActivity.name()}">
                     </option>

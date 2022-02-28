@@ -1,6 +1,6 @@
 package com.infoshare.myfitwebapp.service;
 
-import com.infoshare.myfitwebapp.model.UserLogin;
+import com.infoshare.myfitwebapp.entity.UserLogin;
 import com.infoshare.myfitwebapp.model.UserPrincipal;
 import com.infoshare.myfitwebapp.repository.UserLoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;

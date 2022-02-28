@@ -1,8 +1,8 @@
-package com.infoshare.myfitwebapp.model;
+package com.infoshare.myfitwebapp.entity;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import com.infoshare.myfitwebapp.enums.ActivityLevel;
+import com.infoshare.myfitwebapp.enums.Gender;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,53 +14,61 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Table(name = User.TABLE_NAME)
 public class User {
 
+    public static final String TABLE_NAME = "user";
+    public static final String COLUMN_PREFIX = "u_";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue()
+    @Column(name = COLUMN_PREFIX + "id")
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "name", nullable = false)
     @NotBlank(message = "{message.notEmpty}")
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{message.notEmpty}")
     private Gender gender;
 
-    @Column
+    @Column(name = COLUMN_PREFIX + "birthDate")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past(message = "{message.past}")
     @NotNull(message = "{message.notEmpty}")
     private LocalDate birthDate;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "height", nullable = false)
     @Positive(message = "{message.positive}")
     private int height;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "weight", nullable = false)
     @Positive(message = "{message.positive}")
     private double weight;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "levelOfJobActivity", nullable = false)
     @Enumerated(EnumType.STRING)
     private ActivityLevel levelOfJobActivity;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "levelOfPrivateActivity", nullable = false)
     @Enumerated(EnumType.STRING)
     private ActivityLevel levelOfPrivateActivity;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "weightGoal", nullable = false)
     @Positive(message = "{message.positive}")
     private double weightGoal;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "basalMetabolicRate", nullable = false)
     private double basalMetabolicRate;
 
-    @Column(nullable = false)
+    @Column(name = COLUMN_PREFIX + "completeMetabolism", nullable = false)
     private double completeMetabolism;
 
     public int calculateAge() {
