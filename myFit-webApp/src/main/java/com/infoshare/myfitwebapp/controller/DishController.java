@@ -34,8 +34,10 @@ public class DishController {
 
     // Ten endpoint do zmiany -> z DishService wyciągnąć List<DishDto>
     @GetMapping("")
-    public ResponseEntity getAllDishes(Model model) {
-        return new ResponseEntity<>(dishService.findAll(), HttpStatus.OK);
+    public String getAllDishes(Model model) {
+        
+        new ResponseEntity<>(dishService.findAll(), HttpStatus.OK);
+        return "dishes";
     }
 
     @PostMapping("/new")
@@ -70,6 +72,6 @@ public class DishController {
 
     @ModelAttribute("allProducts")
     public List<ProductDto> populateProducts() {
-        return productService.getProductDtos();
+        return productService.findAllProducts();
     }
 }

@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.infoshare.myfitwebapp.entity.Dish;
 import com.infoshare.myfitwebapp.entity.Product;
 import com.infoshare.myfitwebapp.repository.DishDataRepository;
-import com.infoshare.myfitwebapp.repository.ProductDataRepository;
+import com.infoshare.myfitwebapp.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class DishService {
     final DishDataRepository dishDataRepository;
-    final ProductDataRepository productDataRepository;
+    final ProductRepository productRepository;
 
-    public DishService(DishDataRepository dishDataRepository, ProductDataRepository productDataRepository) {
+    public DishService(DishDataRepository dishDataRepository, ProductRepository productRepository) {
         this.dishDataRepository = dishDataRepository;
-        this.productDataRepository = productDataRepository;
+        this.productRepository = productRepository;
     }
 
     public Dish save(Dish dish) {
@@ -42,7 +42,7 @@ public class DishService {
     }
 
     public Dish createDish(String dishName, List<String> productNames) {
-        List<Product> productList = productNames.stream().map(productDataRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
+        List<Product> productList = productNames.stream().map(productRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
         Dish dish = new Dish();
         dish.setName(dishName);
         dish.setProductsNameList(productNames);

@@ -4,7 +4,73 @@
 <body>
 <div th:insert="~{fragments/navBar}"></div>
 
-<h1>Dishes</h1>
+<section class="py-5 mt-0 align-items-start d-flex bg-light"
+         style="min-height: 50vh;">
+    <div class="container-fluid text-center">
+        <div class="d-flex justify-content-center">
+            <div class="card ">
+                <h2 class="card-header my-3"
+                    th:text="#{fixVehicle.fix}"></h2>
+                <div class="card-body">
+                    <p class="text-center"
+                       th:text="#{fixVehicle.desc}"></p>
+                    <form th:action="@{/vehicle/fix/search}"
+                          method="get">
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-6 col-sm-5">
+                                <div class="form-group input-group">
+                                    <input type="search" name="registration" size="10"
+                                           class="form-control"
+                                           th:placeholder="#{fixVehicle.input}" required
+                                           th:value="${registration}"/>
+                                    <input type="submit"
+                                           value="Search"
+                                           class="btn btn-outline-success"
+                                           th:value="#{fixVehicle.search}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="h4 m-auto" th:text="${describtion}">
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-hover caption-top">
+                                <caption th:text="${tableDesc}">
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col" th:text="#{vehicles.registrationNumber}"></th>
+                                    <th scope="col" th:text="#{vehicles.name}"></th>
+                                    <th scope="col" th:text="#{vehicles.color}"></th>
+                                    <th scope="col" th:text="#{vehicles.productionYear}"></th>
+                                    <th scope="col" th:text="#{vehicles.incomingDate}"></th>
+                                    <th scope="col" th:text="#{vehicles.actions}"/>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="vehicle: ${vehiclesList}">
+                                    <td th:text="${vehicle.registrationNumber}"/>
+                                    <td th:text="${vehicle.name}"/>
+                                    <td th:text="${vehicle.color.value}"/>
+                                    <td th:text="${vehicle.productionDate}"/>
+                                    <td th:text="${vehicle.createdAt}"/>
+                                    <td>
+                                        <a class="btn btn-outline-primary"
+                                           th:href="@{/vehicle/fix/{id}(id=${vehicle.id})}"
+                                           th:text="#{vehicles.fix}"></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>
