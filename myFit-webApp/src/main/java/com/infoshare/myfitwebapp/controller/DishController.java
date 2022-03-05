@@ -5,6 +5,8 @@ import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.model.ProductRow;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
 @RequestMapping("dishes")
 public class DishController {
 
+    private static final Logger LOGGER = LogManager.getLogger(DishController.class);
+
     private final DishService dishService;
     private final ProductService productService;
 
@@ -40,17 +44,22 @@ public class DishController {
 
     @PostMapping("/new")
     public String addProduct(@Valid final DishDto dishDto, Errors errors) {
+        LOGGER.info("Received request to add new dish");
         if (errors.hasErrors()) {
+            LOGGER.error("Adding dish failure. Form contains errors");
             return "dish-new";
         }
         List<String> stringList = dishDto.getRows().stream().map(ProductRow::getProduct).collect(Collectors.toList());
         dishService.save(dishService.createDish(dishDto.getName(), stringList));
+        LOGGER.info("New dish saved");
         dishService.saveDishDatabaseToFile();
+        LOGGER.info("New dish saved to file");
         return "redirect:/dishes";
     }
 
     @GetMapping(value="/new")
     public String addNewDish(Model model) {
+        LOGGER.info("Received request do add new dish");
         model.addAttribute("dishDto", new DishDto());
         return "dish-new";
     }
