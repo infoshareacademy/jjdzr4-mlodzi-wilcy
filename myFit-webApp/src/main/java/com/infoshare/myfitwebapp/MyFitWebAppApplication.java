@@ -9,6 +9,8 @@ import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
 import com.infoshare.myfitwebapp.service.UserService;
 import com.infoshare.myfitwebapp.util.JsonMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +22,8 @@ import java.util.List;
 
 @SpringBootApplication
 public class MyFitWebAppApplication {
+
+    private static final Logger LOGGER = LogManager.getLogger(MyFitWebAppApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(MyFitWebAppApplication.class, args);
@@ -38,15 +42,15 @@ public class MyFitWebAppApplication {
             try{
                 List<UserLogin> users = mapper.readValue(loginDataInputStream, userLoginTypeReference);
                 userService.save(users);
-                System.out.println("User login data loaded!");
+                LOGGER.info("User login data loaded!");
                 List<Product> products = mapper.readValue(productInputStream, productTypeReference);
                 productService.save(products);
-                System.out.println("Product data loaded!");
+                LOGGER.info("Product data loaded!");
                 List<Dish> dishes = mapper.readValue(dishDataInputStream, dishDataTypeReference);
                 dishService.save(dishes);
-                System.out.println("Dish data loaded!");
+                LOGGER.info("Dish data loaded!");
             } catch (IOException e){
-                System.out.println("Unable to save data to json file: " + e.getMessage());
+                LOGGER.fatal("Unable to save data to json file: " + e.getMessage());
             }
         };
     }
