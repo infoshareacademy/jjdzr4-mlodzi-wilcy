@@ -4,15 +4,21 @@
 <head th:replace="fragments/header :: header"></head>
 <body>
 <div th:insert="~{fragments/navBar}"></div>
-<div sec:authorize="isAuthenticated()">
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 
-    <form th:action="@{user/goToUserEdit}" method="post">
-        <button type="submit" class="btn btn-dark" th:text="#{user.edit}"></button>
-    </form>
 
-</div>
-
+<section class="py-5 mt-0 align-items-start d-flex bg-light"
+         style="min-height: 75vh;">
+    <div class="container-fluid text-center">
+        <div class="card shadow">
+            <h1 class="card-header text-center m-4">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            <div class="card-body mx-4">
+                <form th:action="@{user/goToUserEdit}" method="post">
+                    <button type="submit" class="btn btn-dark" th:text="#{user.edit}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>

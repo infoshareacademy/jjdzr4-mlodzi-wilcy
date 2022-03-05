@@ -4,122 +4,172 @@
 <head th:replace="fragments/header :: header"></head>
 <body>
 <div th:replace="fragments/navBar :: nav"></div>
-<div sec:authorize="isAuthenticated()">
-    <div class="container p-4">
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <h3>Change account settings:</h3>
-
-        <form th:action="@{edit-user-form}" th:object="${user}" th:method="post">
-            <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label" th:text="#{user.name}"></label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" th:field="*{name}">
-                    <div>
-                        <div class="alert alert-danger" role="alert"
-                             th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-                    </div>
-                </div>
-            </div>
-
-            <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0" th:text="#{user.gender}"></legend>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="female"
-                                   th:field="*{gender}" th:value="${T(com.infoshare.myfitwebapp.enums.Gender).FEMALE}"
-                                   th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.enums.Gender).FEMALE}">
-                            <label class="form-check-label" for="female" th:text="#{user.value.gender.female}"></label>
+<section class="py-5 mt-0 align-items-start d-flex bg-light"
+         style="min-height: 75vh;">
+    <div class="container w-75">
+        <div class="card shadow">
+            <h1 class="card-header text-center m-4" th:text="#{userEdit.title}"></h1>
+            <div class="card-body mx-4 my-3">
+                <form th:action="@{edit-user-form}" th:object="${user}" th:method="post">
+                    <div class="form-group row mb-4">
+                        <label for="name" class="col-sm-4 col-form-label" th:text="#{user.name}"></label>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" id="name" th:field="*{name}">
+                            <div>
+                                <div class="alert alert-danger" role="alert"
+                                     th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                            </div>
                         </div>
-                        <div class="form-check">
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="nameHelpInline"
+                                           class="form-text">
+                                        </span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row mb-4">
+                        <legend class="col-form-label col-sm-4" th:text="#{user.gender}"></legend>
+                        <div class="col-sm">
                             <input class="form-check-input" type="radio" name="gridRadios" id="male"
-                                   th:field="*{gender}" th:value="${T(com.infoshare.myfitwebapp.enums.Gender).MALE}"
+                                   th:field="*{gender}"
+                                   th:value="${T(com.infoshare.myfitwebapp.enums.Gender).MALE}"
                                    th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.enums.Gender).MALE}">
-                            <label class="form-check-label" for="male" th:text="#{user.value.gender.male}"></label>
+                            <label class="form-check-label" for="male"
+                                   th:text="#{user.value.gender.male}"></label>
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="female"
+                                   th:field="*{gender}"
+                                   th:value="${T(com.infoshare.myfitwebapp.enums.Gender).FEMALE}"
+                                   th:checked="${user.gender} == ${T(com.infoshare.myfitwebapp.enums.Gender).FEMALE}">
+                            <label class="form-check-label" for="female"
+                                   th:text="#{user.value.gender.female}"></label>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="sexHelpInline"
+                                           class="form-text">
+                                        </span>
                         </div>
                     </div>
-                </div>
-            </fieldset>
 
-            <div class="form-group row">
-                <label for="birthDate" class="col-sm-2 col-form-label" th:text="#{user.birthDate}"></label>
-                <div class="col-sm-10">
-                    <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}">
-                    <div>
-                        <div class="alert alert-danger" role="alert"
-                             th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="height" class="col-sm-2 col-form-label" th:text="#{user.height}"></label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="height" th:field="*{height}">
-                    <div>
-                        <div class="alert alert-danger" role="alert"
-                                th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div>
+                    <div class="form-group row mb-4">
+                        <label for="birthDate" class="col-sm-4 col-form-label" th:text="#{user.birthDate}"></label>
+                        <div class="col-sm">
+                            <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}">
+                            <div>
+                                <div class="alert alert-danger" role="alert"
+                                     th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="birthDateHelpInline"
+                                           class="form-text"
+                                           th:text="#{userEdit.dateFormat}">
+                                        </span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="weight" class="col-sm-2 col-form-label" th:text="#{user.weight}"></label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="weight" th:field="*{weight}">
-                    <div>
-                        <div class="alert alert-danger" role="alert"
-                             th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="weightGoal" class="col-sm-2 col-form-label" th:text="#{user.weightGoal}"></label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="weightGoal" th:field="*{weightGoal}">
-                    <div>
-                        <div class="alert alert-danger" role="alert"
-                             th:if="${#fields.hasErrors('weightGoal')}" th:errors="*{weightGoal}"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="lvlJobActivity" class="col-sm-2 col-form-label"
-                       th:text="#{user.levelOfJobActivity}"></label>
-                <div class="col-sm-10">
-                    <select id="lvlJobActivity" class="form-select" aria-label="Default select example"
-                            name="lvlJobActivity" th:field="*{levelOfJobActivity}"/>
-                    <option th:each="lvl : ${T(com.infoshare.myfitwebapp.enums.ActivityLevel).values()}"
-                            th:value="${lvl}"
-                            th:text="${lvl.name()}"
-                            th:selected="${lvl.name()} == ${user.levelOfJobActivity.name()}">
-                    </option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="lvlPrivateActivity" class="col-sm-2 col-form-label"
-                       th:text="#{user.levelOfPrivateActivity}"></label>
-                <div class="col-sm-10">
-                    <select id="lvlPrivateActivity" class="form-select" aria-label="Default select example"
-                            name="lvlPrivateActivity" th:field="*{levelOfPrivateActivity}"/>
-                    <option th:each="lvl : ${T(com.infoshare.myfitwebapp.enums.ActivityLevel).values()}"
-                            th:value="${lvl}"
-                            th:text="${lvl.name()}"
-                            th:selected="${lvl.name()} == ${user.levelOfPrivateActivity.name()}">
-                    </option>
-                    </select>
-                </div>
-            </div>
+                    <div class="form-group row mb-4">
+                        <label for="height" class="col-sm-4 col-form-label" th:text="#{user.height}"></label>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" id="height" th:field="*{height}">
+                            <div>
+                                <div class="alert alert-danger" role="alert"
+                                     th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="heightHelpInline"
+                                           class="form-text"
+                                           th:text="#{userEdit.centimeter}">
+                                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="weight" class="col-sm-4 col-form-label" th:text="#{user.weight}"></label>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" id="weight" th:field="*{weight}">
+                            <div>
+                                <div class="alert alert-danger" role="alert"
+                                     th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="weightHelpInline"
+                                           class="form-text"
+                                           th:text="#{userEdit.kilogram}">
+                                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="weightGoal" class="col-sm-4 col-form-label" th:text="#{user.weightGoal}"></label>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" id="weightGoal" th:field="*{weightGoal}">
+                            <div>
+                                <div class="alert alert-danger" role="alert"
+                                     th:if="${#fields.hasErrors('weightGoal')}" th:errors="*{weightGoal}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="weightGoaltHelpInline"
+                                           class="form-text"
+                                           th:text="#{userEdit.kilogram}">
+                                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="lvlJobActivity" class="col-sm-4 col-form-label"
+                               th:text="#{user.levelOfJobActivity}"></label>
+                        <div class="col-sm">
+                            <select id="lvlJobActivity" class="form-select" aria-label="Default select example"
+                                    name="lvlJobActivity" th:field="*{levelOfJobActivity}"/>
+                            <option th:each="lvl : ${T(com.infoshare.myfitwebapp.enums.ActivityLevel).values()}"
+                                    th:value="${lvl}"
+                                    th:text="${lvl.name()}"
+                                    th:selected="${lvl.name()} == ${user.levelOfJobActivity.name()}">
+                            </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="lvlJobActivityHelpInline"
+                                           class="form-text"
+                            </span>
+                        </div>
+                    </div>
 
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" name="update" class="btn btn-primary" th:text="#{user.button}"></button>
-                </div>
+                    <div class="form-group row mb-4">
+                        <label for="lvlPrivateActivity" class="col-sm-4 col-form-label"
+                               th:text="#{user.levelOfPrivateActivity}"></label>
+                        <div class="col-sm">
+                            <select id="lvlPrivateActivity" class="form-select" aria-label="Default select example"
+                                    name="lvlPrivateActivity" th:field="*{levelOfPrivateActivity}"/>
+                            <option th:each="lvl : ${T(com.infoshare.myfitwebapp.enums.ActivityLevel).values()}"
+                                    th:value="${lvl}"
+                                    th:text="${lvl.name()}"
+                                    th:selected="${lvl.name()} == ${user.levelOfPrivateActivity.name()}">
+                            </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                                     <span id="lvlPrivateActivityHelpInline"
+                                           class="form-text"
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4 justify-content-md-center">
+                        <div class="col-sm-2">
+                            <button type="submit" name="update" class="btn btn-primary"
+                                    th:text="#{user.button}"></button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

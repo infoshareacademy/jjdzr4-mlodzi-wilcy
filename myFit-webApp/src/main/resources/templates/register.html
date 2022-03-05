@@ -4,10 +4,10 @@
 <head th:replace="fragments/header :: header"></head>
 <body>
 <div th:insert="~{fragments/navBar}"></div>
-<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-secondary"
-         style="min-height: 100vh;
+<section class="py-5 mt-0 align-items-start d-flex bg-secondary"
+         style="min-height: 95vh;
                 background-size: cover;
-                background-image: url(https://idowaz.com/blog/wp-content/uploads/2021/10/Healthy-Food-Doesnt-Have-To-Be-Expensive.jpg);">>
+                background-image: url(https://idowaz.com/blog/wp-content/uploads/2021/10/Healthy-Food-Doesnt-Have-To-Be-Expensive.jpg);">
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
             <div class="col-12 col-md-4 col-lg-3 h-50">
@@ -19,7 +19,7 @@
 
                         <p class="d-grid gap-2">
                             <a href="" class="btn btn-block btn-primary col-12 mx-auto"
-                               style="background-color: #55acee; border-color:#55acee; col"
+                               style="background-color: #55acee; border-color:#55acee;"
                                role="button">
                                 <i class="fab fa-twitter me-2"></i>
                                 <span th:text="#{register.twitter}"></span>
@@ -76,10 +76,14 @@
                                 </div>
                                 <input class="form-control"
                                        th:placeholder="#{register.repeatPassword}"
-                                       th:field="*{password}"
+                                       th:field="*{matchingPassword}"
                                        type="password"
                                        name="password"/>
                             </div>
+<!--                            <p th:each="error : ${#fields.errors('matchingPassword')}"-->
+<!--                               th:text="${error}">Validation error</p>-->
+                            <div class="alert alert-danger" th:if="${param.mismatch}" th:text="#{password.noMatch}"></div>
+<!--                            <div class="alert alert-danger" th:if="${passwordIncorrect}" th:text="#{password.noMatch}"></div>-->
                             <div class="row">
                                 <div class="checkbox col-form-label">
                                     <label>
