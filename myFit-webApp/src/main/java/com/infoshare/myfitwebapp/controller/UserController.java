@@ -49,8 +49,9 @@ public class UserController {
             User user = userLogin.getUser();
             LOGGER.info("User data loaded");
             model.addAttribute("user", user);
+        } else {
+            LOGGER.error("Authentication failed");
         }
-        LOGGER.error("Failed to authenticate user");
         return "user-edit";
     }
 
@@ -64,17 +65,19 @@ public class UserController {
                              @Valid @ModelAttribute("user") User user,
                              Errors errors) {
         if (authentication != null) {
-            LOGGER.info("Authentication OK");
             if (errors.hasErrors()) {
                 LOGGER.error("Editing user failure. Form contains errors");
                 return "user-edit";
             }
+            LOGGER.info("Authentication OK");
             UserLogin userLogin = userService.load(authentication.getName());
             userLogin.setUser(user);
             userService.save(userLogin);
             LOGGER.info("User saved");
             userService.saveToFile();
             LOGGER.info("User saved to file");
+        } else {
+            LOGGER.error("Authentication failed");
         }
         return "redirect:/";
     }
