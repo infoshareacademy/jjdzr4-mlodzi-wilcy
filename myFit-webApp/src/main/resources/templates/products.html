@@ -38,12 +38,20 @@
                                 </caption>
                                 <thead>
                                 <tr>
-                                    <th scope="col" th:text="#{product.name}"></th>
-                                    <th scope="col" th:text="#{product.kcal}"></th>
-                                    <th scope="col" th:text="#{product.fat}"></th>
-                                    <th scope="col" th:text="#{product.carbo}"></th>
-                                    <th scope="col" th:text="#{product.protein}"></th>
-                                    <th scope="col" th:text="#{products.action}"/>
+                                    <th rowspan="2" colspan="1" scope="col" th:text="#{product.name}"
+                                        class="align-middle"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.kcal}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.fat}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.carbo}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.protein}"></th>
+                                    <th rowspan="2" colspan="1" scope="col" th:text="#{products.action}"
+                                        class="align-middle"/>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{product.kcalPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
                                 </tr>
                                 </thead>
                                 <tbody>

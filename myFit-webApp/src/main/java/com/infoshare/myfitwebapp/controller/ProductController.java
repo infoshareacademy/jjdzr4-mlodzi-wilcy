@@ -38,8 +38,8 @@ public class ProductController {
     public String getRegultOfSearch(@Param("name") String name, Model model) {
         model.addAttribute("productsList", productService.findProductsByName(name));
         model.addAttribute("name", name);
-        model.addAttribute("describtion", "Search for '" + name + "' in products names:");
-        model.addAttribute("tableDesc", "List of products that have sign '"+ name +"' in their name:");
+        model.addAttribute("description", "Search for '" + name + "' in products names");
+        model.addAttribute("tableDesc", "Table of products that have '"+ name +"' in their name");
         return "products-search-result";
     }
 

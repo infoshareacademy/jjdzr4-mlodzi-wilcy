@@ -5,6 +5,7 @@
 <body>
 <div th:insert="~{fragments/navBar}"></div>
 
+
 <section class="py-5 mt-0 align-items-start d-flex bg-light"
          style="min-height: 50vh;">
     <div class="container-fluid text-center">
@@ -13,17 +14,16 @@
                 <h2 class="card-header my-3"
                     th:text="#{products.header}"></h2>
                 <div class="card-body">
-                    <p class="text-center"
-                       th:text="#{products.desc}"></p>
+                    <div class="h4 m-auto" th:text="${description}">
+                    </div>
                     <form th:action="@{/products/search}"
                           method="get">
-                        <div class="row justify-content-center mb-3">
+                        <div class="row justify-content-end mb-1 mt-3">
                             <div class="col-6 col-sm-5">
                                 <div class="form-group input-group">
-                                    <input type="search" name="registration" size="10"
+                                    <input type="search" name="name" size="10"
                                            class="form-control"
-                                           th:placeholder="#{products.input}" required
-                                           th:value="${name}"/>
+                                           th:value="${name}" />
                                     <input type="submit"
                                            value="Search"
                                            class="btn btn-outline-success"
@@ -32,23 +32,32 @@
                             </div>
                         </div>
                     </form>
-                    <div class="h4 m-auto" th:text="${describtion}">
-                    </div>
+
                     <div class="card-block">
                         <div class="table-responsive">
                             <table class="table table-hover caption">
                                 <caption th:text="${tableDesc}">
                                 </caption>
+
                                 <thead>
                                 <tr>
-                                    <th scope="col" th:text="#{product.name}"></th>
-                                    <th scope="col" th:text="#{product.kcal}"></th>
-                                    <th scope="col" th:text="#{product.fat}"></th>
-                                    <th scope="col" th:text="#{product.carbo}"></th>
-                                    <th scope="col" th:text="#{product.protein}"></th>
-                                    <th scope="col" th:text="#{products.action}"/>
+                                    <th rowspan="2" colspan="1" scope="col" th:text="#{product.name}"
+                                        class="align-middle"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.kcal}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.fat}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.carbo}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{product.protein}"></th>
+                                    <th rowspan="2" colspan="1" scope="col" th:text="#{products.action}"
+                                        class="align-middle"/>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{product.kcalPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
                                 </tr>
                                 </thead>
+
                                 <tbody>
                                 <tr th:each="product: ${productsList}">
                                     <td th:text="${product.name}"/>
