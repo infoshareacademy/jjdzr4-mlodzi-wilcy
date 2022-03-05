@@ -20,13 +20,9 @@
                         <div class="row justify-content-end mb-1 mt-3">
                             <div class="col-6 col-sm-5">
                                 <div class="form-group input-group">
-                                    <div class="form-outline">
-                                        <input type="search" name="name" size="10" id="searchInput"
-                                               class="form-control"
-
-                                               required />
-                                        <label class="form-label" for="searchInput" th:text="#{products.input}"></label>
-                                    </div>
+                                    <input type="search" name="name" size="10"
+                                           class="form-control"
+                                           th:placeholder="#{products.input}" required/>
                                     <input type="submit"
                                            value="Search"
                                            class="btn btn-outline-success"
@@ -76,14 +72,5 @@
 
 
 <div th:insert="~{fragments/footer :: footer}"></div>
-
-<script>
-    document.querySelectorAll('.form-outline').forEach((formOutline) => {
-        new mdb.Input(formOutline).init();
-    });
-    document.querySelectorAll('.form-outline').forEach((formOutline) => {
-        new mdb.Input(formOutline).update();
-    });
-</script>
 </body>
 </html>
