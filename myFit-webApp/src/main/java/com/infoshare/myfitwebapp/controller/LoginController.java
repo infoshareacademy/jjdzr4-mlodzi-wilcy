@@ -39,9 +39,9 @@ public class LoginController {
                 LOGGER.info("User data loaded");
                 return fillUserData(model);
             }
-            LOGGER.error("Failed to load user data");
+        } else {
+            LOGGER.error("Authentication failed");
         }
-        LOGGER.error("Failed to authenticate user");
         return "index";
     }
 
