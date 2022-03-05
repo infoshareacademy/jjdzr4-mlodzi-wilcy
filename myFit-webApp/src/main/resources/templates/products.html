@@ -17,12 +17,16 @@
                        th:text="#{products.desc}"></div>
                     <form th:action="@{/products/search}"
                           method="get">
-                        <div class="row justify-content-end mb-0 mt-3">
+                        <div class="row justify-content-end mb-1 mt-3">
                             <div class="col-6 col-sm-5">
                                 <div class="form-group input-group">
-                                    <input type="search" name="name" size="10"
-                                           class="form-control"
-                                           th:placeholder="#{products.input}" required/>
+                                    <div class="form-outline">
+                                        <input type="search" name="name" size="10" id="searchInput"
+                                               class="form-control"
+
+                                               required />
+                                        <label class="form-label" for="searchInput" th:text="#{products.input}"></label>
+                                    </div>
                                     <input type="submit"
                                            value="Search"
                                            class="btn btn-outline-success"
@@ -33,16 +37,16 @@
                     </form>
                     <div class="card-block">
                         <div class="table-responsive">
-                            <table class="table table-hover caption-top">
+                            <table class="table table-hover caption">
                                 <caption th:text="#{products.tableDesc}">
                                 </caption>
                                 <thead>
                                 <tr>
                                     <th scope="col" th:text="#{product.name}"></th>
-                                    <th scope="col" th:text="#{product.kcalPer100g}"></th>
-                                    <th scope="col" th:text="#{product.fatPer100g}"></th>
-                                    <th scope="col" th:text="#{product.carboPer100g}"></th>
-                                    <th scope="col" th:text="#{product.protein100g}"></th>
+                                    <th scope="col" th:text="#{product.kcal}"></th>
+                                    <th scope="col" th:text="#{product.fat}"></th>
+                                    <th scope="col" th:text="#{product.carbo}"></th>
+                                    <th scope="col" th:text="#{product.protein}"></th>
                                     <th scope="col" th:text="#{products.action}"/>
                                 </tr>
                                 </thead>
@@ -72,5 +76,14 @@
 
 
 <div th:insert="~{fragments/footer :: footer}"></div>
+
+<script>
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).update();
+    });
+</script>
 </body>
 </html>
