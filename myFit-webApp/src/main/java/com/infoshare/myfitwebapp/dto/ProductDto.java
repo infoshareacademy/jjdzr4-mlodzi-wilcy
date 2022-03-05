@@ -1,12 +1,14 @@
-package com.infoshare.myfitwebapp.model;
+package com.infoshare.myfitwebapp.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class ProductDto {
 
     @Id

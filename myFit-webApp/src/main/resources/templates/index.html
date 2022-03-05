@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body>
 <div th:replace="fragments/navBar :: nav"></div>
 <div th:insert="~{fragments/authenticated-user-index}"></div>
 <div th:insert="~{fragments/anonymous-user-index}"></div>
 
-<div th:if="${param.logout}" class="alert alert-info">
-    You have been logged out.
+<div class="row">
+    <div class="col-sm-6">
+        <div th:if="${param.logout}" class="alert alert-info">
+            You have been logged out.
+        </div>
+    </div>
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>

@@ -11,12 +11,12 @@
     "userData": {
       "id": 5,
       "name": "name",
-      "gender": "male",
-      "age": 10,
+      "gender": "MALE",
+      "birthDate": "1997-10-01",
       "height": 100,
       "weight": 50.0,
-      "levelOfJobActivity": "low",
-      "levelOfPrivateActivity": "low",
+      "levelOfJobActivity": "LOW",
+      "levelOfPrivateActivity": "LOW",
       "weightGoal": 60.0,
       "basalMetabolicRate": 10.0,
       "completeMetabolism": 10.0

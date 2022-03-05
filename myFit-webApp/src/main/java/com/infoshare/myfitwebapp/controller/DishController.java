@@ -1,7 +1,7 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.DishDto;
-import com.infoshare.myfitwebapp.model.ProductDto;
+import com.infoshare.myfitwebapp.dto.DishDto;
+import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.model.ProductRow;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;

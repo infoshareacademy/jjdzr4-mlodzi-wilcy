@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="fragments/header :: header"> </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"></head>
 <body sec:authorize="isAuthenticated()">
-<div>
-    <div class="card text-center">
-        <div class="card-header">
-            <h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Use Navigation Bar to use our app !</h5>
+<section class="pt-5 pb-5 mt-0 align-items-start d-flex bg-light">
+    <div class="container-fluid">
+        <div class="card text-center"
+             style="min-height: 50vh;">
+            <div>
+                <div class="card-header">
+                    <h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Use Navigation Bar to use our app !</h5>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.infoshare.myfitwebapp.controller;
 
-import com.infoshare.myfitwebapp.model.User;
-import com.infoshare.myfitwebapp.model.UserLogin;
+import com.infoshare.myfitwebapp.entity.User;
+import com.infoshare.myfitwebapp.entity.UserLogin;
 import com.infoshare.myfitwebapp.service.CPMService;
 import com.infoshare.myfitwebapp.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -48,7 +48,10 @@ public class LoginController {
     }
 
     @PostMapping("register")
-    public String addUser(@Valid @ModelAttribute("user") UserLogin userLogin, Errors errors) {
+    public String addUser(Model model, @Valid @ModelAttribute("user") UserLogin userLogin, Errors errors) {
+        if (noPasswordsMatch(userLogin)){
+            return "redirect:register?mismatch";
+        }
         if (errors.hasErrors()) {
             return "register";
         }
@@ -60,6 +63,10 @@ public class LoginController {
             return "redirect:/";
         }
         return "redirect:register?error";
+    }
+
+    private boolean noPasswordsMatch(UserLogin userLogin) {
+        return !userLogin.getPassword().equals(userLogin.getMatchingPassword());
     }
 
     @GetMapping("fillInfo")
