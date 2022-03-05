@@ -16,7 +16,6 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Table(name = UserLogin.TABLE_NAME)
-//@PasswordMatches
 public class UserLogin {
 
     public static final String TABLE_NAME = "user_login";

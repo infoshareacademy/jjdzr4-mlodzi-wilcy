@@ -49,8 +49,7 @@ public class LoginController {
 
     @PostMapping("register")
     public String addUser(Model model, @Valid @ModelAttribute("user") UserLogin userLogin, Errors errors) {
-        if (!userLogin.getPassword().equals(userLogin.getMatchingPassword())){
-            model.addAttribute("passwordIncorrect", "Passwords must match !");
+        if (noPasswordsMatch(userLogin)){
             return "redirect:register?mismatch";
         }
         if (errors.hasErrors()) {
@@ -64,6 +63,10 @@ public class LoginController {
             return "redirect:/";
         }
         return "redirect:register?error";
+    }
+
+    private boolean noPasswordsMatch(UserLogin userLogin) {
+        return !userLogin.getPassword().equals(userLogin.getMatchingPassword());
     }
 
     @GetMapping("fillInfo")
