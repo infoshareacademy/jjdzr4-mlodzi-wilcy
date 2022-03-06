@@ -78,9 +78,10 @@
                                             <input class="form-control" type="text" th:field="*{rows[__${rowStat.index}__].amount}"/>
                                         </td>
                                         <td class="align-middle">
-                                            <select class="form-select">
-                                                <option value="piece" ></option>
-                                                <option value="g"></option>
+                                            <select class="form-select" >
+<!--                                                TODO - add: th:field="*{unit}" -->
+                                                <option th:each="unitOpt : ${T(com.infoshare.myfitwebapp.enums.Units).values()}"
+                                                        th:value="${unitOpt}" th:text="${unitOpt.value}"></option>
                                             </select>
                                         </td>
                                         <td class="align-middle">
