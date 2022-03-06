@@ -1,6 +1,6 @@
 [
   {
-    "id": 10,
+    "id": 9,
     "name": "dough",
     "sumOfKcalPer100g": 34,
     "sumOfFatPer100g": 0.0,
@@ -12,7 +12,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "new dish",
     "sumOfKcalPer100g": 200,
     "sumOfFatPer100g": 0.0,
@@ -24,9 +24,9 @@
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "Weird dough",
-    "sumOfKcalPer100g": 500,
+    "sumOfKcalPer100g": 0,
     "sumOfFatPer100g": 0.0,
     "sumOfCarbohydratesPer100g": 0.0,
     "sumOfProteinPer100g": 0.0,

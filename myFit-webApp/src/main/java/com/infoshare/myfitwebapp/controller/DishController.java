@@ -80,7 +80,6 @@ public class DishController {
     public String getEditDishForm(@PathVariable Long id, Model model) {
         DishDto dishDtoById = dishService.findById(id);
         model.addAttribute("dish", dishDtoById);
-        model.addAttribute("productsList", dishDtoById.getProducts());
         return "dish-edit-form";
     }
 

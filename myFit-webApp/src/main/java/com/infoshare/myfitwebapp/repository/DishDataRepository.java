@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DishDataRepository extends JpaRepository<Dish, Long> {
+    Optional<Dish> findByProduct(Product product);
 
     @Query("select d from Dish d where d.id = ?1")
     Optional<Dish> findById(Long id);
