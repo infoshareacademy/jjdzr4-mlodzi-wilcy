@@ -44,6 +44,68 @@
                                      th:errors="*{name}"></div>
                             </div>
                             <div>
+
+                                <table class="table table-hover table-bordered caption-top">
+                                    <caption th:text="#{addDish.tableDesc}"></caption>
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th class="col-sm-1 align-middle" th:text="#{addDish.row}"></th>
+                                        <th class="col-sm-3 align-middle" th:text="#{addDish.product}"></th>
+                                        <th class="col-sm-2 align-middle" th:text="#{addDish.numberOfProducts}"></th>
+                                        <th class="col-sm-2 align-middle" th:text="#{addDish.unit}"></th>
+                                        <th class="col-sm-3 align-middle" th:text="#{dishEdit.actions}"></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr th:each="product: ${productsList}">
+                                        <th th:text=""
+                                            scope="row"
+                                            class="text-secondary align-middle"></th>
+
+                                        <td class="align-middle" th:text="*{name}">
+                                        </td>
+
+                                        <td class="align-middle" th:field="*{productRows.}">
+                                            <input class="form-control" type="text"
+                                                   th:field="*{getProductRows[__${rowStat.index}__].amount}"/>
+                                        </td>
+
+                                        <td class="align-middle">
+                                            <select class="form-select">
+                                                <!--TODO - add: th:field="*{unit}" -->
+                                                <option th:each="unitOpt : ${T(com.infoshare.myfitwebapp.enums.Units).values()}"
+                                                        th:value="${unitOpt}" th:text="${unitOpt.value}"></option>
+                                            </select>
+                                        </td>
+
+                                        <td class="align-middle">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <button class="btn btn-outline-success"
+                                                                type="submit"
+                                                                name="addRow">
+                                                            <i class="fa fa-plus"></i>
+                                                            <span th:text="#{addDish.add}"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <button class="btn btn-outline-danger"
+                                                                type="submit"
+                                                                name="removeRow"
+                                                                th:value="${rowStat.index}">
+                                                            <i class="fa fa-trash"></i>
+                                                            <span th:text="#{addDish.removeRow}"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
                                 <table class="table table-hover table-bordered caption-top">
                                     <caption th:text="#{addDish.tableDesc}"></caption>
                                     <thead class="thead-dark">
@@ -58,22 +120,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="row,rowStat : *{productRows}">
+                                    <tr th:each="product, rowStat : *{products}">
                                         <th th:text="${rowStat.count}"
                                             scope="row"
                                             class="text-secondary align-middle"></th>
 
-                                        <td class="align-middle">
-                                            <select class="form-select"
-                                                    th:field="*{getProductRows[__${rowStat.index}__].product}">
-                                                <option th:each="product : ${dish.products}"
-                                                        th:value="${product}"
-                                                        th:text="${product}">
-                                                </option>
-                                            </select>
+                                        <td class="align-middle" th:text="${product}">
                                         </td>
 
-                                        <td class="align-middle">
+                                        <td class="align-middle" th:field="*{getProductRows[__${rowStat.index}__].amount}">
                                             <input class="form-control" type="text"
                                                    th:field="*{getProductRows[__${rowStat.index}__].amount}"/>
                                         </td>

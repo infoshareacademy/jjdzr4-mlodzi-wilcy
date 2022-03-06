@@ -62,13 +62,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="row,rowStat : *{rows}">
+                                    <tr th:each="row,rowStat : *{productRows}">
                                         <th th:text="${rowStat.count}"
                                             scope="row"
                                             class="text-secondary align-middle"></th>
                                         <td class="align-middle">
                                             <select class="form-select"
-                                                    th:field="*{rows[__${rowStat.index}__].product}">
+                                                    th:field="*{productRows[__${rowStat.index}__].product}">
                                                 <option th:each="var : ${allProducts}"
                                                         th:value="${var}"
                                                         th:text="${var}">
@@ -77,7 +77,7 @@
                                         </td>
                                         <td class="align-middle">
                                             <input class="form-control" type="text"
-                                                   th:field="*{rows[__${rowStat.index}__].amount}"/>
+                                                   th:field="*{productRows[__${rowStat.index}__].amount}"/>
                                         </td>
                                         <td class="align-middle">
                                             <select class="form-select">

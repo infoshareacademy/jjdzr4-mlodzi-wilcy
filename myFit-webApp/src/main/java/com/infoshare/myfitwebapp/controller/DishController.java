@@ -51,10 +51,8 @@ public class DishController {
         if (errors.hasErrors()) {
             return "dish-new";
         }
-        List<ProductDto> productDtoList = dishDto.getProductRows().stream()
-                .map(ProductRow::getProduct)
-                .collect(Collectors.toList());
-        dishService.save(dishService.create(dishDto.getName(), productDtoList));
+        List<String> stringList = dishDto.getProductRows().stream().map(ProductRow::getProduct).collect(Collectors.toList());
+        dishService.save(dishService.create(dishDto.getName(), stringList));
         dishService.saveDatabaseToFile();
         return "redirect:/dishes";
     }

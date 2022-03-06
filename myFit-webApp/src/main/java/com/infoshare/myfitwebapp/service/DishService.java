@@ -3,7 +3,6 @@ package com.infoshare.myfitwebapp.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.infoshare.myfitwebapp.dto.DishDto;
-import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.entity.Dish;
 import com.infoshare.myfitwebapp.entity.Product;
 import com.infoshare.myfitwebapp.repository.DishDataRepository;
@@ -78,14 +77,12 @@ public class DishService {
         return null;
     }
 
-    @Transactional
-    public Dish create(String dishName, List<ProductDto> dtos) {
-        List<Product> productList = dtos.stream()
-                .map(modelMapper.map(dtos, Product.class))
-                .collect(Collectors.toList());
+
+    public Dish create(String dishName, List<String> productNames) {
+        List<Product> productList = productNames.stream().map(productRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
         Dish dish = new Dish();
         dish.setName(dishName);
-        dish.setProductsNameList(dtos.stream().map());
+        dish.setProductsNameList(productNames);
         dish.setSumOfKcalPer100g(calculateSumOfKcalPer100g(productList));
         dish.setSumOfFatPer100g(calculateSumOfFatPer100g(productList));
         dish.setSumOfCarbohydratesPer100g(calculateSumOfCarbohydratesPer100g(productList));
@@ -94,7 +91,6 @@ public class DishService {
         return dish;
     }
 
-    // FIXME - Where is taken into account quantity of each product ?!?!
     private int calculateSumOfKcalPer100g(List<Product> products) {
         int sumOfKcalPer100g = 0;
         for (Product p : products) {
@@ -102,7 +98,6 @@ public class DishService {
         }
         return sumOfKcalPer100g;
     }
-
 
     private double calculateSumOfFatPer100g(List<Product> products) {
         double sumOfFatPer100g = 0.0;
