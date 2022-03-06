@@ -19,9 +19,9 @@
     "id": 7,
     "name": "water",
     "kcalPer100g": 1,
-    "fatPer100g": 0.0,
-    "carbohydratesPer100g": 0.0,
-    "proteinPer100g": 0.0
+    "fatPer100g": 1.0,
+    "carbohydratesPer100g": 1.0,
+    "proteinPer100g": 1.0
   },
   {
     "id": 8,

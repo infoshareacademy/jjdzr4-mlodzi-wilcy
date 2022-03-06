@@ -62,20 +62,20 @@ public class ProductController {
         }
         productService.save(product);
         //TODO - merge save to file with save
-        productService.saveProductDatabaseToFile();
+        productService.saveDatabaseToFile();
         return "redirect:/";
     }
 
     @GetMapping("edit/{id}")
     public String getEditProductForm(@PathVariable Long id, Model model) {
-        ProductDto productDtoById = productService.findProductById(id);
+        ProductDto productDtoById = productService.findById(id);
         model.addAttribute("product", productDtoById);
         return "products-edit-form";
     }
 
     @PostMapping(value = "update")
     public String editProduct(@Valid @ModelAttribute("product") ProductDto product, Model model) {
-        ProductDto update = productService.updateProduct(product);
+        ProductDto update = productService.update(product);
         if (update == null) {
             return "error/500";
         }

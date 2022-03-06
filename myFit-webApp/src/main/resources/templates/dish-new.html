@@ -11,9 +11,9 @@
         <div class="row justify-content-center align-items-center d-flex-row text-center h-100">
             <div class="col-12">
                 <div class="card shadow">
-                    <h3 class="card-header text-center m-4"
+                    <h1 class="card-header text-center m-4"
                         th:text="#{addDish.headLine}">
-                    </h3>
+                    </h1>
                     <div class="card-body mx-4">
                         <form class="d-grid gap-4"
                               th:object="${dishDto}"
@@ -24,13 +24,14 @@
                                     <label for="name_input"
                                            class="col-form-label">
                                         <i th:text="#{dish.name}"></i>
+                                    </label>
                                 </div>
                                 <div class="col-auto">
-                                <input class="form-control "
-                                       type="text"
-                                       id="name_input"
-                                       aria-describedby="nameHelpInline"
-                                       th:field="*{name}">
+                                    <input class="form-control "
+                                           type="text"
+                                           id="name_input"
+                                           aria-describedby="nameHelpInline"
+                                           th:field="*{name}">
                                 </div>
                                 <div class="col-auto">
                                      <span id="nameHelpInline"
@@ -60,14 +61,14 @@
                                         </th>
                                     </tr>
                                     </thead>
-                                    <tbody >
+                                    <tbody>
                                     <tr th:each="row,rowStat : *{rows}">
                                         <th th:text="${rowStat.count}"
                                             scope="row"
-                                            class="text-secondary align-middle" ></th>
+                                            class="text-secondary align-middle"></th>
                                         <td class="align-middle">
-                                            <select  class="form-select"
-                                                     th:field="*{rows[__${rowStat.index}__].product}">
+                                            <select class="form-select"
+                                                    th:field="*{rows[__${rowStat.index}__].product}">
                                                 <option th:each="var : ${allProducts}"
                                                         th:value="${var}"
                                                         th:text="${var}">
@@ -75,37 +76,38 @@
                                             </select>
                                         </td>
                                         <td class="align-middle">
-                                            <input class="form-control" type="text" th:field="*{rows[__${rowStat.index}__].amount}"/>
+                                            <input class="form-control" type="text"
+                                                   th:field="*{rows[__${rowStat.index}__].amount}"/>
                                         </td>
                                         <td class="align-middle">
-                                            <select class="form-select" >
-<!--                                                TODO - add: th:field="*{unit}" -->
+                                            <select class="form-select">
+                                                <!--                                                TODO - add: th:field="*{unit}" -->
                                                 <option th:each="unitOpt : ${T(com.infoshare.myfitwebapp.enums.Units).values()}"
                                                         th:value="${unitOpt}" th:text="${unitOpt.value}"></option>
                                             </select>
                                         </td>
                                         <td class="align-middle">
                                             <div class="container">
-                                            <div class="row">
-                                            <div class="col-sm">
-                                                <button class="btn btn-outline-success"
-                                                        type="submit"
-                                                        name="addRow"
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <button class="btn btn-outline-success"
+                                                                type="submit"
+                                                                name="addRow"
                                                         >
-                                                    <i class="fa fa-plus"></i>
-                                                    <span th:text="#{addDish.add}"></span>
-                                                </button>
-                                            </div>
-                                            <div class="col-sm">
-                                            <button class="btn btn-outline-danger"
-                                                    type="submit"
-                                                    name="removeRow"
-                                                    th:value="${rowStat.index}">
-                                                <i class="fa fa-trash"></i>
-                                                <span th:text="#{addDish.removeRow}"></span>
-                                            </button>
-                                            </div>
-                                            </div>
+                                                            <i class="fa fa-plus"></i>
+                                                            <span th:text="#{addDish.add}"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <button class="btn btn-outline-danger"
+                                                                type="submit"
+                                                                name="removeRow"
+                                                                th:value="${rowStat.index}">
+                                                            <i class="fa fa-trash"></i>
+                                                            <span th:text="#{addDish.removeRow}"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>

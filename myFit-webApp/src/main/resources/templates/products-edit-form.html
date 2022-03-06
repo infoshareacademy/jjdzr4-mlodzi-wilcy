@@ -104,15 +104,18 @@
                                  th:errors="*{proteinPer100g}"></div>
                         </div>
 
-                        <div class="row mb-3">
-                            <button class="btn btn-outline-success"
-                                    type="submit">
-                                <span th:text="#{editProductPage.submitButton}"></span>
-                            </button>
+                        <div class="row mb-4 justify-content-center">
+                            <div class="col-md-3">
+                                <button type="submit" name="update" class="btn btn-primary"
+                                        th:text="#{editProductPage.submitButton}"></button>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 </section>
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>

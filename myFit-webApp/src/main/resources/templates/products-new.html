@@ -35,7 +35,8 @@
                                        th:field="*{name}"
                                 />
                             </div>
-                            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}"
+                                 th:errors="*{name}"></div>
 
                         </div>
                         <div class="row mb-4">
@@ -67,7 +68,7 @@
                                        th:field="*{fatPer100g}">
                             </div>
                             <div class="col-sm-3 input-group-text">
-                            <span th:text="#{product.gramPer100g}"></span>
+                                <span th:text="#{product.gramPer100g}"></span>
                             </div>
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('fatPer100g')}"
                                  th:errors="*{fatPer100g}"></div>
@@ -104,15 +105,18 @@
                                  th:errors="*{proteinPer100g}"></div>
                         </div>
 
-                        <div class="row mb-3">
-                            <button class="btn btn-outline-success"
-                                    type="submit">
-                                <span th:text="#{productAdd.button}"></span>
-                            </button>
+                        <div class="row mb-4 justify-content-center">
+                            <div class="col-md-3">
+                                <button type="submit" name="add" class="btn btn-primary"
+                                        th:text="#{productAdd.button}"></button>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 </section>
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>

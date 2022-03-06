@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +27,7 @@ public class ProductService {
         this.modelMapper = modelMapper;
     }
 
-//    TODO - All methods shoudl operate on DTO
+//    TODO - All methods should operate on DTO
     public Product save(Product product) {
         return productRepository.save(product);
     }
@@ -52,7 +51,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductDto findProductById(Long id){
+    public ProductDto findById(Long id){
         Optional<Product> productById = productRepository.findById(id);
         if(productById.isPresent()) {
             Product product = productById.get();
@@ -62,20 +61,20 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductDto updateProduct(ProductDto dto) {
+    public ProductDto update(ProductDto dto) {
         Optional<Product> byId = productRepository.findById(dto.getId());
         if (byId.isPresent()) {
             Product product = byId.get();
             modelMapper.map(dto, product);
             Product persistedEntity = productRepository.save(product);
             //TODO - merge save to file with save
-            saveProductDatabaseToFile();
+            saveDatabaseToFile();
             return modelMapper.map(persistedEntity, ProductDto.class);
         }
         return null;
     }
 
-    public void saveProductDatabaseToFile() {
+    public void saveDatabaseToFile() {
         List<Product> products = productRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
