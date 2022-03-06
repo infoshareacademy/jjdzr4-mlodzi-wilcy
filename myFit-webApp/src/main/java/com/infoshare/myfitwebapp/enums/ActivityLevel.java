@@ -3,8 +3,16 @@ package com.infoshare.myfitwebapp.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
+
 @Getter
 public enum ActivityLevel {
-    LOW, MEDIUM, HIGH
+    LOW("Low"),
+    MEDIUM("Medium"),
+    HIGH("High");
+
+    private final String value;
+
+    ActivityLevel(String value) {
+        this.value = value;
+    }
 }

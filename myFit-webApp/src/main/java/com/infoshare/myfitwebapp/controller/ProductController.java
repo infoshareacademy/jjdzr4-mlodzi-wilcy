@@ -1,8 +1,9 @@
 package com.infoshare.myfitwebapp.controller;
 
 import com.infoshare.myfitwebapp.entity.Product;
-import com.infoshare.myfitwebapp.repository.ProductDataRepository;
+import com.infoshare.myfitwebapp.repository.ProductRepository;
 import com.infoshare.myfitwebapp.service.ProductService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,25 +18,34 @@ import java.util.List;
 @RequestMapping("products")
 public class ProductController {
 
-    final
-    ProductService productService;
+    private final ProductService productService;
 
-    final
-    ProductDataRepository productDataRepository;
+    private final ProductRepository productRepository;
 
-    public ProductController(ProductDataRepository productDataRepository, ProductService productService) {
-        this.productDataRepository = productDataRepository;
+    public ProductController(ProductRepository productRepository, ProductService productService) {
+        this.productRepository = productRepository;
         this.productService = productService;
     }
 
-    @GetMapping("/name")
-    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String name){
-        return new ResponseEntity<>(productDataRepository.findByName(name), HttpStatus.OK);
+    @GetMapping()
+    public String getProductsList(Model model){
+        model.addAttribute("productsList", productService.findAllProducts());
+        new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
+        return "products";
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<Product>> getProductsByName(){
-        return new ResponseEntity<>(productDataRepository.findAll(), HttpStatus.OK);
+    @GetMapping("search")
+    public String getResultOfSearch(@Param("name") String name, Model model) {
+        model.addAttribute("productsList", productService.findProductsByName(name));
+        model.addAttribute("name", name);
+        model.addAttribute("description", "Search for '" + name + "' in products names");
+        model.addAttribute("tableDesc", "Table of products that have '"+ name +"' in their name");
+        return "products-search-result";
+    }
+
+    @GetMapping("name")
+    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String name){
+        return new ResponseEntity<>(productRepository.findByName(name), HttpStatus.OK);
     }
 
     @GetMapping("new")

@@ -24,11 +24,11 @@
                           th:method="post">
 
                         <div class="row mb-4">
-                            <label class="col-form-label col-sm-3"
+                            <label class="col-form-label col-sm-4"
                                    for="product_name">
                                 <span th:text="#{product.name}"></span>
                             </label>
-                            <div class="col-sm-6">
+                            <div class="col-sm">
                                 <input class="form-control"
                                        type="text"
                                        id="product_name"
@@ -39,17 +39,17 @@
 
                         </div>
                         <div class="row mb-4">
-                            <label class="col-sm-3 col-form-label"
+                            <label class="col-sm-4 col-form-label"
                                    for="kcalPer100g_input">
-                                <span th:text="#{product.kcalPer100g}"></span>
+                                <span th:text="#{product.kcal}"></span>
                             </label>
-                            <div class="col-sm-3">
+                            <div class="col-sm">
                                 <input class="form-control"
                                        type="number" id="kcalPer100g_input"
                                        th:field="*{kcalPer100g}"/>
                             </div>
 
-                            <span class="col-sm-2 input-group-text" th:text="#{product.per100g}"></span>
+                            <span class="col-sm-3 input-group-text" th:text="#{product.kcalPer100g}"></span>
 
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('kcalPer100g')}"
                                  th:errors="*{kcalPer100g}">
@@ -57,49 +57,49 @@
                         </div>
 
                         <div class="row mb-4">
-                            <label class="col-sm-3 col-form-label"
+                            <label class="col-sm-4 col-form-label"
                                    for="fatPer100g_input"
-                                   th:text="#{product.fatPer100g}"> </label>
-                            <div class="col-sm-3">
+                                   th:text="#{product.fat}"> </label>
+                            <div class="col-sm">
                                 <input class="form-control"
                                        type="number"
                                        id="fatPer100g_input"
                                        th:field="*{fatPer100g}">
                             </div>
-                            <div class="col-sm-2 input-group-text">
-                            <span th:text="#{product.per100g}"></span>
+                            <div class="col-sm-3 input-group-text">
+                            <span th:text="#{product.gramPer100g}"></span>
                             </div>
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('fatPer100g')}"
                                  th:errors="*{fatPer100g}"></div>
                         </div>
 
                         <div class="row mb-4">
-                            <label class="col-sm-3 col-form-label"
+                            <label class="col-sm-4 col-form-label"
                                    for="carbohydratesPer100g_input"
-                                   th:text="#{product.carboPer100g}"> </label>
-                            <div class="col-sm-3">
+                                   th:text="#{product.carbo}"> </label>
+                            <div class="col-sm">
                                 <input class="form-control"
                                        type="number"
                                        id="carbohydratesPer100g_input"
                                        th:field="*{carbohydratesPer100g}">
                             </div>
-                            <span class="col-sm-2 input-group-text" th:text="#{product.per100g}"></span>
+                            <span class="col-sm-3 input-group-text" th:text="#{product.gramPer100g}"></span>
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('carbohydratesPer100g')}"
                                  th:errors="*{carbohydratesPer100g}"></div>
                         </div>
 
                         <div class="row mb-4">
-                            <label class="col-sm-3 col-form-label"
+                            <label class="col-sm-4 col-form-label"
                                    for="proteinPer100g"
-                                   th:text="#{product.protein100g}"></label>
-                            <div class="col-sm-3">
+                                   th:text="#{product.protein}"></label>
+                            <div class="col-sm">
                                 <input class="form-control"
                                        type="number"
                                        id="proteinPer100g"
                                        th:field="*{proteinPer100g}">
 
                             </div>
-                            <span class="col-sm-2 input-group-text" th:text="#{product.per100g}"></span>
+                            <span class="col-sm-3 input-group-text" th:text="#{product.gramPer100g}"></span>
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('proteinPer100g')}"
                                  th:errors="*{proteinPer100g}"></div>
                         </div>

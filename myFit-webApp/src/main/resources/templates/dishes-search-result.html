@@ -7,20 +7,27 @@
          style="min-height: 75vh;">
     <div class="container-fluid text-center">
         <div class="d-flex justify-content-center">
-            <div class="card ">
+            <div class="card">
                 <h2 class="card-header my-3"
                     th:text="#{dishes.header}"></h2>
                 <div class="card-body">
-                    <div class="text-center h4"
-                         th:text="#{dishes.desc}"></div>
+                    <div class="h4 m-auto" th:text="${description}">
+                    </div>
+
                     <form th:action="@{/dishes/search}"
                           method="get">
-                        <div class="row justify-content-end mb-1 mt-3">
-                            <div class="col-6 col-sm-5">
+                        <div class="row mb-1 mt-3">
+                            <div class="col-6 col-sm-2">
+                                <a class="btn btn-outline-dark"
+                                   th:href="@{/dishes}"
+                                   th:text="#{button.return}"></a>
+                            </div>
+                            <div class="col-sm-5 offset-sm-5">
                                 <div class="form-group input-group">
                                     <input type="search" name="name" size="10"
                                            class="form-control"
-                                           th:placeholder="#{dishes.input}" required/>
+                                           th:value="${name}"
+                                           required/>
                                     <input type="submit"
                                            value="Search"
                                            class="btn btn-outline-success"
@@ -29,10 +36,11 @@
                             </div>
                         </div>
                     </form>
+
                     <div class="card-block">
                         <div class="table-responsive">
                             <table class="table table-hover caption">
-                                <caption th:text="#{dishes.tableDesc}">
+                                <caption th:text="${tableDesc}">
                                 </caption>
                                 <thead>
                                 <tr>
