@@ -46,34 +46,54 @@ public class DishController {
         return "dishes-search-result";
     }
 
-    @PostMapping("/new")
+    @PostMapping("new")
     public String addProduct(@Valid final DishDto dishDto, Errors errors) {
         if (errors.hasErrors()) {
             return "dish-new";
         }
-        List<String> stringList = dishDto.getRows().stream().map(ProductRow::getProduct).collect(Collectors.toList());
-        dishService.save(dishService.createDish(dishDto.getName(), stringList));
-        dishService.saveDishDatabaseToFile();
+        List<ProductDto> productDtoList = dishDto.getProductRows().stream()
+                .map(ProductRow::getProduct)
+                .collect(Collectors.toList());
+        dishService.save(dishService.create(dishDto.getName(), productDtoList));
+        dishService.saveDatabaseToFile();
         return "redirect:/dishes";
     }
 
-    @GetMapping(value="/new")
+    @GetMapping(value="new")
     public String addNewDish(Model model) {
         model.addAttribute("dishDto", new DishDto());
         return "dish-new";
     }
 
-    @RequestMapping(value="/new", params={"addRow"})
+    @RequestMapping(value="new", params={"addRow"})
     public String addRow(final DishDto dishDto, final BindingResult bindingResult) {
         dishDto.addRow(new ProductRow());
         return "dish-new";
     }
 
-    @RequestMapping(value="/new", params={"removeRow"})
+    @RequestMapping(value="new", params={"removeRow"})
     public String removeRow(final DishDto dishDto, final BindingResult bindingResult, final HttpServletRequest req) {
         final int rowId = Integer.parseInt(req.getParameter("removeRow"));
         dishDto.removeRow(rowId);
         return "dish-new";
+    }
+
+    @GetMapping("edit/{id}")
+    public String getEditDishForm(@PathVariable Long id, Model model) {
+        DishDto dishDtoById = dishService.findById(id);
+        model.addAttribute("dish", dishDtoById);
+        model.addAttribute("productsList", dishDtoById.getProducts());
+        return "dish-edit-form";
+    }
+
+    @PostMapping(value = "update")
+    public String editDish(@Valid @ModelAttribute("dish") DishDto dish, Model model) {
+        DishDto update = dishService.update(dish);
+        if (update == null) {
+            return "error/500";
+        }
+        model.addAttribute("dish", update);
+        return "redirect:/dishes";
     }
 
     @ModelAttribute("allProducts")
