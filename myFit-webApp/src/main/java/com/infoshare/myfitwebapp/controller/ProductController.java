@@ -35,7 +35,7 @@ public class ProductController {
     }
 
     @GetMapping("search")
-    public String getRegultOfSearch(@Param("name") String name, Model model) {
+    public String getResultOfSearch(@Param("name") String name, Model model) {
         model.addAttribute("productsList", productService.findProductsByName(name));
         model.addAttribute("name", name);
         model.addAttribute("description", "Search for '" + name + "' in products names");
