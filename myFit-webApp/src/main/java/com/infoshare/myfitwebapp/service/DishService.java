@@ -2,10 +2,12 @@ package com.infoshare.myfitwebapp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.infoshare.myfitwebapp.dto.DishDto;
 import com.infoshare.myfitwebapp.entity.Dish;
 import com.infoshare.myfitwebapp.entity.Product;
 import com.infoshare.myfitwebapp.repository.DishDataRepository;
 import com.infoshare.myfitwebapp.repository.ProductRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
@@ -17,12 +19,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class DishService {
-    final DishDataRepository dishDataRepository;
-    final ProductRepository productRepository;
+    private final DishDataRepository dishDataRepository;
+    private final ProductRepository productRepository;
+    private final ModelMapper modelMapper;
 
-    public DishService(DishDataRepository dishDataRepository, ProductRepository productRepository) {
+    public DishService(DishDataRepository dishDataRepository, ProductRepository productRepository, ModelMapper modelMapper) {
         this.dishDataRepository = dishDataRepository;
         this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
     }
 
     public Dish save(Dish dish) {
@@ -33,12 +37,18 @@ public class DishService {
         return dishDataRepository.saveAll(dish);
     }
 
-    public List<Dish> findAll() {
-        return dishDataRepository.findAll();
+    public List<DishDto> findAll() {
+        List<Dish> allDishes = dishDataRepository.findAll();
+        return allDishes.stream()
+                .map(dish -> modelMapper.map(dish, DishDto.class))
+                .collect(Collectors.toList());
     }
 
-    public List<Dish> findByName(String name) {
-        return dishDataRepository.findByName(name);
+    public List<DishDto> findByName(String name) {
+        List<Dish> dishListByName = dishDataRepository.findByName(name);
+        return dishListByName.stream()
+                .map(dish -> modelMapper.map(dish, DishDto.class))
+                .collect(Collectors.toList());
     }
 
     public Dish createDish(String dishName, List<String> productNames) {
@@ -50,6 +60,7 @@ public class DishService {
         dish.setSumOfFatPer100g(calculateSumOfFatPer100g(productList));
         dish.setSumOfCarbohydratesPer100g(calculateSumOfCarbohydratesPer100g(productList));
         dish.setSumOfProteinPer100g(calculateSumOfProteinPer100g(productList));
+        save(dish);
         return dish;
     }
 

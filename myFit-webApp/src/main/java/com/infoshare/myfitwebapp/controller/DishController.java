@@ -5,8 +5,7 @@ import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.model.ProductRow;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,12 +31,19 @@ public class DishController {
         this.productService = productService;
     }
 
-    // Ten endpoint do zmiany -> z DishService wyciągnąć List<DishDto>
     @GetMapping("")
     public String getAllDishes(Model model) {
-        
-        new ResponseEntity<>(dishService.findAll(), HttpStatus.OK);
+        model.addAttribute("dishList", dishService.findAll());
         return "dishes";
+    }
+
+    @GetMapping("search")
+    public String getResultOfSearch(@Param("name") String name, Model model) {
+        model.addAttribute("dishList", dishService.findByName(name));
+        model.addAttribute("name", name);
+        model.addAttribute("description", "Search for '" + name + "' in dishes names");
+        model.addAttribute("tableDesc", "Table of dishes that have '"+ name +"' in their name");
+        return "dishes-search-result";
     }
 
     @PostMapping("/new")
