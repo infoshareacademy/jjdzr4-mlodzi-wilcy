@@ -8,11 +8,13 @@ import com.infoshare.myfitwebapp.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +28,7 @@ public class ProductService {
         this.modelMapper = modelMapper;
     }
 
+//    TODO - All methods shoudl operate on DTO
     public Product save(Product product) {
         return productRepository.save(product);
     }
@@ -40,11 +43,29 @@ public class ProductService {
                 .map(product -> modelMapper.map(product, ProductDto.class))
                 .collect(Collectors.toList());
     }
+
     public List<ProductDto> findProductsByName(String name){
         List<Product> productByName = productRepository.findByName(name);
         return productByName.stream()
                 .map(product -> modelMapper.map(product, ProductDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public ProductDto findProductById(Long id){
+        Optional<Product> productById = productRepository.findById(id);
+        return modelMapper.map(productById, ProductDto.class);
+    }
+
+    @Transactional
+    public ProductDto updateProduct(ProductDto dto) {
+        Optional<Product> byId = productRepository.findById(dto.getId());
+        if (byId.isPresent()) {
+            Product product = byId.get();
+            modelMapper.map(dto, product);
+            Product persistedEntity = productRepository.save(product);
+            return modelMapper.map(persistedEntity, ProductDto.class);
+        }
+        return null;
     }
 
     public void saveProductDatabaseToFile() {
