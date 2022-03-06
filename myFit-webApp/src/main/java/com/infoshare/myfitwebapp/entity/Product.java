@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -49,8 +50,7 @@ public class Product {
     @Column(name = COLUMN_PREFIX + "proteinPer100g", nullable = false)
     private double proteinPer100g;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = Product.COLUMN_PREFIX + "dish", nullable = false)
-    List<Dish> dishList;
+    @ManyToMany(mappedBy = "products")
+    private List<Dish> dishes = new ArrayList<>();
 
 }
