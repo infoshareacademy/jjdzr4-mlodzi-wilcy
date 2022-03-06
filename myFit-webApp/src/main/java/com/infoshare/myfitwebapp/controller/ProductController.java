@@ -80,6 +80,6 @@ public class ProductController {
             return "error/500";
         }
         model.addAttribute("product", update);
-        return "products";
+        return "redirect:/products";
     }
 }

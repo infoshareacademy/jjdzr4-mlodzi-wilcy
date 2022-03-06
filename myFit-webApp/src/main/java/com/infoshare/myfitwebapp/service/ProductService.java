@@ -51,9 +51,14 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public ProductDto findProductById(Long id){
         Optional<Product> productById = productRepository.findById(id);
-        return modelMapper.map(productById, ProductDto.class);
+        if(productById.isPresent()) {
+            Product product = productById.get();
+            return modelMapper.map(product, ProductDto.class);
+        }
+        return null;
     }
 
     @Transactional
@@ -63,6 +68,8 @@ public class ProductService {
             Product product = byId.get();
             modelMapper.map(dto, product);
             Product persistedEntity = productRepository.save(product);
+            //TODO - merge save to file with save
+            saveProductDatabaseToFile();
             return modelMapper.map(persistedEntity, ProductDto.class);
         }
         return null;
