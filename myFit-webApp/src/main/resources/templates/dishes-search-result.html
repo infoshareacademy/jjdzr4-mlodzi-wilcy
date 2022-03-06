@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/header :: header"> </head>
+<body>
+<div th:insert="~{fragments/navBar}"></div>
+<section class="py-5 mt-0 align-items-start d-flex bg-light"
+         style="min-height: 75vh;">
+    <div class="container-fluid text-center">
+        <div class="d-flex justify-content-center">
+            <div class="card">
+                <h2 class="card-header my-3"
+                    th:text="#{dishes.header}"></h2>
+                <div class="card-body">
+                    <div class="text-center h4"
+                         th:text="#{dishes.desc}"></div>
+                    <form th:action="@{/dishes/search}"
+                          method="get">
+                        <div class="row justify-content-end mb-1 mt-3">
+                            <div class="col-6 col-sm-5">
+                                <div class="form-group input-group">
+                                    <input type="search" name="name" size="10"
+                                           class="form-control"
+                                           th:value="${name}"/>
+                                    <input type="submit"
+                                           value="Search"
+                                           class="btn btn-outline-success"
+                                           th:value="#{dishes.search}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-hover caption">
+                                <caption th:text="#{dishes.tableDesc}">
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th rowspan="2" colspan="1" scope="col" th:text="#{dishes.name}"
+                                        class="align-middle"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{dishes.kcal}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{dishes.fat}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{dishes.carbo}"></th>
+                                    <th rowspan="1" colspan="1" scope="col" th:text="#{dishes.protein}"></th>
+                                    <th rowspan="2" colspan="1" scope="col" th:text="#{dishes.action}"
+                                        class="align-middle"/>
+                                </tr>
+                                <tr>
+                                    <th th:text="#{product.kcalPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                    <th th:text="#{product.gramPer100g}"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="dish: ${dishesList}">
+                                    <td th:text="${dish.name}"/>
+                                    <td th:text="${dish.sumOfKcalPer100g}"/>
+                                    <td th:text="${dish.sumOfFatPer100g}"/>
+                                    <td th:text="${dish.sumOfCarbohydratesPer100g}"/>
+                                    <td th:text="${dish.sumOfProteinPer100g}"/>
+                                    <td>
+                                        <a class="btn btn-outline-primary"
+                                           th:href="@{/dishes/edit/{id}(id=${dish.id})}"
+                                           th:text="#{dishes.edit}"></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>
