@@ -1,5 +1,6 @@
 package com.infoshare.myfitwebapp.controller;
 
+import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.entity.Product;
 import com.infoshare.myfitwebapp.repository.ProductRepository;
 import com.infoshare.myfitwebapp.service.ProductService;
@@ -65,4 +66,20 @@ public class ProductController {
         return "redirect:/";
     }
 
+    @GetMapping("edit/{id}")
+    public String getEditProductForm(@PathVariable Long id, Model model) {
+        ProductDto productDtoById = productService.findProductById(id);
+        model.addAttribute("product", productDtoById);
+        return "products-edit-form";
+    }
+
+    @PostMapping(value = "update")
+    public String editProduct(@Valid @ModelAttribute("product") ProductDto product, Model model) {
+        ProductDto update = productService.updateProduct(product);
+        if (update == null) {
+            return "error/500";
+        }
+        model.addAttribute("product", update);
+        return "products";
+    }
 }
