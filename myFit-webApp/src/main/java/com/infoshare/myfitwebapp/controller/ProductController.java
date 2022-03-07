@@ -52,12 +52,6 @@ public class ProductController {
         return new ResponseEntity<>(productRepository.findByName(name), HttpStatus.OK);
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<Product>> getProductsByName(){
-        LOGGER.info("Received request for all products");
-        return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
-    }
-
     @GetMapping("new")
     public String getProduct(Model model) {
         LOGGER.info("Received request to add new product");
