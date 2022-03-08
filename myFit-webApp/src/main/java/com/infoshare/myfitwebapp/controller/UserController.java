@@ -3,6 +3,8 @@ package com.infoshare.myfitwebapp.controller;
 import com.infoshare.myfitwebapp.entity.User;
 import com.infoshare.myfitwebapp.entity.UserLogin;
 import com.infoshare.myfitwebapp.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import javax.validation.Valid;
 @RequestMapping("user")
 public class UserController {
 
+    private static final Logger LOGGER = LogManager.getLogger(UserController.class);
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -27,6 +31,7 @@ public class UserController {
 
     @GetMapping("")
     public String getUser() {
+        LOGGER.info("Received request for user");
         return "user";
     }
 
@@ -37,10 +42,15 @@ public class UserController {
 
     @GetMapping("/edit")
     public String getUpdate(Authentication authentication, Model model) {
+        LOGGER.info("Received request to edit user");
         if (authentication != null) {
+            LOGGER.info("Authentication OK");
             UserLogin userLogin = userService.load(authentication.getName());
             User user = userLogin.getUser();
+            LOGGER.info("User data loaded");
             model.addAttribute("user", user);
+        } else {
+            LOGGER.error("Authentication failed");
         }
         return "user-edit";
     }
@@ -56,12 +66,18 @@ public class UserController {
                              Errors errors) {
         if (authentication != null) {
             if (errors.hasErrors()) {
+                LOGGER.error("Editing user failure. Form contains errors");
                 return "user-edit";
             }
+            LOGGER.info("Authentication OK");
             UserLogin userLogin = userService.load(authentication.getName());
             userLogin.setUser(user);
             userService.save(userLogin);
+            LOGGER.info("User saved");
             userService.saveToFile();
+            LOGGER.info("User saved to file");
+        } else {
+            LOGGER.error("Authentication failed");
         }
         return "redirect:/";
     }
