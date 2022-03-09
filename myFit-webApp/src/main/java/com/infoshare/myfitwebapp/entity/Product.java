@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,7 +31,7 @@ public class Product {
     private String name;
 
     @PositiveOrZero(message = "{message.positiveOrZero}")
-    @Max(value = 100, message = "{message.max100}")
+    @Max(value = 1000, message = "{message.max1000}")
     @Column(name = COLUMN_PREFIX + "kcalPer100g", nullable = false)
     private int kcalPer100g;
 
@@ -48,5 +50,7 @@ public class Product {
     @Column(name = COLUMN_PREFIX + "proteinPer100g", nullable = false)
     private double proteinPer100g;
 
+    @ManyToMany(mappedBy = "products")
+    private List<Dish> dishes = new ArrayList<>();
 
 }

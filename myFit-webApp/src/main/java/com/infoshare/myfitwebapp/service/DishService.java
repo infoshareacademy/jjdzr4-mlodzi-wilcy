@@ -10,11 +10,13 @@ import com.infoshare.myfitwebapp.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,7 +53,32 @@ public class DishService {
                 .collect(Collectors.toList());
     }
 
-    public Dish createDish(String dishName, List<String> productNames) {
+    @Transactional
+    public DishDto findById(Long id) {
+        Optional<Dish> byId = dishDataRepository.findById(id);
+        if(byId.isPresent()) {
+            Dish dish = byId.get();
+            return modelMapper.map(dish, DishDto.class);
+        }
+        return null;
+    }
+
+    @Transactional
+    public DishDto update(DishDto dto){
+        Optional<Dish> byId = dishDataRepository.findById(dto.getId());
+        if(byId.isPresent()) {
+            Dish dish = byId.get();
+            modelMapper.map(dto, dish);
+            Dish persistedEntity = dishDataRepository.save(dish);
+            //TODO - merge save to file with save
+            saveDatabaseToFile();
+            return modelMapper.map(persistedEntity, DishDto.class);
+        }
+        return null;
+    }
+
+
+    public Dish create(String dishName, List<String> productNames) {
         List<Product> productList = productNames.stream().map(productRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
         Dish dish = new Dish();
         dish.setName(dishName);
@@ -96,7 +123,7 @@ public class DishService {
         return sumOfProteinPer100g;
     }
 
-    public void saveDishDatabaseToFile() {
+    public void saveDatabaseToFile() {
         List<Dish> list = dishDataRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {

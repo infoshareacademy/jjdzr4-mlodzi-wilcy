@@ -28,13 +28,13 @@ public class Dish {
     @Column(name = COLUMN_PREFIX + "name", nullable = false)
     private String name;
 
-    @Column(name = COLUMN_PREFIX + "sumOfKcalPer100g",nullable = false)
+    @Column(name = COLUMN_PREFIX + "sumOfKcalPer100g", nullable = false)
     private int sumOfKcalPer100g;
 
-    @Column(name = COLUMN_PREFIX + "sumOfFatPer100g",nullable = false)
+    @Column(name = COLUMN_PREFIX + "sumOfFatPer100g", nullable = false)
     private double sumOfFatPer100g;
 
-    @Column(name = COLUMN_PREFIX + "sumOfCarbohydratesPer100g",nullable = false)
+    @Column(name = COLUMN_PREFIX + "sumOfCarbohydratesPer100g", nullable = false)
     private double sumOfCarbohydratesPer100g;
 
     @Column(name = COLUMN_PREFIX + "sumOfProteinPer100g", nullable = false)
@@ -42,4 +42,12 @@ public class Dish {
 
     @ElementCollection
     private List<String> productsNameList = new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "Dish_Products",
+            joinColumns = {@JoinColumn(name = "d_id")},
+            inverseJoinColumns = {@JoinColumn(name = "p_id")}
+    )
+    List<Product> products = new ArrayList<>();
 }

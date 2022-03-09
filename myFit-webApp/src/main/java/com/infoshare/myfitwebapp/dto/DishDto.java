@@ -23,16 +23,16 @@ public class DishDto {
     private double sumOfProteinPer100g;
 
     private List<ProductDto> products;
-    private List<ProductRow> rows;
+    private List<ProductRow> productRows;
 
     public void addRow(ProductRow row) {
-        if (rows == null) {
-            rows = new ArrayList<>();
+        if (productRows == null) {
+            productRows = new ArrayList<>();
         }
-        rows.add(row);
+        productRows.add(row);
     }
 
     public void removeRow(int rowId) {
-        rows.remove(rowId);
+        productRows.remove(rowId);
     }
 }

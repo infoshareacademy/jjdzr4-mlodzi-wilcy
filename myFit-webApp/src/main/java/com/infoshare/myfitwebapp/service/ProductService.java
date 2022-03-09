@@ -8,11 +8,12 @@ import com.infoshare.myfitwebapp.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +27,7 @@ public class ProductService {
         this.modelMapper = modelMapper;
     }
 
+//    TODO - All methods should operate on DTO
     public Product save(Product product) {
         return productRepository.save(product);
     }
@@ -40,6 +42,7 @@ public class ProductService {
                 .map(product -> modelMapper.map(product, ProductDto.class))
                 .collect(Collectors.toList());
     }
+
     public List<ProductDto> findProductsByName(String name){
         List<Product> productByName = productRepository.findByName(name);
         return productByName.stream()
@@ -47,7 +50,31 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public void saveProductDatabaseToFile() {
+    @Transactional
+    public ProductDto findById(Long id){
+        Optional<Product> productById = productRepository.findById(id);
+        if(productById.isPresent()) {
+            Product product = productById.get();
+            return modelMapper.map(product, ProductDto.class);
+        }
+        return null;
+    }
+
+    @Transactional
+    public ProductDto update(ProductDto dto) {
+        Optional<Product> byId = productRepository.findById(dto.getId());
+        if (byId.isPresent()) {
+            Product product = byId.get();
+            modelMapper.map(dto, product);
+            Product persistedEntity = productRepository.save(product);
+            //TODO - merge save to file with save
+            saveDatabaseToFile();
+            return modelMapper.map(persistedEntity, ProductDto.class);
+        }
+        return null;
+    }
+
+    public void saveDatabaseToFile() {
         List<Product> products = productRepository.findAll();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {

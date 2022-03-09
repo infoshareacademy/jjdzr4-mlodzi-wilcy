@@ -1,31 +1,6 @@
 [
   {
-    "id": 7,
-    "name": "kakao",
-    "sumOfKcalPer100g": 0,
-    "sumOfFatPer100g": 0.0,
-    "sumOfCarbohydratesPer100g": 0.0,
-    "sumOfProteinPer100g": 0.0,
-    "productsNameList": [
-      "kaako",
-      "kaako",
-      "11"
-    ]
-  },
-  {
-    "id": 8,
-    "name": "22",
-    "sumOfKcalPer100g": 0,
-    "sumOfFatPer100g": 0.0,
-    "sumOfCarbohydratesPer100g": 0.0,
-    "sumOfProteinPer100g": 0.0,
-    "productsNameList": [
-      "11",
-      "11"
-    ]
-  },
-  {
-    "id": 10,
+    "id": 9,
     "name": "dough",
     "sumOfKcalPer100g": 34,
     "sumOfFatPer100g": 0.0,
@@ -33,6 +8,31 @@
     "sumOfProteinPer100g": 1.0,
     "productsNameList": [
       "water",
+      "flour"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "new dish",
+    "sumOfKcalPer100g": 200,
+    "sumOfFatPer100g": 0.0,
+    "sumOfCarbohydratesPer100g": 0.0,
+    "sumOfProteinPer100g": 0.0,
+    "productsNameList": [
+      "kaako",
+      "kaako"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Weird dough",
+    "sumOfKcalPer100g": 0,
+    "sumOfFatPer100g": 0.0,
+    "sumOfCarbohydratesPer100g": 0.0,
+    "sumOfProteinPer100g": 0.0,
+    "productsNameList": [
+      "water",
+      "Palm oil",
       "flour"
     ]
   }

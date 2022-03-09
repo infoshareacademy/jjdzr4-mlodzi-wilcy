@@ -18,5 +18,4 @@ public class DietController {
         return "diet";
     }
 
-
 }

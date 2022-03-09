@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header"></head>
 <body>
 
@@ -12,18 +12,19 @@
             <div class="col-12">
                 <div class="card shadow">
                     <h1 class="card-header text-center m-4"
-                        th:text="#{addDish.headLine}">
+                        th:text="#{dishEdit.headLine}">
                     </h1>
                     <div class="card-body mx-4">
                         <form class="d-grid gap-4"
-                              th:object="${dishDto}"
-                              th:action="@{/dishes/new}"
+                              th:object="${dish}"
+                              th:action="@{/dishes/update}"
                               th:method="post">
+                            <input hidden="hidden" type="text" id="id_input_id" th:field="*{id}">
                             <div class="row g-3 form-group input-group align-items-center ">
                                 <div class="col-auto">
                                     <label for="name_input"
                                            class="col-form-label">
-                                        <i th:text="#{dish.name}"></i>
+                                        <i th:text="#{dishEdit.name}"></i>
                                     </label>
                                 </div>
                                 <div class="col-auto">
@@ -43,6 +44,7 @@
                                      th:errors="*{name}"></div>
                             </div>
                             <div>
+
                                 <table class="table table-hover table-bordered caption-top">
                                     <caption th:text="#{addDish.tableDesc}"></caption>
                                     <thead class="thead-dark">
@@ -51,49 +53,35 @@
                                         <th class="col-sm-3 align-middle" th:text="#{addDish.product}"></th>
                                         <th class="col-sm-2 align-middle" th:text="#{addDish.numberOfProducts}"></th>
                                         <th class="col-sm-2 align-middle" th:text="#{addDish.unit}"></th>
-                                        <th class="col-sm-3 align-middle">
-                                            <button class="btn btn-outline-success"
-                                                    type="submit"
-                                                    name="addRow">
-                                                <i class="fa fa-plus"></i>
-                                                <span th:text="#{addDish.addRow}"></span>
-                                            </button>
-                                        </th>
+                                        <th class="col-sm-3 align-middle" th:text="#{dishEdit.actions}"></th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
-                                    <tr th:each="row,rowStat : *{productRows}">
+                                    <tr th:each="productRow, rowStat : ${dish.productRows}">
                                         <th th:text="${rowStat.count}"
                                             scope="row"
                                             class="text-secondary align-middle"></th>
-                                        <td class="align-middle">
-                                            <select class="form-select"
-                                                    th:field="*{productRows[__${rowStat.index}__].product}">
-                                                <option th:each="var : ${allProducts}"
-                                                        th:value="${var}"
-                                                        th:text="${var}">
-                                                </option>
-                                            </select>
-                                        </td>
-                                        <td class="align-middle">
-                                            <input class="form-control" type="text"
-                                                   th:field="*{productRows[__${rowStat.index}__].amount}"/>
-                                        </td>
+
+                                        <td class="align-middle" th:text="*{products.get(__${rowStat.index}__).name}"></td>
+
+                                        <td class="align-middle" th:text="*{productRows[__${rowStat.index}__].amount}"></td>
+
                                         <td class="align-middle">
                                             <select class="form-select">
-                                                <!--                                                TODO - add: th:field="*{unit}" -->
+                                                <!--TODO - add: th:field="*{unit}" -->
                                                 <option th:each="unitOpt : ${T(com.infoshare.myfitwebapp.enums.Units).values()}"
                                                         th:value="${unitOpt}" th:text="${unitOpt.value}"></option>
                                             </select>
                                         </td>
+
                                         <td class="align-middle">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-sm">
                                                         <button class="btn btn-outline-success"
                                                                 type="submit"
-                                                                name="addRow"
-                                                        >
+                                                                name="addRow">
                                                             <i class="fa fa-plus"></i>
                                                             <span th:text="#{addDish.add}"></span>
                                                         </button>
@@ -110,14 +98,17 @@
                                                 </div>
                                             </div>
                                         </td>
+
                                     </tr>
                                     </tbody>
                                 </table>
+
+
                             </div>
                             <div>
                                 <button class="btn btn-primary"
                                         type="submit"
-                                        th:text="#{addDish.submit}"></button>
+                                        th:text="#{dishEdit.submit}"></button>
                             </div>
                         </form>
                     </div>

@@ -16,13 +16,13 @@
         <div class="d-flex justify-content-center">
             <div class="card shadow">
                 <h1 class="card-header text-center m-4"
-                    th:text="#{addProductPage.headLine}"></h1>
+                    th:text="#{editProductPage.headLine}"></h1>
                 <div class="card-body mx-4">
                     <form class="form-group needs-validation"
                           th:object="${product}"
-                          th:action="@{/products/new}"
+                          th:action="@{/products/update}"
                           th:method="post">
-
+                        <input hidden="true" type="text" id="id_input_id" th:field="*{id}">
                         <div class="row mb-4">
                             <label class="col-form-label col-sm-4"
                                    for="product_name">
@@ -35,8 +35,7 @@
                                        th:field="*{name}"
                                 />
                             </div>
-                            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}"
-                                 th:errors="*{name}"></div>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 
                         </div>
                         <div class="row mb-4">
@@ -68,7 +67,7 @@
                                        th:field="*{fatPer100g}">
                             </div>
                             <div class="col-sm-3 input-group-text">
-                                <span th:text="#{product.gramPer100g}"></span>
+                            <span th:text="#{product.gramPer100g}"></span>
                             </div>
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('fatPer100g')}"
                                  th:errors="*{fatPer100g}"></div>
@@ -107,8 +106,8 @@
 
                         <div class="row mb-4 justify-content-center">
                             <div class="col-md-3">
-                                <button type="submit" name="add" class="btn btn-primary"
-                                        th:text="#{productAdd.button}"></button>
+                                <button type="submit" name="update" class="btn btn-primary"
+                                        th:text="#{editProductPage.submitButton}"></button>
                             </div>
                         </div>
 
