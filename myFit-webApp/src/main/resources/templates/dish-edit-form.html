@@ -63,9 +63,9 @@
                                             scope="row"
                                             class="text-secondary align-middle"></th>
 
-                                        <td class="align-middle" th:text="*{products.get(__${rowStat.index}__).name}"></td>
+                                        <td class="align-middle" th:text="${productRow.product.name}"></td>
 
-                                        <td class="align-middle" th:text="*{productRows[__${rowStat.index}__].amount}"></td>
+                                        <td class="align-middle" th:text="${productRow.amount}"></td>
 
                                         <td class="align-middle">
                                             <select class="form-select">

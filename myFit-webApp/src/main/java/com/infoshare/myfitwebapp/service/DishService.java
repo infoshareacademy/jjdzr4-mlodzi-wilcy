@@ -7,6 +7,7 @@ import com.infoshare.myfitwebapp.entity.Dish;
 import com.infoshare.myfitwebapp.entity.Product;
 import com.infoshare.myfitwebapp.repository.DishDataRepository;
 import com.infoshare.myfitwebapp.repository.ProductRepository;
+import com.infoshare.myfitwebapp.repository.ProductRowRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ import javax.transaction.Transactional;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,12 +22,12 @@ import java.util.stream.Collectors;
 @Service
 public class DishService {
     private final DishDataRepository dishDataRepository;
-    private final ProductRepository productRepository;
+    private final ProductRowRepository productRowRepository;
     private final ModelMapper modelMapper;
 
-    public DishService(DishDataRepository dishDataRepository, ProductRepository productRepository, ModelMapper modelMapper) {
+    public DishService(DishDataRepository dishDataRepository, ProductRepository productRepository, ProductRowRepository productRowRepository, ModelMapper modelMapper) {
         this.dishDataRepository = dishDataRepository;
-        this.productRepository = productRepository;
+        this.productRowRepository = productRowRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -77,17 +77,13 @@ public class DishService {
         return null;
     }
 
-
-    public Dish create(String dishName, List<String> productNames) {
-        List<Product> productList = productNames.stream().map(productRepository::findByName).flatMap(Collection::stream).collect(Collectors.toList());
+    @Transactional
+    public Dish create(DishDto dishDto) {
         Dish dish = new Dish();
-        dish.setName(dishName);
-        dish.setProductsNameList(productNames);
-        dish.setSumOfKcalPer100g(calculateSumOfKcalPer100g(productList));
-        dish.setSumOfFatPer100g(calculateSumOfFatPer100g(productList));
-        dish.setSumOfCarbohydratesPer100g(calculateSumOfCarbohydratesPer100g(productList));
-        dish.setSumOfProteinPer100g(calculateSumOfProteinPer100g(productList));
-        save(dish);
+        modelMapper.map(dishDto, dish);
+        Dish savedDish = save(dish);
+        dishDto.getProductRows().stream().forEach(productRow -> productRow.setDish(savedDish));
+        productRowRepository.saveAll(dishDto.getProductRows());
         return dish;
     }
 

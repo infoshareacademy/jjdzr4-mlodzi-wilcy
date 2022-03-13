@@ -2,7 +2,8 @@ package com.infoshare.myfitwebapp.controller;
 
 import com.infoshare.myfitwebapp.dto.DishDto;
 import com.infoshare.myfitwebapp.dto.ProductDto;
-import com.infoshare.myfitwebapp.model.ProductRow;
+import com.infoshare.myfitwebapp.entity.Dish;
+import com.infoshare.myfitwebapp.entity.ProductRow;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
 import org.apache.logging.log4j.LogManager;
@@ -12,17 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("dishes")
@@ -60,8 +57,7 @@ public class DishController {
             LOGGER.error("Adding dish failure. Form contains errors");
             return "dish-new";
         }
-        List<String> stringList = dishDto.getProductRows().stream().map(ProductRow::getProduct).collect(Collectors.toList());
-        dishService.save(dishService.create(dishDto.getName(), stringList));
+        Dish dishSaved = dishService.save(dishService.create(dishDto));
         LOGGER.info("New dish saved");
         dishService.saveDatabaseToFile();
         LOGGER.info("New dish saved to file");
@@ -91,17 +87,17 @@ public class DishController {
     @GetMapping("edit/{id}")
     public String getEditDishForm(@PathVariable Long id, Model model) {
         DishDto dishDtoById = dishService.findById(id);
-        model.addAttribute("dish", dishDtoById);
-        return "dish-edit-form";
+        model.addAttribute("dishDto", dishDtoById);
+        return "dish-new";
     }
 
     @PostMapping(value = "update")
-    public String editDish(@Valid @ModelAttribute("dish") DishDto dish, Model model) {
-        DishDto update = dishService.update(dish);
+    public String editDish(@Valid @ModelAttribute("dishDto") DishDto dishDto, Model model) {
+        DishDto update = dishService.update(dishDto);
         if (update == null) {
             return "error/500";
         }
-        model.addAttribute("dish", update);
+        model.addAttribute("dishDto", update);
         return "redirect:/dishes";
     }
 

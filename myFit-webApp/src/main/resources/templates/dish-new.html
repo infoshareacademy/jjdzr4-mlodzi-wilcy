@@ -19,6 +19,7 @@
                               th:object="${dishDto}"
                               th:action="@{/dishes/new}"
                               th:method="post">
+                            <input hidden="hidden" type="text" id="id_input_id" th:field="*{id}">
                             <div class="row g-3 form-group input-group align-items-center ">
                                 <div class="col-auto">
                                     <label for="name_input"
@@ -67,10 +68,11 @@
                                             scope="row"
                                             class="text-secondary align-middle"></th>
                                         <td class="align-middle">
+                                            <input hidden="hidden" type="text" th:field="*{productRows[__${rowStat.index}__].id}">
                                             <select class="form-select"
                                                     th:field="*{productRows[__${rowStat.index}__].product}">
                                                 <option th:each="var : ${allProducts}"
-                                                        th:value="${var}"
+                                                        th:value="${var.id}"
                                                         th:text="${var}">
                                                 </option>
                                             </select>

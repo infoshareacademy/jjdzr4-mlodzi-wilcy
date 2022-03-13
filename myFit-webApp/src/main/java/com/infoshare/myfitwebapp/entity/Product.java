@@ -23,7 +23,6 @@ public class Product {
     @Id
     @GeneratedValue()
     @Column(name = COLUMN_PREFIX + "id")
-    @Setter(AccessLevel.NONE)
     private Long id;
 
     @NotBlank(message = "{message.notEmpty}")
@@ -49,8 +48,4 @@ public class Product {
     @Max(value = 100, message = "{message.max100}")
     @Column(name = COLUMN_PREFIX + "proteinPer100g", nullable = false)
     private double proteinPer100g;
-
-    @ManyToMany(mappedBy = "products")
-    private List<Dish> dishes = new ArrayList<>();
-
 }
