@@ -19,6 +19,7 @@
                               th:object="${dishDto}"
                               th:action="@{/dishes/new}"
                               th:method="post">
+                            <input hidden="hidden" type="text" id="id_input_id" th:field="*{id}">
                             <div class="row g-3 form-group input-group align-items-center ">
                                 <div class="col-auto">
                                     <label for="name_input"
@@ -62,22 +63,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="row,rowStat : *{productRows}">
+                                    <tr th:each="row,rowStat : *{getDishProductRows}">
                                         <th th:text="${rowStat.count}"
                                             scope="row"
                                             class="text-secondary align-middle"></th>
                                         <td class="align-middle">
+                                            <input hidden="hidden" type="text" th:field="*{getDishProductRows[__${rowStat.index}__].id}">
                                             <select class="form-select"
-                                                    th:field="*{productRows[__${rowStat.index}__].product}">
+                                                    th:field="*{getDishProductRows[__${rowStat.index}__].product}">
                                                 <option th:each="var : ${allProducts}"
-                                                        th:value="${var}"
+                                                        th:value="${var.id}"
                                                         th:text="${var}">
                                                 </option>
                                             </select>
                                         </td>
                                         <td class="align-middle">
                                             <input class="form-control" type="text"
-                                                   th:field="*{productRows[__${rowStat.index}__].amount}"/>
+                                                   th:field="*{getDishProductRows[__${rowStat.index}__].amount}"/>
                                         </td>
                                         <td class="align-middle">
                                             <select class="form-select">

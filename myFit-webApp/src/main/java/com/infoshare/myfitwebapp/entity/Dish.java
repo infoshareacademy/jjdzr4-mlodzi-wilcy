@@ -21,7 +21,6 @@ public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = COLUMN_PREFIX + "id")
-    @Setter(AccessLevel.NONE)
     private Long id;
 
     @NotEmpty(message = "{message.notEmpty}")
@@ -43,11 +42,6 @@ public class Dish {
     @ElementCollection
     private List<String> productsNameList = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "Dish_Products",
-            joinColumns = {@JoinColumn(name = "d_id")},
-            inverseJoinColumns = {@JoinColumn(name = "p_id")}
-    )
-    List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "dish")
+    private List<DishProductRow> dishProductRows = new ArrayList<>();
 }

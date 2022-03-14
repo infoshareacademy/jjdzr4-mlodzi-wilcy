@@ -1,6 +1,7 @@
 package com.infoshare.myfitwebapp.dto;
 
-import com.infoshare.myfitwebapp.model.ProductRow;
+import com.infoshare.myfitwebapp.entity.Product;
+import com.infoshare.myfitwebapp.entity.DishProductRow;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,17 +23,17 @@ public class DishDto {
     private double sumOfCarbohydratesPer100g;
     private double sumOfProteinPer100g;
 
-    private List<ProductDto> products;
-    private List<ProductRow> productRows;
+    private List<Product> products;
+    private List<DishProductRow> dishProductRows;
 
-    public void addRow(ProductRow row) {
-        if (productRows == null) {
-            productRows = new ArrayList<>();
+    public void addRow(DishProductRow row) {
+        if (dishProductRows == null) {
+            dishProductRows = new ArrayList<>();
         }
-        productRows.add(row);
+        dishProductRows.add(row);
     }
 
     public void removeRow(int rowId) {
-        productRows.remove(rowId);
+        dishProductRows.remove(rowId);
     }
 }
