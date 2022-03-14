@@ -82,8 +82,8 @@ public class DishService {
         Dish dish = new Dish();
         modelMapper.map(dishDto, dish);
         Dish savedDish = save(dish);
-        dishDto.getProductRows().stream().forEach(productRow -> productRow.setDish(savedDish));
-        productRowRepository.saveAll(dishDto.getProductRows());
+        dishDto.getDishProductRows().stream().forEach(productRow -> productRow.setDish(savedDish));
+        productRowRepository.saveAll(dishDto.getDishProductRows());
         return dish;
     }
 
