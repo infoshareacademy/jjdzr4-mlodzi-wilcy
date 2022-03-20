@@ -3,7 +3,7 @@ package com.infoshare.myfitwebapp.controller;
 import com.infoshare.myfitwebapp.dto.DishDto;
 import com.infoshare.myfitwebapp.dto.ProductDto;
 import com.infoshare.myfitwebapp.entity.Dish;
-import com.infoshare.myfitwebapp.entity.DishProductRow;
+import com.infoshare.myfitwebapp.entity.ProductRow;
 import com.infoshare.myfitwebapp.service.DishService;
 import com.infoshare.myfitwebapp.service.ProductService;
 import org.apache.logging.log4j.LogManager;
@@ -73,7 +73,7 @@ public class DishController {
 
     @RequestMapping(value = "new", params = {"addRow"})
     public String addRow(final DishDto dishDto, final BindingResult bindingResult) {
-        dishDto.addRow(new DishProductRow());
+        dishDto.addRow(new ProductRow());
         return "dish-new";
     }
 
