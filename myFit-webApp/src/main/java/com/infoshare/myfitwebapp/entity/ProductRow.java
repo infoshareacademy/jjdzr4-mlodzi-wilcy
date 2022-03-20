@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = DishProductRow.TABLE_NAME)
-public class DishProductRow {
+@Table(name = ProductRow.TABLE_NAME)
+public class ProductRow {
 
     public static final String TABLE_NAME = "product_row";
     public static final String COLUMN_PREFIX = "pr_";

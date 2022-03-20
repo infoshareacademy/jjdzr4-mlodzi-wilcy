@@ -43,5 +43,5 @@ public class Dish {
     private List<String> productsNameList = new ArrayList<>();
 
     @OneToMany(mappedBy = "dish")
-    private List<DishProductRow> dishProductRows = new ArrayList<>();
+    private List<ProductRow> productRows = new ArrayList<>();
 }
