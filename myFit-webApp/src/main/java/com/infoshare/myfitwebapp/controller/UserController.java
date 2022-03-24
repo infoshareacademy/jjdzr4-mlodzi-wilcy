@@ -45,7 +45,7 @@ public class UserController {
         LOGGER.info("Received request to edit user");
         if (authentication != null) {
             LOGGER.info("Authentication OK");
-            UserLogin userLogin = userService.load(authentication.getName());
+            UserLogin userLogin = userService.findByUsername(authentication.getName());
             User user = userLogin.getUser();
             LOGGER.info("User data loaded");
             model.addAttribute("user", user);
@@ -70,7 +70,7 @@ public class UserController {
                 return "user-edit";
             }
             LOGGER.info("Authentication OK");
-            UserLogin userLogin = userService.load(authentication.getName());
+            UserLogin userLogin = userService.findByUsername(authentication.getName());
             userLogin.setUser(user);
             userService.save(userLogin);
             LOGGER.info("User saved");

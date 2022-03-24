@@ -1,10 +1,12 @@
 package com.infoshare.myfitwebapp.service;
 
 import com.infoshare.myfitwebapp.entity.UserLogin;
+import com.infoshare.myfitwebapp.enums.AuthenticationProvider;
 import com.infoshare.myfitwebapp.repository.UserLoginRepository;
 import com.infoshare.myfitwebapp.util.JsonMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -20,15 +22,17 @@ public class UserService {
         this.jsonMapper = jsonMapper;
     }
 
+    @Transactional
     public Iterable<UserLogin> save(List<UserLogin> users) {
         return userRepository.saveAll(users);
     }
 
+    @Transactional
     public UserLogin save(UserLogin userLogin) {
         return userRepository.save(userLogin);
     }
 
-    public UserLogin load(String userName) {
+    public UserLogin findByUsername(String userName) {
         return userRepository.findByUsername(userName);
     }
 
@@ -39,5 +43,13 @@ public class UserService {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Transactional
+    public void createNewUserAfterOAuthLoginSuccess(String username, AuthenticationProvider authenticationProvider){
+        UserLogin userLogin = new UserLogin();
+        userLogin.setUsername(username);
+        userLogin.setAuthProvider(authenticationProvider);
+        save(userLogin);
     }
 }

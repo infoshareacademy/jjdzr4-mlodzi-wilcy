@@ -34,7 +34,7 @@ public class LoginController {
         LOGGER.info("Received request to authenticate user");
         if (authentication != null) {
             LOGGER.info("Authentication OK");
-            UserLogin userLogin = userService.load(authentication.getName());
+            UserLogin userLogin = userService.findByUsername(authentication.getName());
             if (userLogin.getUser() == null) {
                 LOGGER.info("User data loaded");
                 return fillUserData(model);
@@ -68,7 +68,7 @@ public class LoginController {
             return "register";
         }
         try {
-            userService.load(userLogin.getUsername()).getUsername();
+            userService.findByUsername(userLogin.getUsername()).getUsername();
         } catch (NullPointerException e) {
             userService.save(userLogin);
             LOGGER.info("New user saved");
@@ -96,7 +96,7 @@ public class LoginController {
             LOGGER.error("Filling user data failure. Form contains errors");
             return "fillInfo";
         }
-        UserLogin userLogin = userService.load(authentication.getName());
+        UserLogin userLogin = userService.findByUsername(authentication.getName());
         user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
         user.setCompleteMetabolism(cpmService.calculateCompleteMetabolism(user));
         userLogin.setUser(user);

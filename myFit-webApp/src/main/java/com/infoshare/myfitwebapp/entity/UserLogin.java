@@ -1,5 +1,6 @@
 package com.infoshare.myfitwebapp.entity;
 
+import com.infoshare.myfitwebapp.enums.AuthenticationProvider;
 import com.infoshare.myfitwebapp.validation.PasswordMatches;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -33,12 +34,15 @@ public class UserLogin {
     @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String username;
 
-    @Column(name = COLUMN_PREFIX + "password", nullable = false)
+    @Column(name = COLUMN_PREFIX + "password")
     @NotBlank(message = NOT_EMPTY_MESSAGE)
     private String password;
 
-
     private String matchingPassword;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = COLUMN_PREFIX + "auth_provider")
+    private AuthenticationProvider authProvider;
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
