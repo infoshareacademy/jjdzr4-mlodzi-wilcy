@@ -1,4 +1,4 @@
-package com.infoshare.myfitwebapp.security.oauth;
+package com.infoshare.myfitwebapp.security.oauth2;
 
 import com.infoshare.myfitwebapp.controller.DishController;
 import com.infoshare.myfitwebapp.entity.UserLogin;
@@ -28,7 +28,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+        CustomerOAuth2User oAuth2User = (CustomerOAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getEmail();
         LOGGER.info("Customer's email: {}", email);
         // TODO - email on registration user!

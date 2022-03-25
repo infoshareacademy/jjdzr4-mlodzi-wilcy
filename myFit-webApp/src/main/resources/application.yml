@@ -16,15 +16,15 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
   security:
     oauth2:
       client:
         registration:
           google:
-            clientId: 862710517006-kh5gp11qs0h3u71pqpf0sob693qen18k.apps.googleusercontent.com
-            clientSecret: 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
+            client-id: 862710517006-kh5gp11qs0h3u71pqpf0sob693qen18k.apps.googleusercontent.com
+            client-secret: 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
             scope:
               - email
               - profile

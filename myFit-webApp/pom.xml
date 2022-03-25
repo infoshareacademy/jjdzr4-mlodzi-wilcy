@@ -159,6 +159,13 @@
             <version>5.6.2</version>
         </dependency>
 
+        <!-- spring social google -->
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-google</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
         <!-- oauth2 boot autoconfigure -->
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
