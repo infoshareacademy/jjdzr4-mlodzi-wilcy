@@ -2,6 +2,7 @@ package com.infoshare.myfitwebapp.controller;
 
 import com.infoshare.myfitwebapp.entity.User;
 import com.infoshare.myfitwebapp.entity.UserLogin;
+import com.infoshare.myfitwebapp.enums.AuthenticationProvider;
 import com.infoshare.myfitwebapp.service.CPMService;
 import com.infoshare.myfitwebapp.service.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -79,24 +80,25 @@ public class LoginController {
         return "redirect:register?error";
     }
 
-    private boolean noPasswordsMatch(UserLogin userLogin) {
-        return !userLogin.getPassword().equals(userLogin.getMatchingPassword());
-    }
-
     @GetMapping("fillInfo")
     public String fillUserData(Model model) {
         LOGGER.info("Received request to fill user data");
         model.addAttribute("user", new User());
+
         return "fillInfo";
     }
 
     @PostMapping("fillInfo")
-    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, Errors errors, Authentication authentication) {
+    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, Errors errors, Authentication authentication, Model model) {
         if (errors.hasErrors()) {
             LOGGER.error("Filling user data failure. Form contains errors");
             return "fillInfo";
         }
         UserLogin userLogin = userService.findByUsername(authentication.getName());
+        if (userLogin.getAuthProvider().equals(AuthenticationProvider.GOOGLE)) {
+            model.addAttribute("userLogin", userLogin);
+            return "OAuthInfo";
+        }
         user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
         user.setCompleteMetabolism(cpmService.calculateCompleteMetabolism(user));
         userLogin.setUser(user);
@@ -105,5 +107,9 @@ public class LoginController {
         userService.saveToFile();
         LOGGER.info("User data saved to file");
         return "redirect:/";
+    }
+
+    private boolean noPasswordsMatch(UserLogin userLogin) {
+        return !userLogin.getPassword().equals(userLogin.getMatchingPassword());
     }
 }

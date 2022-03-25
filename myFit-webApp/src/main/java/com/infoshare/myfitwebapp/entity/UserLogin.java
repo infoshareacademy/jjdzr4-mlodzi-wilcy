@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
@@ -43,6 +44,10 @@ public class UserLogin {
     @Enumerated(EnumType.STRING)
     @Column(name = COLUMN_PREFIX + "auth_provider")
     private AuthenticationProvider authProvider;
+
+    @Email
+    @Column(name = COLUMN_PREFIX + "email")
+    private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;

@@ -19,7 +19,7 @@
                 <h1 class="card-header text-center m-4" th:text="#{fillInfo.headLine}"></h1>
                 <div class="card-body mx-4">
                     <form class="form-group needs-validation"
-                          th:object="${user}"
+                          th:object="${userLogin}"
                           th:action="@{fillInfo}"
                           th:method="post">
                         <div class="row mb-4">

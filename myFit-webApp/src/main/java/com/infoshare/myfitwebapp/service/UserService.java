@@ -46,16 +46,19 @@ public class UserService {
     }
 
     @Transactional
-    public void createNewUserAfterOAuthLoginSuccess(String username, AuthenticationProvider authenticationProvider){
+    public void createNewUserAfterOAuthLoginSuccess(String username, String email, String password, AuthenticationProvider authenticationProvider){
         UserLogin userLogin = new UserLogin();
         userLogin.setUsername(username);
+        userLogin.setEmail(email);
+        userLogin.setPassword(password);
         userLogin.setAuthProvider(authenticationProvider);
         save(userLogin);
     }
 
     @Transactional
-    public void updateUserAfterOAuthLoginSuccess(UserLogin userLogin,String username, AuthenticationProvider authenticationProvider){
+    public void updateUserAfterOAuthLoginSuccess(UserLogin userLogin,String username, String email, AuthenticationProvider authenticationProvider){
         userLogin.setUsername(username);
+        userLogin.setEmail(email);
         userLogin.setAuthProvider(authenticationProvider);
         save(userLogin);
     }
