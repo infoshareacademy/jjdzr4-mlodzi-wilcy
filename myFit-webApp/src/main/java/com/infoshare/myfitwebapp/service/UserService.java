@@ -45,6 +45,7 @@ public class UserService {
         }
     }
 
+
     @Transactional
     public void createNewUserAfterOAuthLoginSuccess(String username, String email, String password, AuthenticationProvider authenticationProvider){
         UserLogin userLogin = new UserLogin();

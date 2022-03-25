@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head th:replace="fragments/header :: header"></head>
+<body>
+<style>
+    .col-form-label {
+        color: black;
+    }
+</style>
+
+<div th:insert="~{fragments/navBar}"></div>
+
+<section class="py-5 mt-0 align-items-start d-flex bg-light"
+         style="min-height: 75vh;">
+    <div class="container w-50">
+        <div class="d-flex justify-content-center">
+            <div class="card shadow">
+                <h1 class="card-header text-center m-4" th:text="#{user.credentials.createAccount}"></h1>
+                <div class="card-body mx-4">
+                    <form class="form-group needs-validation"
+                          th:object="${userLogin}"
+                          th:action="@{fillInfo}"
+                          th:method="post">
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label class="col-form-label"
+                                       for="name_input"
+                                       th:text="#{user.credentials.fullName}">
+                                </label>
+                                <input class="form-control"
+                                       type="text"
+                                       id="name_input"
+                                       th:field="*{username}"
+                                       th:value="${#request.userPrincipal.name}"/>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label class="col-form-label" for="username_input" th:text="#{user.credentials.username}"> </label>
+                                <input class="form-control"  type="text" id="username_input" th:field="*{username}">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label class="col-form-label" for="email_input" th:text="#{user.credentials.email}"> </label>
+                                <input class="form-control" type="text" id="email_input" th:field="*{email}">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label class="col-form-label" for="password_input" th:text="#{user.credentials.password}"> </label>
+                                <input class="form-control" type="text" id="password_input" th:field="*{password}">
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-4">
+                            <button class="btn btn-outline-success" type="submit" th:text="#{user.button}"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

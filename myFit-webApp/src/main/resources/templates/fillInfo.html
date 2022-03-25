@@ -31,10 +31,24 @@
                                 <input class="form-control"
                                        type="text"
                                        id="name_input"
-                                       th:field="*{name}"
-                                       th:text="${#request.userPrincipal.name}">
+                                       th:field="*{name}"/>
                                 <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}"
                                      th:errors="*{name}"></div>
+                            </div>
+                            <div class="col-6">
+                                <label class="col-form-label" for="email_input" th:text="#{user.credentials.email}"> </label>
+                                <input class="form-control" type="text" id="email_input" th:field="${userLogin.email}">
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label class="col-form-label" for="username_input" th:text="#{user.credentials.username}"> </label>
+                                <input class="form-control"  type="text" id="username_input" th:field="${userLogin.username}">
+                            </div>
+                            <div class="col-6">
+                                <label class="col-form-label" for="password_input" th:text="#{user.credentials.password}"> </label>
+                                <input class="form-control" type="password" id="password_input" th:field="${userLogin.password}">
                             </div>
                         </div>
 

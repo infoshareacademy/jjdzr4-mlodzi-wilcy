@@ -38,7 +38,7 @@ public class LoginController {
             UserLogin userLogin = userService.findByUsername(authentication.getName());
             if (userLogin.getUser() == null) {
                 LOGGER.info("User data loaded");
-                return fillUserData(model);
+                return fillUserData(authentication, model);
             }
         } else {
             LOGGER.error("Authentication failed");
@@ -61,7 +61,7 @@ public class LoginController {
 
     @PostMapping("register")
     public String addUser(Model model, @Valid @ModelAttribute("user") UserLogin userLogin, Errors errors) {
-        if (noPasswordsMatch(userLogin)){
+        if (noPasswordsMatch(userLogin)) {
             return "redirect:register?mismatch";
         }
         if (errors.hasErrors()) {
@@ -81,10 +81,13 @@ public class LoginController {
     }
 
     @GetMapping("fillInfo")
-    public String fillUserData(Model model) {
+    public String fillUserData(Authentication authentication, Model model) {
         LOGGER.info("Received request to fill user data");
-        model.addAttribute("user", new User());
-
+        UserLogin userLogin = userService.findByUsername(authentication.getName());
+        User user = new User();
+        user.setName(authentication.getName());
+        model.addAttribute("userLogin", userLogin);
+        model.addAttribute("user", user);
         return "fillInfo";
     }
 
@@ -97,7 +100,7 @@ public class LoginController {
         UserLogin userLogin = userService.findByUsername(authentication.getName());
         if (userLogin.getAuthProvider().equals(AuthenticationProvider.GOOGLE)) {
             model.addAttribute("userLogin", userLogin);
-            return "OAuthInfo";
+            return "OAuth2FillInfo";
         }
         user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
         user.setCompleteMetabolism(cpmService.calculateCompleteMetabolism(user));
