@@ -52,4 +52,11 @@ public class UserService {
         userLogin.setAuthProvider(authenticationProvider);
         save(userLogin);
     }
+
+    @Transactional
+    public void updateUserAfterOAuthLoginSuccess(UserLogin userLogin,String username, AuthenticationProvider authenticationProvider){
+        userLogin.setUsername(username);
+        userLogin.setAuthProvider(authenticationProvider);
+        save(userLogin);
+    }
 }

@@ -30,20 +30,17 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                                         Authentication authentication) throws IOException, ServletException {
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getEmail();
-        // TODO - email on registration user!
-//        String username = oAuth2User.getUsername();
-
-        String username = "test";
-        UserLogin user = userService.findByUsername(username);
-
-        if (user == null) {
-            userService.createNewUserAfterOAuthLoginSuccess(email, AuthenticationProvider.GOOGLE);
-        } else {
-
-            return;
-        }
         LOGGER.info("Customer's email: {}", email);
+        // TODO - email on registration user!
+        String username = oAuth2User.getUsername();
+
+        try {
+            UserLogin user = userService.findByUsername(username);
+            userService.updateUserAfterOAuthLoginSuccess(user, email, AuthenticationProvider.GOOGLE);
+        } catch (NullPointerException e) {
+            userService.createNewUserAfterOAuthLoginSuccess(email, AuthenticationProvider.GOOGLE);
+            LOGGER.info("New user created");
+        }
         super.onAuthenticationSuccess(request, response, authentication);
     }
-
 }
