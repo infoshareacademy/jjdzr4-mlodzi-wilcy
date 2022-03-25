@@ -34,7 +34,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         String name = oAuth2User.getName();
         LOGGER.info("User's name: {}", name);
         String username = oAuth2User.getUsername();
-        String password = "123";
+        String password = "123"; //FIXME
         try {
             UserLogin user = userService.findByUsername(name);
             userService.updateUserAfterOAuthLoginSuccess(user, email, name, AuthenticationProvider.GOOGLE);
