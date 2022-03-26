@@ -19,9 +19,9 @@
                 <h1 class="card-header text-center m-4" th:text="#{fillInfo.headLine}"></h1>
                 <div class="card-body mx-4">
                     <form class="form-group needs-validation"
-                          th:object="${user}"
                           th:action="@{fillInfo}"
-                          th:method="post">
+                          th:method="post"
+                          th:object="${user}">
                         <div class="row mb-4">
                             <div class="col-6">
                                 <label class="col-form-label"
@@ -30,6 +30,7 @@
                                 </label>
                                 <input class="form-control"
                                        type="text"
+                                       name="name"
                                        id="name_input"
                                        th:field="*{name}"/>
                                 <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}"
@@ -37,18 +38,18 @@
                             </div>
                             <div class="col-6">
                                 <label class="col-form-label" for="email_input" th:text="#{user.credentials.email}"> </label>
-                                <input class="form-control" type="text" id="email_input" th:field="${userLogin.email}">
+                                <input class="form-control" name="email" type="text" id="email_input" th:field="${userLogin.email}">
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <div class="col-6">
                                 <label class="col-form-label" for="username_input" th:text="#{user.credentials.username}"> </label>
-                                <input class="form-control"  type="text" id="username_input" th:field="${userLogin.username}">
+                                <input class="form-control" name="username" type="text" id="username_input" th:value="${userLogin.username}">
                             </div>
                             <div class="col-6">
                                 <label class="col-form-label" for="password_input" th:text="#{user.credentials.password}"> </label>
-                                <input class="form-control" type="password" id="password_input" th:field="${userLogin.password}">
+                                <input class="form-control" name="password" type="password" id="password_input" th:field="${userLogin.password}">
                             </div>
                         </div>
 
@@ -56,7 +57,7 @@
                             <div class="col-6">
                                 <label for="birthDate" class="col-form-label"
                                        th:text="#{user.birthDate}"></label>
-                                <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}">
+                                <input type="date" name="birthdate" class="form-control" id="birthDate" th:field="*{birthDate}">
                                 <div>
                                     <div class="alert alert-danger" role="alert"
                                          th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
@@ -90,7 +91,7 @@
                         <div class="row mb-4">
                             <div class="col-6">
                                 <label class="col-form-label" for="weight_input" th:text="#{user.weight}"> </label>
-                                <input class="form-control" type="number" id="weight_input" th:field="*{weight}">
+                                <input class="form-control" name="weight" type="number" id="weight_input" th:field="*{weight}">
                                 <div class="alert alert-danger" th:if="${#fields.hasErrors('weight')}"
                                      th:errors="*{weight}"></div>
                             </div>
@@ -130,7 +131,7 @@
                             <div class="col-6">
                                 <label class="col-form-label" for="weightGoal_input"
                                        th:text="#{user.weightGoal}"></label>
-                                <input class="form-control" type="number" id="weightGoal_input"
+                                <input class="form-control" name="weightGoal" type="number" id="weightGoal_input"
                                        th:field="*{weightGoal}"><br>
                                 <div class="alert alert-danger" th:if="${#fields.hasErrors('weightGoal')}"
                                      th:errors="*{weightGoal}"></div>

@@ -20,6 +20,7 @@ public class UserService {
     public UserService(UserLoginRepository userRepository, JsonMapper jsonMapper) {
         this.userRepository = userRepository;
         this.jsonMapper = jsonMapper;
+
     }
 
     @Transactional

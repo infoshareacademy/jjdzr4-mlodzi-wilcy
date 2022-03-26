@@ -13,6 +13,7 @@ public class CPMService {
     private static final Double FOURTH_LEVEL_OF_ACTIVITY = 1.9;
     private static final Double FIFTH_LEVEL_OF_ACTIVITY = 2.0;
     private static final Double SIXTH_LEVEL_OF_ACTIVITY = 2.2;
+    public static final int ZERO_COMPLETE_METABOLISM = 0;
 
     public double calculateBasalMetabolicRate(User user) {
         double bmr;
@@ -44,7 +45,7 @@ public class CPMService {
         } else if (isSixthLevelOfActivity(user)) {
             CompleteMetabolism = user.getBasalMetabolicRate() * SIXTH_LEVEL_OF_ACTIVITY;
         } else {
-            CompleteMetabolism = 0;
+            CompleteMetabolism = ZERO_COMPLETE_METABOLISM;
         }
         return CompleteMetabolism;
     }
