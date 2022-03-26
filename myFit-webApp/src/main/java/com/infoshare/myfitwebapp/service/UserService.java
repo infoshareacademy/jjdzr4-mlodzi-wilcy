@@ -36,6 +36,8 @@ public class UserService {
         return userRepository.findByUsername(userName);
     }
 
+    public UserLogin findByEmail(String email) {return userRepository.findByEmail(email);}
+
     public void saveToFile() {
         List<UserLogin> users = userRepository.findAll();
         try {

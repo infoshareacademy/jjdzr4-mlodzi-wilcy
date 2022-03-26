@@ -1,6 +1,6 @@
 package com.infoshare.myfitwebapp.config;
 
-import com.infoshare.myfitwebapp.security.oauth2.CustomerOAuth2UserService;
+import com.infoshare.myfitwebapp.security.oauth2.CustomOAuth2UserService;
 import com.infoshare.myfitwebapp.security.oauth2.OAuth2LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomerOAuth2UserService oAuth2UseService;
+    private CustomOAuth2UserService oAuth2UseService;
 
     @Autowired
     private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;

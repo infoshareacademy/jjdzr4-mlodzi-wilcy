@@ -3,11 +3,13 @@ package com.infoshare.myfitwebapp.controller;
 import com.infoshare.myfitwebapp.entity.User;
 import com.infoshare.myfitwebapp.entity.UserLogin;
 import com.infoshare.myfitwebapp.enums.AuthenticationProvider;
+import com.infoshare.myfitwebapp.security.oauth2.CustomOAuth2User;
 import com.infoshare.myfitwebapp.service.CPMService;
 import com.infoshare.myfitwebapp.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -92,16 +94,13 @@ public class LoginController {
     }
 
     @PostMapping("fillInfo")
-    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, Errors errors, Authentication authentication, Model model) {
-        if (errors.hasErrors()) {
-            LOGGER.error("Filling user data failure. Form contains errors");
-            return "fillInfo";
-        }
-        UserLogin userLogin = userService.findByUsername(authentication.getName());
-        if (userLogin.getAuthProvider().equals(AuthenticationProvider.GOOGLE)) {
-            model.addAttribute("userLogin", userLogin);
-            return "OAuth2FillInfo";
-        }
+    public String fillUserDataFinish(@Valid @ModelAttribute("user") User user, @ModelAttribute("userLogin") UserLogin userLogin,Errors errors, Authentication authentication, Model model) {
+//        UserLogin userLogin = userService.findByUsername(authentication.getName());
+//        model.addAttribute("userLogin", userLogin);
+//        if (errors.hasErrors()) {
+//            LOGGER.error("Filling user data failure. Form contains errors");
+//            return "fillInfo";
+//        }
         user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
         user.setCompleteMetabolism(cpmService.calculateCompleteMetabolism(user));
         userLogin.setUser(user);

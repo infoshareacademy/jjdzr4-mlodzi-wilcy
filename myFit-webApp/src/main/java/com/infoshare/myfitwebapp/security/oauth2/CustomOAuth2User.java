@@ -6,11 +6,11 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.Collection;
 import java.util.Map;
 
-public class CustomerOAuth2User implements OAuth2User {
+public class CustomOAuth2User implements OAuth2User {
 
     private final OAuth2User oAuth2User;
 
-    public CustomerOAuth2User(OAuth2User oAuth2User) {
+    public CustomOAuth2User(OAuth2User oAuth2User) {
         this.oAuth2User = oAuth2User;
     }
 
@@ -29,13 +29,14 @@ public class CustomerOAuth2User implements OAuth2User {
         return oAuth2User.getAttribute("name");
     }
 
-    public String getUsername() {
-        return oAuth2User.getAttribute("username");
+    public String getFirstName() {
+        return oAuth2User.getAttribute("given_name");
     }
-
+    public String getLastName() {
+        return oAuth2User.getAttribute("family_name");
+    }
     public String getEmail() {
         return oAuth2User.getAttribute("email");
     }
-
 }
 
