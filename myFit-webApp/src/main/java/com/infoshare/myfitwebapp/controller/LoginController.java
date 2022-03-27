@@ -105,13 +105,12 @@ public class LoginController {
         UserLogin userFromDatabase = userService.findByEmail(userLogin.getEmail());
         user.setBasalMetabolicRate(cpmService.calculateBasalMetabolicRate(user));
         user.setCompleteMetabolism(cpmService.calculateCompleteMetabolism(user));
-//
+        //FIXME - refactor
         userFromDatabase.setUser(user);
         userFromDatabase.setUsername(userLogin.getUsername());
         userFromDatabase.setEmail(userLogin.getEmail());
         userFromDatabase.setPassword(userLogin.getPassword());
         userService.save(userFromDatabase);
-//        userService.save(userLogin);
         LOGGER.info("User data saved");
         userService.saveToFile();
         LOGGER.info("User data saved to file");
