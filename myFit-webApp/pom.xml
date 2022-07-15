@@ -142,7 +142,6 @@
         </dependency>
 
         <!-- log4j2 -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

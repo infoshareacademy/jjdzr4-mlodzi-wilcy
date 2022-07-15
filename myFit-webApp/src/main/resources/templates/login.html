@@ -25,11 +25,11 @@
                         <h4 class="card-title mt-3 text-center" th:text="#{login.login}"></h4>
                         <p class="text-center" th:text="#{login.loginDesc}"></p>
                         <p class="d-grid gap-2">
-                            <a href="" class="btn btn-block btn-primary col-12 mx-auto"
-                               style="background-color: #55acee; border-color:#55acee; col"
+                            <a th:href="@{/oauth2/authorization/google}" class="btn btn-block btn-primary col-12 mx-auto"
+                               style="background-color: #d75656; border-color:#421919;"
                                role="button">
-                                <i class="fab fa-twitter me-2"></i>
-                                <span th:text="#{login.loginTwitter}"></span>
+                                <i class="fab fa-google me-2"></i>
+                                <span th:text="#{login.loginGoogle}"></span>
                             </a>
                             <a href="" class="btn btn-block btn-primary col-12"
                                style="background-color: #3b5998; border-color:#3b5998;"

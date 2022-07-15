@@ -17,6 +17,13 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 862710517006-kh5gp11qs0h3u71pqpf0sob693qen18k.apps.googleusercontent.com
+            client-secret: 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
 server:
   error:
     whitelabel:
